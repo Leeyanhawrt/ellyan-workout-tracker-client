@@ -29,7 +29,7 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
     };
 
     importTestimonialImage();
-  });
+  }, []);
 
   return (
     <div className="testimonial u-margin-bottom-medium">
