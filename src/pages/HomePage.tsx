@@ -2,7 +2,6 @@ import BackgroundVideo from "../components/BackgroundVideo";
 import FeaturesList from "../components/FeatureList";
 import TestimonialList from "../components/TestimonialList";
 import paddling_video from "../assets/videos/ndrc-paddling.mp4";
-import photo from "../assets/photos/testimonials/ellissa-huang.jpeg";
 import "../assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
 
@@ -36,7 +35,6 @@ const HomePage = () => {
         <h2 className="u-center-text u-padding-top-medium u-margin-bottom-medium">
           {t("testimonialHeader")}
         </h2>
-        <img className="test" src={photo}></img>
         <TestimonialList />
       </section>
     </>
