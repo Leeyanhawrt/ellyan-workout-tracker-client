@@ -1,0 +1,30 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+.app-features {
+  @include flexCenter;
+  flex-direction: column;
+}
+
+#testimonials-section {
+  height: 100%;
+  position: relative;
+
+  .background-image {
+    background-image: url(../../photos/backgrounds/powerlifting-gym.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  h2 {
+    color: $color-black;
+  }
+}

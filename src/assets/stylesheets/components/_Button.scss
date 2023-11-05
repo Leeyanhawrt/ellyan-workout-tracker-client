@@ -1,0 +1,56 @@
+@import "../abstracts/variables";
+
+.button {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  position: relative;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Urbanist", sans-serif;
+  color: white;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 10rem;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+    background-color: $color-primary-dark;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  &-primary {
+    background-color: $color-primary-dark;
+  }
+
+  &-secondary {
+    background-color: $color-secondary;
+  }
+
+  &-tertiary {
+    background-color: $color-tertiary;
+  }
+}
