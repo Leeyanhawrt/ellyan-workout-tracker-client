@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/stylesheets/components/_TestimonialItem.scss";
 
 interface TestimonialItemProps {
@@ -18,19 +18,18 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
 }) => {
   const [testimonialImage, setTestimonialImage] = useState<string>(" ");
 
-  const importTestimonialImage = async () => {
-    try {
-      const module = await import(profile_image_path);
-      setTestimonialImage(module.default);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  useEffect(() => {
+    const importTestimonialImage = async () => {
+      try {
+        const module = await import(profile_image_path);
+        setTestimonialImage(module.default);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  importTestimonialImage();
-  {
-    console.log(profile_image_path, testimonialImage);
-  }
+    importTestimonialImage();
+  });
 
   return (
     <div className="testimonial u-margin-bottom-medium">
