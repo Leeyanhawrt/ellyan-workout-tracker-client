@@ -28,6 +28,9 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
   };
 
   importTestimonialImage();
+  {
+    console.log(profile_image_path, testimonialImage);
+  }
 
   return (
     <div className="testimonial u-margin-bottom-medium">
