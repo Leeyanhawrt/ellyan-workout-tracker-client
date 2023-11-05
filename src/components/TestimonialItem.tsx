@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "../assets/stylesheets/components/_TestimonialItem.scss";
 
 interface TestimonialItemProps {
@@ -16,26 +15,11 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
   review_description,
   profile_image_path,
 }) => {
-  const [testimonialImage, setTestimonialImage] = useState<string>(" ");
-
-  useEffect(() => {
-    const importTestimonialImage = async () => {
-      try {
-        const module = await import(profile_image_path);
-        setTestimonialImage(module.default);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    importTestimonialImage();
-  }, []);
-
   return (
     <div className="testimonial u-margin-bottom-medium">
       <div className="testimonial-image">
         <img
-          src={testimonialImage}
+          src={profile_image_path}
           alt={`Testimonial ${first_name} ${last_name}`}
         />
         <p className="testimonial-author">{`${first_name} ${last_name}`}</p>
