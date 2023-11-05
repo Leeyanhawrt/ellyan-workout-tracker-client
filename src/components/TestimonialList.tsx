@@ -18,7 +18,9 @@ const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
   const [testimonials, setTestimonials] = useState<TestimonalInterface[]>([]);
 
   const fetchTestimonials = async () => {
-    let response = await axios.get("http://localhost:8080/testimonial");
+    let response = await axios.get(
+      "https://ellyan-workout-tracker-688cc4f8fd74.herokuapp.com/testimonial"
+    );
     return response;
   };
 
