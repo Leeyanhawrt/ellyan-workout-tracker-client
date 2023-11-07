@@ -19,7 +19,6 @@ const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
   const backendServer = import.meta.env.VITE_APP_BACKEND;
 
   const fetchTestimonials = async () => {
-    console.log(backendServer);
     let response = await axios.get(`${backendServer}/testimonial`);
     return response;
   };
