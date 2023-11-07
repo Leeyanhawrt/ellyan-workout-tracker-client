@@ -1,4 +1,5 @@
 import "../assets/stylesheets/components/_TestimonialItem.scss";
+import { useState } from "react";
 
 interface TestimonialItemProps {
   first_name: string;
@@ -15,11 +16,31 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
   review_description,
   profile_image_path,
 }) => {
+  // DYNAMICALLY RENDER TESTIMONIAL PHOTOS FOR DEVELOPMENT ENVIRONMENT
+  const environment = import.meta.env.VITE_APP_ENV;
+
+  const [testimonialImageImport, setTestimonialImageImport] =
+    useState<string>(" ");
+
+  const importTestimonialImage = async () => {
+    try {
+      const module = await import(/* @vite-ignore */ profile_image_path);
+      setTestimonialImageImport(module.default);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  importTestimonialImage();
+
+  let testimonialImage =
+    environment === "development" ? testimonialImageImport : profile_image_path;
+
   return (
     <div className="testimonial u-margin-bottom-medium">
       <div className="testimonial-image">
         <img
-          src={profile_image_path}
+          src={testimonialImage}
           alt={`Testimonial ${first_name} ${last_name}`}
         />
         <p className="testimonial-author">{`${first_name} ${last_name}`}</p>
