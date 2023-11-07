@@ -19,7 +19,7 @@ const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
 
   const fetchTestimonials = async () => {
     let response = await axios.get(
-      `${process.env.ELLYAN_APP_BACKEND}/testimonial`
+      `${process.env.REACT_APP_BACKEND}/testimonial`
     );
     return response;
   };
