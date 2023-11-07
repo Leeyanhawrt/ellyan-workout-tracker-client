@@ -16,11 +16,11 @@ interface TestimonialListProps {}
 
 const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
   const [testimonials, setTestimonials] = useState<TestimonalInterface[]>([]);
+  const backendServer = import.meta.env.VITE_APP_BACKEND;
 
   const fetchTestimonials = async () => {
-    let response = await axios.get(
-      `${process.env.REACT_APP_BACKEND}/testimonial`
-    );
+    console.log(backendServer);
+    let response = await axios.get(`${backendServer}/testimonial`);
     return response;
   };
 
