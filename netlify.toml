@@ -1,3 +1,6 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  ELLYAN_APP_BACKEND = "https://ellyan-workout-tracker-688cc4f8fd74.herokuapp.com/"

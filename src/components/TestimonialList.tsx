@@ -19,7 +19,7 @@ const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
 
   const fetchTestimonials = async () => {
     let response = await axios.get(
-      "https://ellyan-workout-tracker-688cc4f8fd74.herokuapp.com/testimonial"
+      `${process.env.ELLYAN_APP_BACKEND}/testimonial`
     );
     return response;
   };
