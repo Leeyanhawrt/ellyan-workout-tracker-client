@@ -1,7 +1,5 @@
 import Button from "./Button";
 import { ChangeEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../store/thunks/authActions";
 
 interface RegisterProps {}
 
@@ -29,7 +27,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     try {
-      const response;
+      const response = "test";
     } catch (err) {
       console.log((err as Error)?.message);
     }
@@ -37,7 +35,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
 
   return (
     <>
-      <h1>Register</h1>
+      <h1 className="u-center-text u-margin-y-small">Register</h1>
       <form onSubmit={(_e) => handleSubmit}>
         <input
           type="text"
@@ -45,6 +43,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
           placeholder="First Name"
           value={firstName}
           onChange={(e) => handleChange(e)}
+          className="form-control u-margin-bottom-small"
         />
         <input
           type="text"
@@ -52,6 +51,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => handleChange(e)}
+          className="form-control u-margin-bottom-small"
         />
         <input
           type="email"
@@ -59,6 +59,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
           placeholder="Email"
           value={email}
           onChange={(e) => handleChange(e)}
+          className="form-control u-margin-bottom-small"
         />
         <input
           type="password"
@@ -66,6 +67,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
           placeholder="Password "
           value={password}
           onChange={(e) => handleChange(e)}
+          className="form-control u-margin-bottom-small"
         />
         <Button>Register</Button>
       </form>
