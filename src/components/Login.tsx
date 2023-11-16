@@ -2,6 +2,7 @@ import Button from "./Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, ChangeEvent } from "react";
+import { toast } from "react-toastify";
 
 interface LoginProps {
   setAuth: (value: boolean) => void;
@@ -29,9 +30,17 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
         email,
         password,
       });
+
       const jwtToken = await response.data;
-      localStorage.setItem("token", jwtToken.token);
-      setAuth(true);
+
+      if (jwtToken) {
+        localStorage.setItem("token", jwtToken.token);
+        setAuth(true);
+        toast.success("Login Successful!");
+      } else {
+        setAuth(false);
+        toast.error(jwtToken.error);
+      }
     } catch (err) {
       console.log((err as Error)?.message);
     }
