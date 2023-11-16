@@ -1,9 +1,14 @@
-interface DashboardProps {}
+import Button from "./Button";
 
-const Dashboard: React.FC<DashboardProps> = ({}) => {
+interface DashboardProps {
+  setAuth: (value: boolean) => void;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ setAuth }) => {
   return (
     <>
       <h1>Dashboard</h1>
+      <Button onClick={() => setAuth(false)}>Logout</Button>
     </>
   );
 };

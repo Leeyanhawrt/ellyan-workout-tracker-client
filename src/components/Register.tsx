@@ -1,7 +1,11 @@
 import Button from "./Button";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 
-interface RegisterProps {}
+interface RegisterProps {
+  setAuth: (value: boolean) => void;
+}
 
 interface UserData {
   firstName: string;
@@ -10,7 +14,7 @@ interface UserData {
   password: string;
 }
 
-const Register: React.FC<RegisterProps> = ({}) => {
+const Register: React.FC<RegisterProps> = ({ setAuth }) => {
   const [inputs, setInputs] = useState<UserData>({
     firstName: "",
     lastName: "",
@@ -18,16 +22,27 @@ const Register: React.FC<RegisterProps> = ({}) => {
     password: "",
   });
 
+  const backendUrl = import.meta.env.VITE_APP_BACKEND;
+
   const { firstName, lastName, email, password } = inputs;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
-      const response = "test";
+      const response = await axios.post(`${backendUrl}/auth/register`, {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      const jwtToken = await response.data;
+      localStorage.setItem("token", jwtToken.token);
+
+      setAuth(true);
     } catch (err) {
       console.log((err as Error)?.message);
     }
@@ -36,7 +51,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
   return (
     <>
       <h1 className="u-center-text u-margin-y-small">Register</h1>
-      <form onSubmit={(_e) => handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="firstName"
@@ -71,6 +86,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
         />
         <Button>Register</Button>
       </form>
+      <Link to="/login">Login</Link>
     </>
   );
 };

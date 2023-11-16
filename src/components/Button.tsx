@@ -1,8 +1,9 @@
 import className from "classnames";
 import "../assets/stylesheets/components/_Button.scss";
 import { GoSync } from "react-icons/go";
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   secondary?: boolean;
   tertiary?: boolean;
