@@ -1,6 +1,7 @@
 import Button from "./Button";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
 interface LoginProps {
   setAuth: (value: boolean) => void;
@@ -30,11 +31,14 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       });
       const jwtToken = await response.data;
       localStorage.setItem("token", jwtToken.token);
-
       setAuth(true);
     } catch (err) {
       console.log((err as Error)?.message);
     }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
   return (
@@ -42,22 +46,22 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={firstName}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
           onChange={(e) => handleChange(e)}
           className="form-control u-margin-bottom-small"
         />
         <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={lastName}
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
           onChange={(e) => handleChange(e)}
           className="form-control u-margin-bottom-small"
         />
-        <Button onClick={() => setAuth(true)}>Log In</Button>
+        <Button>Log In</Button>
       </form>
       <Link to="/register">Register</Link>
     </>
