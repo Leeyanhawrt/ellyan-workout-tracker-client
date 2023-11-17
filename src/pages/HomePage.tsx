@@ -4,7 +4,6 @@ import TestimonialList from "../components/TestimonialList";
 import paddling_video from "../assets/videos/ndrc-paddling.mp4";
 import "../assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 
 const HomePage = () => {
   const { t } = useTranslation("", { keyPrefix: "pages.home" });
