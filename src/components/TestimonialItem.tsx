@@ -31,7 +31,9 @@ const TestimonialItem: React.FC<TestimonialItemProps> = ({
     }
   };
 
-  importTestimonialImage();
+  if (environment === "development") {
+    importTestimonialImage();
+  }
 
   let testimonialImage =
     environment === "development" ? testimonialImageImport : profile_image_path;
