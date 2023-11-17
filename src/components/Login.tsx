@@ -39,10 +39,17 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
         toast.success("Login Successful!");
       } else {
         setAuth(false);
-        toast.error(jwtToken.error);
+        toast.error("Couldn't fetch JWT token");
       }
     } catch (err) {
-      console.log((err as Error)?.message);
+      if (axios.isAxiosError(err)) {
+        const errorMessage = err.response?.data;
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error((err as Error)?.message);
+        toast.error((err as Error)?.message);
+      }
     }
   };
 

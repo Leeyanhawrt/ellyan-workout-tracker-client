@@ -2,6 +2,7 @@ import Button from "./Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 interface RegisterProps {
   setAuth: (value: boolean) => void;
@@ -41,10 +42,16 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
       });
       const jwtToken = await response.data;
       localStorage.setItem("token", jwtToken.token);
-
       setAuth(true);
     } catch (err) {
-      console.log((err as Error)?.message);
+      if (axios.isAxiosError(err)) {
+        const errorMessage = err.response?.data;
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error((err as Error)?.message);
+        toast.error((err as Error)?.message);
+      }
     }
   };
 
