@@ -4,3 +4,4 @@
 
 [build.environment]
   VITE_APP_BACKEND = "https://ellyan-workout-tracker-688cc4f8fd74.herokuapp.com"
+  VITE_APP_ENV = "production"
