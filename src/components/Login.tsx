@@ -67,7 +67,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
           placeholder="Email"
           value={email}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
         <input
           type="password"
@@ -75,7 +75,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
           placeholder="Password"
           value={password}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
         <Button>Log In</Button>
       </form>

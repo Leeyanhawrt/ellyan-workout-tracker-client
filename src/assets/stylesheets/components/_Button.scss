@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 
 .button {
   text-transform: uppercase;
@@ -13,6 +14,7 @@
   font-family: "Urbanist", sans-serif;
   color: white;
   transition: all 0.2s;
+  background-color: inherit;
 
   &:hover {
     transform: translateY(-0.3rem);
@@ -24,33 +26,34 @@
     }
   }
 
-  &::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    border-radius: 10rem;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 0.4s;
-    background-color: $color-primary-dark;
-  }
-
   .animate-spin {
     animation: spin 1s linear infinite;
   }
 
   &-primary {
-    background-color: $color-primary-dark;
+    background-color: $color-primary;
+
+    &::after {
+      @include buttonExpandEffect;
+      background-color: $color-primary;
+    }
   }
 
   &-secondary {
     background-color: $color-secondary;
+
+    &::after {
+      @include buttonExpandEffect;
+      background-color: inherit;
+    }
   }
 
   &-tertiary {
     background-color: $color-tertiary;
+
+    &::after {
+      @include buttonExpandEffect;
+      background-color: $color-tertiary;
+    }
   }
 }

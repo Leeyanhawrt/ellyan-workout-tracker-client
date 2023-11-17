@@ -65,7 +65,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
           placeholder="First Name"
           value={firstName}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
         <input
           type="text"
@@ -73,7 +73,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
         <input
           type="email"
@@ -81,7 +81,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
           placeholder="Email"
           value={email}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
         <input
           type="password"
@@ -89,9 +89,9 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
           placeholder="Password "
           value={password}
           onChange={(e) => handleChange(e)}
-          className="form-control u-margin-bottom-small"
+          className="u-margin-bottom-small"
         />
-        <Button>Register</Button>
+        <Button primary>Register</Button>
       </form>
       <Link to="/login">Login</Link>
     </>
