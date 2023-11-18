@@ -1,12 +1,9 @@
+import { VideoHTMLAttributes } from "react";
 import "../assets/stylesheets/components/_BackgroundVideo.scss";
 import Button from "./Button";
 
-interface BackgroundVideoProps {
+interface BackgroundVideoProps extends VideoHTMLAttributes<HTMLVideoElement> {
   video: string;
-  muted?: boolean;
-  autoPlay?: boolean;
-  controls?: boolean;
-  loop?: boolean;
   header?: string;
   subheader?: string;
   flipAnimation?: boolean;
