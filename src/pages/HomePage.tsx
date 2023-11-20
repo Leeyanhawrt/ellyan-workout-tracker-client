@@ -1,12 +1,21 @@
 import BackgroundVideo from "../components/BackgroundVideo";
 import FeaturesList from "../components/FeatureList";
 import TestimonialList from "../components/TestimonialList";
+import { useAuthUpdate } from "../contexts/AuthContext";
+import Register from "../components/Register";
 import paddling_video from "../assets/videos/ndrc-paddling.mp4";
 import "../assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const HomePage = () => {
+  const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
   const { t } = useTranslation("", { keyPrefix: "pages.home" });
+  const setAuth = useAuthUpdate();
+
+  const handleRegisterClick = () => {
+    setShowRegisterModal(true);
+  };
 
   return (
     <>
@@ -19,6 +28,7 @@ const HomePage = () => {
         loop
         flipAnimation
         cta_buttons
+        onClick={handleRegisterClick}
       />
       <section
         id="features-section"
@@ -37,6 +47,7 @@ const HomePage = () => {
         </h2>
         <TestimonialList />
       </section>
+      {showRegisterModal && <Register setAuth={setAuth} />}
     </>
   );
 };

@@ -46,16 +46,6 @@ const App = () => {
           }
         />
         <Route
-          path="/register"
-          element={
-            !authStatus ? (
-              <Register setAuth={setAuth} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
           path="/dashboard"
           element={
             authStatus ? (
