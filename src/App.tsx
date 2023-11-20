@@ -1,26 +1,23 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useAuth, useAuthUpdate } from "./contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
+  const authStatus = useAuth();
+  const setAuth = useAuthUpdate();
 
   useEffect(() => {
     isAuth();
   }, []);
-
-  const setAuth = (value: boolean) => {
-    setIsAuthenticated(value);
-  };
 
   const isAuth = async () => {
     try {
@@ -28,9 +25,7 @@ const App = () => {
         headers: { token: localStorage.token },
       });
 
-      response.data === true
-        ? setIsAuthenticated(true)
-        : setIsAuthenticated(false);
+      response.data === true ? setAuth(true) : setAuth(false);
     } catch (err) {
       console.log((err as Error)?.message);
     }
@@ -43,7 +38,7 @@ const App = () => {
         <Route
           path="/login"
           element={
-            !isAuthenticated ? (
+            !authStatus ? (
               <Login setAuth={setAuth} />
             ) : (
               <Navigate to="/dashboard" />
@@ -53,7 +48,7 @@ const App = () => {
         <Route
           path="/register"
           element={
-            !isAuthenticated ? (
+            !authStatus ? (
               <Register setAuth={setAuth} />
             ) : (
               <Navigate to="/login" />
@@ -63,7 +58,7 @@ const App = () => {
         <Route
           path="/dashboard"
           element={
-            isAuthenticated ? (
+            authStatus ? (
               <Dashboard setAuth={setAuth} />
             ) : (
               <Navigate to="/login" />
