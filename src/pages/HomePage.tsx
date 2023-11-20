@@ -47,7 +47,7 @@ const HomePage = () => {
         </h2>
         <TestimonialList />
       </section>
-      {showRegisterModal && <Register setAuth={setAuth} />}
+      {<Register setAuth={setAuth} />}
     </>
   );
 };

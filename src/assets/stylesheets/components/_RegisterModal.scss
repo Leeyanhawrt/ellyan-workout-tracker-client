@@ -11,6 +11,13 @@
   background-size: cover;
   border-radius: 0.3rem;
   padding: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
 
   form {
     width: 50%;
@@ -76,7 +83,8 @@
   }
 
   p {
-    margin: 0 5.5rem;
+    margin-left: 0.75rem;
+    margin-top: 2.5rem;
   }
 
   a {
@@ -84,5 +92,14 @@
     text-decoration: none;
     font-weight: 500;
     margin-left: 0.25rem;
+  }
+
+  .close-modal {
+    font-size: 5rem;
+    margin-right: 3rem;
+    margin-top: 1.5rem;
+    background-color: rgba($color-grey, 0.4);
+    color: $color-white;
+    border-radius: 0.3rem;
   }
 }

@@ -4,6 +4,7 @@ import "../assets/stylesheets/components/_RegisterModal.scss";
 import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { IoClose } from "react-icons/io5";
 
 interface RegisterProps {
   setAuth: (value: boolean) => void;
@@ -125,10 +126,11 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
             <label htmlFor="passwordConfirm">Confirm Password</label>
           </div>
           <Button tertiary>Register</Button>
+          <p>
+            Have an account? <Link to="/login">Log in</Link>
+          </p>
         </form>
-        <p className="u-margin-top-small">
-          Have an account? <Link to="/login">Log in</Link>
-        </p>
+        <IoClose className="close-modal" />
       </div>
     </div>
   );
