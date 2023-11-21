@@ -7,7 +7,6 @@ import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 
 const App = () => {

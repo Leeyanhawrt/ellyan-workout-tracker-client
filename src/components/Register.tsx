@@ -58,7 +58,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
       localStorage.setItem("token", jwtToken.token);
       setAuth(true);
       closeRegisterModal();
-      toast.success("Successfully Registered");
+      toast.success(`Successfully Registered ${firstName} ${lastName}`);
       navigate("/dashboard");
     } catch (err) {
       if (axios.isAxiosError(err)) {
