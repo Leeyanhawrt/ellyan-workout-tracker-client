@@ -8,7 +8,7 @@ interface BackgroundVideoProps extends VideoHTMLAttributes<HTMLVideoElement> {
   subheader?: string;
   flipAnimation?: boolean;
   cta_buttons?: boolean;
-  onClick?: () => void;
+  openRegisterModal?: () => void;
 }
 
 const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
@@ -17,7 +17,7 @@ const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
   subheader,
   flipAnimation,
   cta_buttons,
-  onClick,
+  openRegisterModal,
   ...configs
 }) => {
   let spanLetters;
@@ -37,7 +37,7 @@ const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
 
   const getStarted = (
     <div id="get-started">
-      <Button primary onClick={onClick}>
+      <Button primary onClick={openRegisterModal}>
         Register
       </Button>
     </div>

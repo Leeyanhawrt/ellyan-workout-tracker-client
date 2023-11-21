@@ -1,0 +1,8 @@
+@import "../abstracts/variables";
+
+.modal {
+  position: absolute;
+  inset: 0;
+  background-color: $color-grey;
+  z-index: 10;
+}

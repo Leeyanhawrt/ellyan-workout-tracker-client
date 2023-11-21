@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 interface RegisterProps {
   setAuth: (value: boolean) => void;
+  closeRegisterModal: () => void;
 }
 
 interface UserData {
@@ -18,7 +20,7 @@ interface UserData {
   passwordConfirm: string;
 }
 
-const Register: React.FC<RegisterProps> = ({ setAuth }) => {
+const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
   const [inputs, setInputs] = useState<UserData>({
     firstName: "",
     lastName: "",
@@ -30,6 +32,8 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
 
   const { firstName, lastName, email, password, passwordConfirm } = inputs;
+
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -53,6 +57,9 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
       const jwtToken = await response.data;
       localStorage.setItem("token", jwtToken.token);
       setAuth(true);
+      closeRegisterModal();
+      toast.success("Successfully Registered");
+      navigate("/dashboard");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errorMessage = err.response?.data;
@@ -130,7 +137,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth }) => {
             Have an account? <Link to="/login">Log in</Link>
           </p>
         </form>
-        <IoClose className="close-modal" />
+        <IoClose className="close-modal" onClick={closeRegisterModal} />
       </div>
     </div>
   );
