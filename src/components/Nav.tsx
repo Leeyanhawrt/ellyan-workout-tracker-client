@@ -8,7 +8,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   return (
     <nav id="navbar">
       <Link to="/" className="app-title">
-        <img src="/public/photos/icons/kirby-weightlifting.png" />
+        <img src="/public/icons/kirby-weightlifting.png" />
         <p>EllyanTracker</p>
       </Link>
       <div className="button-container">
