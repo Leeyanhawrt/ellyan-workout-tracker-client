@@ -2,7 +2,8 @@ import Button from "./Button";
 import axios from "axios";
 import "../assets/stylesheets/components/_RegisterModal.scss";
 import { Link } from "react-router-dom";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,9 @@ interface UserData {
 }
 
 const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
+  const navigate = useNavigate();
+  const authStatus = useAuth();
+
   const [inputs, setInputs] = useState<UserData>({
     firstName: "",
     lastName: "",
@@ -29,11 +33,15 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
     passwordConfirm: "",
   });
 
+  useEffect(() => {
+    if (authStatus) {
+      navigate("./dashboard");
+    }
+  }, []);
+
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
 
   const { firstName, lastName, email, password, passwordConfirm } = inputs;
-
-  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
