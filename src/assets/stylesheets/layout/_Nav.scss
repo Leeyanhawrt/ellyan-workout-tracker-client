@@ -9,8 +9,9 @@
   z-index: 99;
   top: 0;
   left: 0;
-  background-color: $color-transparent;
   padding: 0 12rem;
+  background-color: $color-white;
+  transition: all 0.3s ease;
 
   .app-title {
     text-decoration: none;
@@ -19,7 +20,7 @@
     gap: 1rem;
 
     p {
-      color: $color-white;
+      color: $color-black;
       font-family: "Gloria Hallelujah", cursive;
       font-size: 1.8rem;
     }
@@ -32,6 +33,14 @@
   .button-container {
     p {
       color: $color-white;
+    }
+  }
+
+  &.nav-transparent {
+    background-color: $color-transparent;
+
+    p {
+      color: white;
     }
   }
 }
