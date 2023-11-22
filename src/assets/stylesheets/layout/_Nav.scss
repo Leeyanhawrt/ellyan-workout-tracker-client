@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   width: 100%;
   z-index: 99;
   top: 0;
@@ -12,6 +12,7 @@
   padding: 0 12rem;
   background-color: $color-white;
   transition: all 0.3s ease;
+  border-bottom: 1px solid $color-nav-border;
 
   .app-title {
     text-decoration: none;
@@ -38,9 +39,13 @@
 
   &.nav-transparent {
     background-color: $color-transparent;
-
+    border-bottom: none;
     p {
       color: white;
     }
+  }
+
+  &.nav-overlap {
+    position: fixed;
   }
 }

@@ -3,11 +3,14 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import className from "classnames";
+import { useLocation } from "react-router-dom";
 
 interface NavProps {}
 
 const Nav: React.FC<NavProps> = ({}) => {
   const [scrolled, setScrolled] = useState<number>(0);
+
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +25,9 @@ const Nav: React.FC<NavProps> = ({}) => {
     };
   }, []);
 
-  const classes = className("nav", {
-    "nav-transparent": scrolled < 200,
+  const classes = className({
+    "nav-transparent": scrolled < 200 && location.pathname === "/",
+    "nav-overlap": location.pathname === "/",
   });
 
   return (
