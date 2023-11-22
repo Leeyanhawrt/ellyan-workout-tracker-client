@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import Nav from "./components/Nav";
 
 const App = () => {
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
@@ -32,6 +33,7 @@ const App = () => {
 
   return (
     <>
+      <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

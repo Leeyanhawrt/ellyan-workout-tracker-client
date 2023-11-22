@@ -1,0 +1,37 @@
+@import "../abstracts/variables";
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: $color-transparent;
+  padding: 0 12rem;
+
+  .app-title {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+      color: $color-white;
+      font-family: "Gloria Hallelujah", cursive;
+      font-size: 1.8rem;
+    }
+
+    img {
+      width: 8rem;
+      height: 8rem;
+    }
+  }
+  .button-container {
+    p {
+      color: $color-white;
+    }
+  }
+}

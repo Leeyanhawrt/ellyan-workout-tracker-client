@@ -37,7 +37,9 @@ const Dashboard: React.FC<DashboardProps> = ({ setAuth }) => {
   return (
     <>
       <h1>Dashboard {name}</h1>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button size={"large"} onClick={handleLogout}>
+        Logout
+      </Button>
     </>
   );
 };

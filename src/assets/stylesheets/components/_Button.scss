@@ -4,7 +4,6 @@
 .button {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1.5rem 4rem;
   display: inline-block;
   border-radius: 10rem;
   position: relative;
@@ -56,5 +55,17 @@
       @include buttonExpandEffect;
       background-color: $color-tertiary;
     }
+  }
+
+  &-small {
+    padding: 0.75rem 2rem;
+  }
+
+  &-medium {
+    padding: 1rem 3rem;
+  }
+
+  &-large {
+    padding: 1.5rem 4rem;
   }
 }

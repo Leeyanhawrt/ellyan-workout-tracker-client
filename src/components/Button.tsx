@@ -1,14 +1,17 @@
 import className from "classnames";
 import "../assets/stylesheets/components/_Button.scss";
 import { GoSync } from "react-icons/go";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   secondary?: boolean;
   tertiary?: boolean;
-  children?: string;
+  children?: string | ReactNode;
   loading?: boolean;
+  size: string;
+  to?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +20,8 @@ const Button: React.FC<ButtonProps> = ({
   tertiary,
   children,
   loading,
+  size,
+  to,
   ...events
 }) => {
   const classes = className("button", {
@@ -24,7 +29,18 @@ const Button: React.FC<ButtonProps> = ({
     "button-primary": primary,
     "button-secondary": secondary,
     "button-tertiary": tertiary,
+    "button-small": size === "small",
+    "button-medium": size === "medium",
+    "button-large": size === "large",
   });
+
+  if (to) {
+    return (
+      <Link className={classes} to={to}>
+        {children}
+      </Link>
+    );
+  }
 
   return (
     <button {...events} disabled={loading} className={classes}>

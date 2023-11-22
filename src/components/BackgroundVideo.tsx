@@ -37,7 +37,7 @@ const BackgroundVideo: React.FC<BackgroundVideoProps> = ({
 
   const getStarted = (
     <div id="get-started">
-      <Button primary onClick={openRegisterModal}>
+      <Button size={"large"} primary onClick={openRegisterModal}>
         Register
       </Button>
     </div>
