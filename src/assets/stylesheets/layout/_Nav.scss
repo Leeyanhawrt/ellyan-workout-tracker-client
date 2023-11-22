@@ -32,6 +32,8 @@
     }
   }
   .button-container {
+    display: flex;
+    gap: 3rem;
     p {
       color: $color-white;
     }

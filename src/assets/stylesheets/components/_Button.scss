@@ -2,7 +2,6 @@
 @import "../abstracts/mixins";
 
 .button {
-  text-transform: uppercase;
   text-decoration: none;
   display: inline-block;
   border-radius: 10rem;
@@ -30,42 +29,68 @@
     animation: spin 1s linear infinite;
   }
 
-  &-primary {
-    background-color: $color-primary;
-
+  // BUTTON VARIATIONS
+  &-primary,
+  &-secondary,
+  &-tertiary {
     &::after {
       @include buttonExpandEffect;
+    }
+  }
+
+  &-primary {
+    background-color: $color-primary;
+    &::after {
       background-color: $color-primary;
     }
   }
-
   &-secondary {
     background-color: $color-secondary;
-
     &::after {
-      @include buttonExpandEffect;
-      background-color: inherit;
+      background-color: $color-secondary;
     }
   }
-
   &-tertiary {
     background-color: $color-tertiary;
-
     &::after {
-      @include buttonExpandEffect;
       background-color: $color-tertiary;
     }
   }
 
   &-small {
-    padding: 0.75rem 2rem;
+    padding: 0.8rem 1.6rem;
   }
-
   &-medium {
     padding: 1rem 3rem;
   }
-
   &-large {
     padding: 1.5rem 4rem;
+  }
+
+  &-square {
+    border-radius: 0.375rem;
+    &::after {
+      @include buttonExpandEffect;
+      border-radius: 0.375rem;
+    }
+  }
+
+  &-outline {
+    background-color: white;
+    color: $color-black;
+    border: 2px solid $color-black;
+
+    &.button-primary {
+      color: $color-primary;
+      border: 2px solid $color-primary;
+    }
+    &.button-secondary {
+      color: $color-secondary;
+      border: 2px solid $color-secondary;
+    }
+    &.button-tertiary {
+      color: $color-tertiary;
+      border: 2px solid $color-tertiary;
+    }
   }
 }

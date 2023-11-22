@@ -10,8 +10,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   tertiary?: boolean;
   children?: string | ReactNode;
   loading?: boolean;
+  rectangle?: boolean;
   size: string;
   to?: string;
+  outline?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +24,8 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   size,
   to,
+  rectangle,
+  outline,
   ...events
 }) => {
   const classes = className("button", {
@@ -32,6 +36,8 @@ const Button: React.FC<ButtonProps> = ({
     "button-small": size === "small",
     "button-medium": size === "medium",
     "button-large": size === "large",
+    "button-square": rectangle,
+    "button-outline": outline,
   });
 
   if (to) {

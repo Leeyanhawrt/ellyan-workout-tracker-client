@@ -77,7 +77,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
           onChange={(e) => handleChange(e)}
           className="u-margin-bottom-small"
         />
-        <Button size={"medium"}>Log In</Button>
+        <Button size={"medium"}>Login</Button>
       </form>
       <Link to="/register">Register</Link>
     </>

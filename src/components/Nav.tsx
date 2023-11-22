@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import className from "classnames";
 import { useLocation } from "react-router-dom";
+import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
 
 interface NavProps {}
 
@@ -11,6 +12,8 @@ const Nav: React.FC<NavProps> = ({}) => {
   const [scrolled, setScrolled] = useState<number>(0);
 
   const location = useLocation();
+  const authStatus = useAuth();
+  const setAuth = useAuthUpdate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +27,11 @@ const Nav: React.FC<NavProps> = ({}) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuth(false);
+  };
 
   const classes = className({
     "nav-transparent": scrolled < 200 && location.pathname === "/",
@@ -42,9 +50,28 @@ const Nav: React.FC<NavProps> = ({}) => {
         <p>EllyanTracker</p>
       </Link>
       <div className="button-container">
-        <Button to="/login" size={"small"} primary>
-          Login
-        </Button>
+        {authStatus ? (
+          <>
+            {location.pathname !== "/dashboard" && (
+              <Button to="/dashboard" size={"small"} rectangle primary>
+                Dashboard
+              </Button>
+            )}
+            <Button
+              size={"small"}
+              rectangle
+              primary
+              outline
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <Button to="/login" size={"small"} rectangle primary>
+            Login
+          </Button>
+        )}
       </div>
     </nav>
   );

@@ -133,7 +133,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
             <label htmlFor="passwordConfirm">Confirm Password</label>
           </div>
           <Button size={"large"} tertiary>
-            Register
+            REGISTER
           </Button>
           <p>
             Have an account? <Link to="/login">Log in</Link>
