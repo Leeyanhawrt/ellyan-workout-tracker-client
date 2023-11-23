@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth, useAuthUpdate } from "./contexts/AuthContext";
+import { ModalProvider } from "./contexts/ModalContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import axios from "axios";
@@ -33,32 +34,34 @@ const App = () => {
 
   return (
     <>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/login"
-          element={
-            !authStatus ? (
-              <Login setAuth={setAuth} />
-            ) : (
-              <Navigate to="/dashboard" />
-            )
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            authStatus ? (
-              <Dashboard setAuth={setAuth} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-      </Routes>
-      <Footer />
-      <ToastContainer />
+      <ModalProvider>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/login"
+            element={
+              !authStatus ? (
+                <Login setAuth={setAuth} />
+              ) : (
+                <Navigate to="/dashboard" />
+              )
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              authStatus ? (
+                <Dashboard setAuth={setAuth} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+        </Routes>
+        <Footer />
+        <ToastContainer />
+      </ModalProvider>
     </>
   );
 };

@@ -2,8 +2,7 @@ import Button from "./Button";
 import axios from "axios";
 import "../assets/stylesheets/components/_RegisterModal.scss";
 import { Link } from "react-router-dom";
-import { ChangeEvent, useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,6 @@ interface UserData {
 
 const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
   const navigate = useNavigate();
-  const authStatus = useAuth();
 
   const [inputs, setInputs] = useState<UserData>({
     firstName: "",
@@ -32,12 +30,6 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
     password: "",
     passwordConfirm: "",
   });
-
-  useEffect(() => {
-    if (authStatus) {
-      navigate("./dashboard");
-    }
-  }, []);
 
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
 

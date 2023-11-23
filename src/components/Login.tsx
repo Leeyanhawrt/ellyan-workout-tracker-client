@@ -1,8 +1,11 @@
 import Button from "./Button";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import Modal from "./Modal";
+import Register from "./Register";
 import { useState, ChangeEvent } from "react";
+import { useModal, useModalUpdate } from "../contexts/ModalContext";
 import { toast } from "react-toastify";
+import "../assets/stylesheets/components/_Login.scss";
 
 interface LoginProps {
   setAuth: (value: boolean) => void;
@@ -18,6 +21,17 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
     email: "",
     password: "",
   });
+
+  const modalStatus = useModal();
+  const setModal = useModalUpdate();
+
+  const openRegisterModal = () => {
+    setModal(true);
+  };
+
+  const closeRegisterModal = () => {
+    setModal(false);
+  };
 
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
 
@@ -58,7 +72,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
   };
 
   return (
-    <>
+    <div id="login">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -77,10 +91,19 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
           onChange={(e) => handleChange(e)}
           className="u-margin-bottom-small"
         />
-        <Button size={"medium"}>Login</Button>
+        <Button size={"medium"} primary>
+          Login
+        </Button>
       </form>
-      <Link to="/register">Register</Link>
-    </>
+      <p>
+        Don't have an account? <a onClick={openRegisterModal}>Register</a>
+      </p>
+      {modalStatus && (
+        <Modal>
+          <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
+        </Modal>
+      )}
+    </div>
   );
 };
 

@@ -3,24 +3,31 @@ import FeaturesList from "../components/FeatureList";
 import Modal from "../components/Modal";
 import Register from "../components/Register";
 import TestimonialList from "../components/TestimonialList";
-import { useAuthUpdate } from "../contexts/AuthContext";
+import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
+import { useModal, useModalUpdate } from "../contexts/ModalContext";
 import paddling_video from "../assets/videos/ndrc-paddling.mp4";
 import "../assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
-  const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
   const { t } = useTranslation("", { keyPrefix: "pages.home" });
-
+  const navigate = useNavigate();
+  const authStatus = useAuth();
   const setAuth = useAuthUpdate();
+  const modalStatus = useModal();
+  const setModal = useModalUpdate();
 
   const openRegisterModal = () => {
-    setShowRegisterModal(true);
+    if (authStatus) {
+      navigate("/dashboard");
+      return;
+    }
+    setModal(true);
   };
 
   const closeRegisterModal = () => {
-    setShowRegisterModal(false);
+    setModal(false);
   };
 
   return (
@@ -53,7 +60,7 @@ const HomePage = () => {
         </h2>
         <TestimonialList />
       </section>
-      {showRegisterModal && (
+      {modalStatus && (
         <Modal>
           <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
         </Modal>

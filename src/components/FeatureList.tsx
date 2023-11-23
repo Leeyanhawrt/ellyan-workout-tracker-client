@@ -14,13 +14,13 @@ const FeatureList: React.FC<FeatureListProps> = ({}) => {
       title: t("featureOneTitle"),
       details: t("featureOneDetails"),
       icon: <BsGraphUp />,
-      headingColor: "primary",
+      headingColor: "secondary",
     },
     {
       title: t("featureTwoTitle"),
       details: t("featureTwoDetails"),
       icon: <IoCalendarSharp />,
-      headingColor: "secondary",
+      headingColor: "primary",
     },
     {
       title: t("featureThreeTitle"),
