@@ -39,3 +39,19 @@
   z-index: -1;
   transition: all 0.4s;
 }
+
+@mixin inputStyle {
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+
+  &:focus {
+    border-bottom: 3px solid $color-tertiary;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+    outline: none;
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid $color-primary-dark;
+  }
+}
