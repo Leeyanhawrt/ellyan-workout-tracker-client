@@ -1,4 +1,3 @@
-import Button from "./Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -6,7 +5,7 @@ interface DashboardProps {
   setAuth: (value: boolean) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ setAuth }) => {
+const Dashboard: React.FC<DashboardProps> = ({}) => {
   const [name, setName] = useState<string>("");
 
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
@@ -25,11 +24,6 @@ const Dashboard: React.FC<DashboardProps> = ({ setAuth }) => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setAuth(false);
-  };
-
   useEffect(() => {
     getName();
   }, []);
@@ -37,9 +31,6 @@ const Dashboard: React.FC<DashboardProps> = ({ setAuth }) => {
   return (
     <>
       <h1>Dashboard {name}</h1>
-      <Button size={"large"} onClick={handleLogout}>
-        Logout
-      </Button>
     </>
   );
 };
