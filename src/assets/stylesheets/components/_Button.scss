@@ -78,19 +78,19 @@
   &-outline {
     background-color: white;
     color: $color-black;
-    border: 2px solid $color-black;
+    border: 3px solid $color-black;
 
     &.button-primary {
       color: $color-primary;
-      border: 2px solid $color-primary;
+      border: 3px solid $color-primary;
     }
     &.button-secondary {
       color: $color-secondary;
-      border: 2px solid $color-secondary;
+      border: 3px solid $color-secondary;
     }
     &.button-tertiary {
       color: $color-tertiary;
-      border: 2px solid $color-tertiary;
+      border: 3px solid $color-tertiary;
     }
   }
 }
