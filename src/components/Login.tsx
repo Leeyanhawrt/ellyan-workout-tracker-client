@@ -78,7 +78,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Email Address"
           value={email}
           onChange={(e) => handleChange(e)}
           className="u-margin-bottom-small"
