@@ -1,0 +1,29 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+#orm-container {
+  box-shadow: 0 0.5rem 10rem 0 #e4e6e7;
+  background-color: #f9fafb;
+  padding: 5rem;
+
+  form {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+
+    input {
+      @include inputStyle(22rem, rgba($color-white, 0.5), 0.25rem);
+    }
+
+    img {
+      height: 20rem;
+    }
+
+    .max-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

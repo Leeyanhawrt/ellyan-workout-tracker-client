@@ -40,8 +40,10 @@
   transition: all 0.4s;
 }
 
-@mixin inputStyle {
-  border-radius: 0.5rem;
+@mixin inputStyle($width, $border-color, $border-radius) {
+  width: $width;
+  border-color: $border-color;
+  border-radius: $border-radius;
   padding: 1.5rem 2rem;
   margin-bottom: 1rem;
 

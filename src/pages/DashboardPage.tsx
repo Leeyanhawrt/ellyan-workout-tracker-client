@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "../assets/stylesheets/pages/_p_dashboard.scss";
+import OneRepMax from "../components/OneRepMax";
 
-interface DashboardProps {
+interface DashboardPageProps {
   setAuth: (value: boolean) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({}) => {
+const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const [name, setName] = useState<string>("");
 
   const backendUrl = import.meta.env.VITE_APP_BACKEND;
@@ -29,10 +31,11 @@ const Dashboard: React.FC<DashboardProps> = ({}) => {
   }, []);
 
   return (
-    <>
-      <h1>Dashboard {name}</h1>
-    </>
+    <div id="dashboard-container">
+      <h1>{name}</h1>
+      <OneRepMax />
+    </div>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

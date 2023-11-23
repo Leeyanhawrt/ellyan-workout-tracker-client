@@ -21,8 +21,6 @@
   }
 
   input {
-    @include inputStyle;
-    width: 30rem;
-    border-color: rgba($color-black, 0.5);
+    @include inputStyle(30rem, rgba($color-black, 0.5), 0.5rem);
   }
 }

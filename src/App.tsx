@@ -8,7 +8,7 @@ import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import DashboardPage from "./pages/DashboardPage";
 import Nav from "./components/Nav";
 
 const App = () => {
@@ -52,7 +52,7 @@ const App = () => {
             path="/dashboard"
             element={
               authStatus ? (
-                <Dashboard setAuth={setAuth} />
+                <DashboardPage setAuth={setAuth} />
               ) : (
                 <Navigate to="/login" />
               )
