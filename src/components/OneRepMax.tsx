@@ -2,24 +2,43 @@ import "../assets/stylesheets/components/_OneRepMax.scss";
 import Button from "./Button";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
 interface OneRepMaxProps {}
 
 interface OneRepMaxData {
-  squatMax: number | undefined;
-  benchMax: number | undefined;
-  deadliftMax: number | undefined;
+  squatRecord: number | undefined;
+  benchRecord: number | undefined;
+  deadliftRecord: number | undefined;
 }
 
 const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
   const [inputs, setInputs] = useState<OneRepMaxData>({
-    squatMax: undefined,
-    benchMax: undefined,
-    deadliftMax: undefined,
+    squatRecord: undefined,
+    benchRecord: undefined,
+    deadliftRecord: undefined,
   });
 
-  const { squatMax, benchMax, deadliftMax } = inputs;
+  const { squatRecord, benchRecord, deadliftRecord } = inputs;
+
+  useEffect(() => {
+    fetchRecords();
+  }, []);
+
+  const fetchRecords = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
+        {
+          headers: { token: localStorage.token },
+        }
+      );
+      const { squatRecord, benchRecord, deadliftRecord } = response.data[0];
+      setInputs({ squatRecord, benchRecord, deadliftRecord });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -34,17 +53,17 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_BACKEND}/dashboard/update-orm`,
+        `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
         {
-          squatMax,
-          benchMax,
-          deadliftMax,
+          squatRecord,
+          benchRecord,
+          deadliftRecord,
         },
         {
           headers: { token: localStorage.token },
         }
       );
-      console.log(response);
+      toast.success(response.data.message);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errorMessage = err.response?.data;
@@ -61,6 +80,12 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
     <div className="content-container u-margin-top-small">
       <div id="orm-container">
         <h2>Enter Current Maxes</h2>
+        <h2>
+          Total:{" "}
+          {Number(squatRecord || 0) +
+            Number(benchRecord || 0) +
+            Number(deadliftRecord || 0)}
+        </h2>
         <form onSubmit={handleORMSubmit}>
           <div className="sbd-container u-margin-bottom-medium">
             <div className="max-container">
@@ -72,10 +97,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="squatMax"
-                name="squatMax"
+                id="squatRecord"
+                name="squatRecord"
                 placeholder="Squat"
-                value={squatMax}
+                defaultValue={squatRecord}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -88,10 +113,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="benchMax"
-                name="benchMax"
+                id="benchRecord"
+                name="benchRecord"
                 placeholder="Bench Press"
-                value={benchMax}
+                defaultValue={benchRecord}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -104,10 +129,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="deadliftMax"
-                name="deadliftMax"
+                id="deadliftRecord"
+                name="deadliftRecord"
                 placeholder="Deadlift"
-                value={deadliftMax}
+                defaultValue={deadliftRecord}
                 onChange={(e) => handleChange(e)}
               />
             </div>
