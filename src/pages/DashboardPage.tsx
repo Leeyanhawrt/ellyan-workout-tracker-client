@@ -10,13 +10,14 @@ interface DashboardPageProps {
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const [name, setName] = useState<string>("");
 
-  const backendUrl = import.meta.env.VITE_APP_BACKEND;
-
   const getName = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/dashboard`, {
-        headers: { token: localStorage.token },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_BACKEND}/dashboard`,
+        {
+          headers: { token: localStorage.token },
+        }
+      );
 
       const { firstName, lastName } = response.data;
 

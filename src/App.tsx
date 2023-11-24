@@ -12,7 +12,6 @@ import DashboardPage from "./pages/DashboardPage";
 import Nav from "./components/Nav";
 
 const App = () => {
-  const backendUrl = import.meta.env.VITE_APP_BACKEND;
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
 
@@ -22,9 +21,12 @@ const App = () => {
 
   const isAuth = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/auth/is-verified`, {
-        headers: { token: localStorage.token },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_BACKEND}/auth/is-verified`,
+        {
+          headers: { token: localStorage.token },
+        }
+      );
 
       response.data === true ? setAuth(true) : setAuth(false);
     } catch (err) {

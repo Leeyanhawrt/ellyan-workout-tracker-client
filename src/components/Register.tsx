@@ -31,8 +31,6 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
     passwordConfirm: "",
   });
 
-  const backendUrl = import.meta.env.VITE_APP_BACKEND;
-
   const { firstName, lastName, email, password, passwordConfirm } = inputs;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,12 +46,15 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
     }
 
     try {
-      const response = await axios.post(`${backendUrl}/auth/register`, {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_BACKEND}/auth/register`,
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        }
+      );
       const jwtToken = await response.data;
       localStorage.setItem("token", jwtToken.token);
       setAuth(true);

@@ -33,17 +33,18 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
     setModal(false);
   };
 
-  const backendUrl = import.meta.env.VITE_APP_BACKEND;
-
   const { email, password } = inputs;
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}/auth/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_BACKEND}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       const jwtToken = await response.data;
 
