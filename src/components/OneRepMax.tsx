@@ -79,7 +79,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
   return (
     <div className="content-container u-margin-top-small">
       <div id="orm-container">
-        <h2>Enter Current Maxes</h2>
+        <h2>Update Current Maxes:</h2>
         <h2>
           Total:{" "}
           {Number(squatRecord || 0) +
