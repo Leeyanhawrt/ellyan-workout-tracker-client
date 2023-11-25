@@ -1,11 +1,13 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 
 .carousel {
   display: flex;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  width: 70rem;
+  width: 100%;
+  @include dashboardComponent;
 
   .inner {
     white-space: nowrap;

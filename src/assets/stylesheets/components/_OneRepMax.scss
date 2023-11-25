@@ -2,9 +2,7 @@
 @import "../abstracts/variables";
 
 #orm-container {
-  box-shadow: 0 0.5rem 10rem 0 #e4e6e7;
-  background-color: #f9fafb;
-  padding: 5rem;
+  @include dashboardComponent;
 
   form {
     display: flex;

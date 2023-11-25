@@ -6,7 +6,7 @@ interface WorkoutProgramProps {}
 
 const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
   return (
-    <div>
+    <div className="content-container">
       Workout Plan
       <Mesocycle />
       <Carousel />

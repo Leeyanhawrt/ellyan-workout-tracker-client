@@ -57,3 +57,9 @@
     border-bottom: 3px solid $color-primary-dark;
   }
 }
+
+@mixin dashboardComponent {
+  box-shadow: 0 0.5rem 10rem 0 #e4e6e7;
+  background-color: $color-dashboard-white;
+  padding: 5rem;
+}
