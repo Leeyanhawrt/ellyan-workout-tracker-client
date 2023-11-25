@@ -53,7 +53,7 @@ const Carousel: React.FC<CarouselProps> = ({}) => {
           <span className="material-symbols-outlined">arrow_back_ios</span>
         </button>
         <div className="carousel-indicator">
-          {items.map((item, index) => {
+          {items.map((_item, index) => {
             return (
               <button
                 onClick={() => updateIndex(index)}
