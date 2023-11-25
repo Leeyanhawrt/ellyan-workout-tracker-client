@@ -1,0 +1,52 @@
+@import "../abstracts/variables";
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 70rem;
+
+  .inner {
+    white-space: nowrap;
+    transition: all 0.3s;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+  }
+
+  .carousel-buttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .button-arrow {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+
+  .carousel-indicator {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .carousel-indicator > button {
+    margin: 0.5rem;
+    background: none;
+  }
+
+  .indicator-buttons {
+    border: none;
+    cursor: pointer;
+  }
+
+  .indicator-symbol {
+    color: $color-secondary-light;
+  }
+
+  .indicator-symbol-active {
+    color: $color-secondary-dark;
+  }
+}
