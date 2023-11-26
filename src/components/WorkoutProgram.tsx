@@ -39,7 +39,9 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
 
   const fetchMicrocycles = async () => {
     let response = await axios.get(
-      `${import.meta.env.VITE_APP_BACKEND}/workout-program/${userId}`,
+      `${
+        import.meta.env.VITE_APP_BACKEND
+      }/workout-program/microcycle/${userId}`,
       {
         headers: { token: localStorage.token },
       }

@@ -22,10 +22,10 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         }
       );
 
-      const { firstName, lastName, email, id } = response.data;
+      const { firstName, lastName, email, userId } = response.data;
 
       setUserInformation({
-        id,
+        userId,
         firstName,
         lastName,
         email,
