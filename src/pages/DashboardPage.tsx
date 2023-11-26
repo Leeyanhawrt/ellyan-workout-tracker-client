@@ -40,10 +40,10 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   }, []);
 
   if (!userInformation) {
-    return;
+    return <div>Loading...</div>;
   }
 
-  const { firstName, lastName, id } = userInformation;
+  const { firstName, lastName } = userInformation;
 
   return (
     <div id="dashboard-container">
