@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import "../assets/stylesheets/pages/_p_dashboard.scss";
 import OneRepMax from "../components/OneRepMax";
 import WorkoutProgram from "../components/WorkoutProgram";
+import { useUser, useUserUpdate } from "../contexts/UserContext";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
-  const [name, setName] = useState<string>("");
+  const userInformation = useUser();
+  const setUserInformation = useUserUpdate();
 
-  const getName = async () => {
+  const getUserInfo = async () => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_APP_BACKEND}/dashboard`,
@@ -20,21 +22,32 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         }
       );
 
-      const { firstName, lastName } = response.data;
+      const { firstName, lastName, email, id } = response.data;
 
-      setName(`${firstName} ${lastName}`);
+      setUserInformation({
+        id,
+        firstName,
+        lastName,
+        email,
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getName();
+    getUserInfo();
   }, []);
+
+  if (!userInformation) {
+    return;
+  }
+
+  const { firstName, lastName, id } = userInformation;
 
   return (
     <div id="dashboard-container">
-      <h1>{name}</h1>
+      <h1>{`${firstName} ${lastName}`}</h1>
       <OneRepMax />
       <WorkoutProgram />
     </div>
