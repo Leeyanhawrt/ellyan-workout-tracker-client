@@ -1,21 +1,23 @@
 import "../assets/stylesheets/components/_CarouselItem.scss";
 
-interface Item {
-  description: string;
-  title: string;
+interface Microcycle {
+  microcycleNumber: number;
 }
 
-interface CarouselItemProps {
-  item: Item;
+interface CarouselItemProps<T> {
+  microcycle: boolean;
+  item: T;
 }
 
-const CarouselItem: React.FC<CarouselItemProps> = ({ item }) => {
-  return (
-    <div className="carousel-item">
-      {item.title}
-      {item.description}
-    </div>
-  );
+const CarouselItem: React.FC<CarouselItemProps<Microcycle>> = ({
+  item,
+  microcycle,
+}) => {
+  if (microcycle) {
+    const { microcycleNumber } = item;
+
+    return <div className="carousel-item">{microcycleNumber}</div>;
+  }
 };
 
 export default CarouselItem;

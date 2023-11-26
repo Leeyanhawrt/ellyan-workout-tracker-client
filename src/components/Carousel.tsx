@@ -2,27 +2,17 @@ import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState } from "react";
 
-interface CarouselProps {}
+interface CarouselProps<T> {
+  items: T[];
+}
 
-const Carousel: React.FC<CarouselProps> = ({}) => {
+interface Microcycle {
+  id: number;
+  microcycleNumber: number;
+}
+
+const Carousel: React.FC<CarouselProps<Microcycle>> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const items = [
-    {
-      id: 1,
-      title: "Week 1",
-      description: "Test",
-    },
-    {
-      id: 2,
-      title: "Week 2",
-      description: "Okay",
-    },
-    {
-      id: 3,
-      title: "Week 3",
-      description: "Kek",
-    },
-  ];
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
@@ -41,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({}) => {
         style={{ transform: `translate(-${activeIndex * 100}%)` }}
       >
         {items.map((item) => {
-          return <CarouselItem key={item.id} item={item} />;
+          return <CarouselItem key={item.id} item={item} microcycle />;
         })}
       </div>
 

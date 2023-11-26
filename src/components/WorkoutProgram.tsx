@@ -49,7 +49,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
 
   return (
     <div className="content-container">
-      <Carousel />
+      <Carousel items={microcycles} />
     </div>
   );
 };
