@@ -1,9 +1,11 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState } from "react";
+import Microcycle from "./Microcycle";
 
 interface CarouselProps<T> {
   items: T[];
+  microcycle?: boolean;
 }
 
 interface Microcycle {
@@ -11,7 +13,10 @@ interface Microcycle {
   microcycleNumber: number;
 }
 
-const Carousel: React.FC<CarouselProps<Microcycle>> = ({ items }) => {
+const Carousel: React.FC<CarouselProps<Microcycle>> = ({
+  items,
+  microcycle,
+}) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const updateIndex = (newIndex: number) => {
@@ -31,7 +36,9 @@ const Carousel: React.FC<CarouselProps<Microcycle>> = ({ items }) => {
         style={{ transform: `translate(-${activeIndex * 100}%)` }}
       >
         {items.map((item) => {
-          return <CarouselItem key={item.id} item={item} microcycle />;
+          return (
+            <CarouselItem key={item.id} item={item} microcycle={microcycle} />
+          );
         })}
       </div>
 
@@ -46,6 +53,7 @@ const Carousel: React.FC<CarouselProps<Microcycle>> = ({ items }) => {
           {items.map((_item, index) => {
             return (
               <button
+                key={index}
                 onClick={() => updateIndex(index)}
                 className="indicator-buttons"
               >

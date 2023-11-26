@@ -1,23 +1,29 @@
 import "../assets/stylesheets/components/_CarouselItem.scss";
+import DailyWorkout from "./DailyWorkout";
 
 interface Microcycle {
   microcycleNumber: number;
+  id: number;
 }
 
 interface CarouselItemProps<T> {
-  microcycle: boolean;
+  microcycle?: boolean;
   item: T;
 }
 
 const CarouselItem: React.FC<CarouselItemProps<Microcycle>> = ({
-  item,
   microcycle,
+  item,
 }) => {
   if (microcycle) {
-    const { microcycleNumber } = item;
-
-    return <div className="carousel-item">{microcycleNumber}</div>;
+    return (
+      <div className="microcycle-item">
+        <DailyWorkout microcycleId={item.id} />
+      </div>
+    );
   }
+
+  return <div className="carousel-item"></div>;
 };
 
 export default CarouselItem;
