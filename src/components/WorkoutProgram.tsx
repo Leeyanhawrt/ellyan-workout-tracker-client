@@ -18,7 +18,16 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
 
   useEffect(() => {
     if (userInformation) {
-      fetchMicrocycles();
+      const fetchData = async () => {
+        try {
+          const response = await fetchMicrocycles();
+          const data: Microcycle[] = response.data;
+          setMicrocycles(data);
+        } catch (err) {
+          console.error("Error fetching microcycles:", err);
+        }
+      };
+      fetchData();
     }
   }, [userInformation]);
 
