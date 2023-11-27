@@ -1,8 +1,8 @@
 import "../assets/stylesheets/components/_WorkoutProgram.scss";
 import Carousel from "./Carousel";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useUser } from "../contexts/UserContext";
+import { fetchData } from "../utils/api";
 
 interface WorkoutProgramProps {}
 
@@ -18,36 +18,28 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
 
   useEffect(() => {
     if (userInformation) {
-      const fetchData = async () => {
+      const setData = async () => {
+        const { workoutProgramId } = userInformation;
+
         try {
-          const response = await fetchMicrocycles();
+          const response = await fetchData(
+            `/workout-program/microcycle/${workoutProgramId}`,
+            "Microcycles",
+            true
+          );
           const data: Microcycle[] = response.data;
           setMicrocycles(data);
         } catch (err) {
-          console.error("Error fetching microcycles:", err);
+          console.error("Error Fetching Microcycles:", err);
         }
       };
-      fetchData();
+      setData();
     }
   }, [userInformation]);
 
   if (!userInformation) {
     return <div>Loading...</div>;
   }
-
-  const fetchMicrocycles = async () => {
-    const { workoutProgramId } = userInformation;
-
-    let response = await axios.get(
-      `${
-        import.meta.env.VITE_APP_BACKEND
-      }/workout-program/microcycle/${workoutProgramId}`,
-      {
-        headers: { token: localStorage.token },
-      }
-    );
-    return response;
-  };
 
   return (
     <div className="content-container">

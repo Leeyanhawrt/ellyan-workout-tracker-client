@@ -1,8 +1,10 @@
 import "../assets/stylesheets/components/_ExerciseTile.scss";
 
-interface ExerciseTileProps {}
+interface ExerciseTileProps {
+  dailyWorkoutId: number;
+}
 
-const ExerciseTile: React.FC<ExerciseTileProps> = ({}) => {
+const ExerciseTile: React.FC<ExerciseTileProps> = ({ dailyWorkoutId }) => {
   return <div>ExerciseTile</div>;
 };
 

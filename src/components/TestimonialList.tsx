@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import TestimonialItem from "./TestimonialItem";
 import "../assets/stylesheets/components/_TestimonialList.scss";
+import { fetchData } from "../utils/api";
 
 interface TestimonalInterface {
   id: number;
@@ -17,25 +17,19 @@ interface TestimonialListProps {}
 const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
   const [testimonials, setTestimonials] = useState<TestimonalInterface[]>([]);
 
-  const fetchTestimonials = async () => {
-    let response = await axios.get(
-      `${import.meta.env.VITE_APP_BACKEND}/testimonial`
-    );
-    return response;
-  };
-
   useEffect(() => {
-    const fetchData = async () => {
+    const setData = async () => {
       try {
-        const response = await fetchTestimonials();
+        const response = await fetchData(`/testimonial`, "Testimonials");
+
         const data: TestimonalInterface[] = response.data;
         setTestimonials(data);
       } catch (err) {
-        console.error("Error fetching testimonials:", err);
+        console.error("Error Fetching Testimonials:", err);
       }
     };
 
-    fetchData();
+    setData();
   }, []);
 
   const renderedTestimonials = testimonials.map((testimonial) => {

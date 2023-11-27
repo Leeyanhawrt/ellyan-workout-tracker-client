@@ -3,6 +3,7 @@ import Button from "./Button";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState, ChangeEvent, useEffect } from "react";
+import { fetchData } from "../utils/api";
 
 interface OneRepMaxProps {}
 
@@ -22,23 +23,23 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
   const { squatRecord, benchRecord, deadliftRecord } = inputs;
 
   useEffect(() => {
-    fetchRecords();
-  }, []);
+    const setData = async () => {
+      try {
+        const response = await fetchData(
+          `/dashboard/orm-records`,
+          "One Rep Maxes",
+          true
+        );
 
-  const fetchRecords = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
-        {
-          headers: { token: localStorage.token },
-        }
-      );
-      const { squatRecord, benchRecord, deadliftRecord } = response.data[0];
-      setInputs({ squatRecord, benchRecord, deadliftRecord });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+        const data: OneRepMaxData[] = response.data;
+        const { squatRecord, benchRecord, deadliftRecord } = data[0];
+        setInputs({ squatRecord, benchRecord, deadliftRecord });
+      } catch (err) {
+        console.error("Error Fetching One Rep Maxes:", err);
+      }
+    };
+    setData();
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs({

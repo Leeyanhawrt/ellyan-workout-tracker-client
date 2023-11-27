@@ -1,29 +1,36 @@
 import { useEffect } from "react";
-import axios from "axios";
 import "../assets/stylesheets/pages/_p_dashboard.scss";
 import OneRepMax from "../components/OneRepMax";
 import WorkoutProgram from "../components/WorkoutProgram";
 import { useUser, useUserUpdate } from "../contexts/UserContext";
+import { fetchData } from "../utils/api";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
+}
+
+interface UserInformation {
+  firstName: string;
+  lastName: string;
+  email: string;
+  id: number;
+  workoutProgramId: number;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const userInformation = useUser();
   const setUserInformation = useUserUpdate();
 
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   const getUserInfo = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND}/dashboard`,
-        {
-          headers: { token: localStorage.token },
-        }
-      );
+      const response = await fetchData(`/dashboard`, "User Information", true);
+      const data: UserInformation = response.data;
 
-      const { firstName, lastName, email, id, workoutProgramId } =
-        response.data;
+      const { firstName, lastName, email, id, workoutProgramId } = data;
 
       setUserInformation({
         id,
@@ -33,13 +40,9 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         workoutProgramId,
       });
     } catch (err) {
-      console.log(err);
+      console.error(`Error Fetching User Information: ${err}`);
     }
   };
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
 
   if (!userInformation) {
     return <div>Loading...</div>;

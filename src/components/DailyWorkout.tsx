@@ -1,7 +1,7 @@
 import "../assets/stylesheets/components/_DailyWorkout.scss";
 import ExerciseTile from "./ExerciseTile";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { fetchData } from "../utils/api";
 
 interface DailyWorkoutProps {
   microcycleId: number;
@@ -16,35 +16,28 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({ microcycleId }) => {
   const [dailyWorkout, setDailyWorkout] = useState<DailyWorkout[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const setData = async () => {
       try {
-        const response = await fetchDailyWorkout();
+        const response = await fetchData(
+          `/workout-program/daily-workout/${microcycleId}`,
+          "Daily Workout",
+          true
+        );
+
         const data: DailyWorkout[] = response.data;
         setDailyWorkout(data);
       } catch (err) {
-        console.error("Error fetching daily workouts:", err);
+        console.error("Error Fetching Daily Workouts:", err);
       }
     };
-    fetchData();
+    setData();
   }, []);
 
-  const fetchDailyWorkout = async () => {
-    const response = await axios.get(
-      `${
-        import.meta.env.VITE_APP_BACKEND
-      }/workout-program/daily-workout/${microcycleId}`,
-      {
-        headers: { token: localStorage.token },
-      }
-    );
-
-    return response;
-  };
-
   return (
-    <div>
-      DailyWorkout
-      <ExerciseTile />
+    <div className="daily-workout-container">
+      {dailyWorkout.map((day) => {
+        return <ExerciseTile key={day.id} dailyWorkoutId={day.id} />;
+      })}
     </div>
   );
 };

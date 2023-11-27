@@ -4,12 +4,12 @@ import { useAuth, useAuthUpdate } from "./contexts/AuthContext";
 import { ModalProvider } from "./contexts/ModalContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import DashboardPage from "./pages/DashboardPage";
 import Nav from "./components/Nav";
+import { fetchData } from "./utils/api";
 
 const App = () => {
   const authStatus = useAuth();
@@ -21,16 +21,17 @@ const App = () => {
 
   const isAuth = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND}/auth/is-verified`,
-        {
-          headers: { token: localStorage.token },
-        }
+      const response = await fetchData(
+        `/auth/is-verified`,
+        "Authentication Status",
+        true
       );
 
-      response.data === true ? setAuth(true) : setAuth(false);
+      const data: boolean = response.data;
+
+      data === true ? setAuth(true) : setAuth(false);
     } catch (err) {
-      console.log((err as Error)?.message);
+      console.error((err as Error)?.message);
     }
   };
 
