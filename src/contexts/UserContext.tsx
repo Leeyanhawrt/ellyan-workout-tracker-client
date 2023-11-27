@@ -6,10 +6,11 @@ interface UserProviderProps {
 }
 
 interface User {
-  userId: number;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
+  workoutProgramId: number;
 }
 
 type UserUpdateContextType = (value: User) => void;

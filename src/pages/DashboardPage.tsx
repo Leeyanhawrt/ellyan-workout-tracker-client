@@ -22,13 +22,15 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         }
       );
 
-      const { firstName, lastName, email, userId } = response.data;
+      const { firstName, lastName, email, id, workoutProgramId } =
+        response.data;
 
       setUserInformation({
-        userId,
+        id,
         firstName,
         lastName,
         email,
+        workoutProgramId,
       });
     } catch (err) {
       console.log(err);
