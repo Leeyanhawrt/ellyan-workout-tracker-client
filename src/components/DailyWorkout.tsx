@@ -7,9 +7,25 @@ interface DailyWorkoutProps {
   microcycleId: number;
 }
 
+interface DailyWorkout {
+  id: number;
+  dayNumber: number;
+}
+
 const DailyWorkout: React.FC<DailyWorkoutProps> = ({ microcycleId }) => {
+  const [dailyWorkout, setDailyWorkout] = useState<DailyWorkout[]>([]);
+
   useEffect(() => {
-    fetchDailyWorkout();
+    const fetchData = async () => {
+      try {
+        const response = await fetchDailyWorkout();
+        const data: DailyWorkout[] = response.data;
+        setDailyWorkout(data);
+      } catch (err) {
+        console.error("Error fetching daily workouts:", err);
+      }
+    };
+    fetchData();
   }, []);
 
   const fetchDailyWorkout = async () => {
@@ -21,6 +37,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({ microcycleId }) => {
         headers: { token: localStorage.token },
       }
     );
+
     return response;
   };
 

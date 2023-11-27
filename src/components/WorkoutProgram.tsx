@@ -51,7 +51,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
 
   return (
     <div className="content-container">
-      <Carousel items={microcycles} />
+      <Carousel microcycle items={microcycles} />
     </div>
   );
 };

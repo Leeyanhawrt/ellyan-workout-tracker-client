@@ -1,7 +1,6 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState } from "react";
-import Microcycle from "./Microcycle";
 
 interface CarouselProps<T> {
   items: T[];
