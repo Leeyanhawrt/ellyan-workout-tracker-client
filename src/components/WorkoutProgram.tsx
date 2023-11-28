@@ -1,6 +1,5 @@
 import "../assets/stylesheets/components/_WorkoutProgram.scss";
-import Carousel from "./Carousel";
-import Microcycle from "./Microcycles";
+import Microcycle from "./Microcycle";
 import { useEffect, useState } from "react";
 import { useUser } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
@@ -46,7 +45,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
     <div className="content-container">
       <div className="workout-program-container">
         <Microcycle microcycles={microcycles} />
-        {/* <Carousel microcycle items={microcycles} /> */}
       </div>
     </div>
   );

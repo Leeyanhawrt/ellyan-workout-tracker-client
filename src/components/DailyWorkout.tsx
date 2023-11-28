@@ -1,25 +1,26 @@
 import "../assets/stylesheets/components/_DailyWorkout.scss";
-import ExerciseTile from "./ExerciseTile";
 import { useEffect, useState } from "react";
 import { fetchData } from "../utils/api";
+import Carousel from "./Carousel";
 
 interface DailyWorkoutProps {
-  microcycleId: number;
+  activeMicrocycle: number;
 }
 
 interface DailyWorkout {
   id: number;
   dayNumber: number;
+  microcycleId: number;
 }
 
-const DailyWorkout: React.FC<DailyWorkoutProps> = ({ microcycleId }) => {
+const DailyWorkout: React.FC<DailyWorkoutProps> = ({ activeMicrocycle }) => {
   const [dailyWorkout, setDailyWorkout] = useState<DailyWorkout[]>([]);
 
   useEffect(() => {
     const setData = async () => {
       try {
         const response = await fetchData(
-          `/workout-program/daily-workout/${microcycleId}`,
+          `/workout-program/daily-workout/${activeMicrocycle}`,
           "Daily Workout",
           true
         );
@@ -31,14 +32,16 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({ microcycleId }) => {
       }
     };
     setData();
-  }, []);
+  }, [activeMicrocycle]);
+
+  if (dailyWorkout.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="daily-workout-container">
-      {dailyWorkout.map((day) => {
-        return <ExerciseTile key={day.id} dailyWorkoutId={day.id} />;
-      })}
-    </div>
+    <>
+      <Carousel items={dailyWorkout} dailyWorkout />
+    </>
   );
 };
 

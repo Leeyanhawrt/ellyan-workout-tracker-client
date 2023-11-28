@@ -1,20 +1,16 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState } from "react";
+import DailyWorkout from "./DailyWorkout";
 
 interface CarouselProps<T> {
   items: T[];
-  microcycle?: boolean;
+  dailyWorkout?: boolean;
 }
 
-interface Microcycle {
-  id: number;
-  microcycleNumber: number;
-}
-
-const Carousel: React.FC<CarouselProps<Microcycle>> = ({
+const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
   items,
-  microcycle,
+  dailyWorkout,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -36,7 +32,11 @@ const Carousel: React.FC<CarouselProps<Microcycle>> = ({
       >
         {items.map((item) => {
           return (
-            <CarouselItem key={item.id} item={item} microcycle={microcycle} />
+            <CarouselItem
+              key={item.id}
+              item={item}
+              dailyWorkout={dailyWorkout}
+            />
           );
         })}
       </div>

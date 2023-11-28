@@ -5,8 +5,8 @@
   @include dashboardComponent;
 
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: flex-start;
+  flex-direction: row;
   overflow: hidden;
   width: 100%;
   padding: 0;
