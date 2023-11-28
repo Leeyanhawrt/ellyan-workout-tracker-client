@@ -1,0 +1,13 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+.workout-program-container {
+  @include dashboardComponent;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+}

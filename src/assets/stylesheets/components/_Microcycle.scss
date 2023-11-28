@@ -1,0 +1,27 @@
+@import "../abstracts/variables";
+
+.microcycles-container {
+  background-color: $color-secondary;
+  border-right: 1px solid $color-nav-border;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 2rem;
+  padding: 3rem 1rem 3rem 3rem;
+
+  .microcycle-week {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+
+    .microcycle-icon {
+      font-size: 2rem;
+      color: $color-dashboard-white;
+    }
+
+    h4 {
+      color: $color-dashboard-white;
+    }
+  }
+}

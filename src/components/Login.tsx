@@ -58,7 +58,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const errorMessage = err.response?.data;
+        const errorMessage = `${err.message} Check Server Status`;
         console.error(errorMessage);
         toast.error(errorMessage);
       } else {
