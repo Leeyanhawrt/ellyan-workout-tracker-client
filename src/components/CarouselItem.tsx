@@ -1,24 +1,20 @@
 import "../assets/stylesheets/components/_CarouselItem.scss";
+import ExerciseList from "./ExerciseList";
 import DailyWorkout from "./DailyWorkout";
 
-interface Microcycle {
-  microcycleNumber: number;
-  id: number;
-}
-
 interface CarouselItemProps<T> {
-  microcycle?: boolean;
+  dailyWorkout?: boolean;
   item: T;
 }
 
-const CarouselItem: React.FC<CarouselItemProps<Microcycle>> = ({
-  microcycle,
+const CarouselItem: React.FC<CarouselItemProps<DailyWorkout>> = ({
+  dailyWorkout,
   item,
 }) => {
-  if (microcycle) {
+  if (dailyWorkout) {
     return (
-      <div className="microcycle-item">
-        <DailyWorkout microcycleId={item.id} />
+      <div className="daily-workout-list carousel-item">
+        <ExerciseList dailyWorkoutId={item.id} />
       </div>
     );
   }
