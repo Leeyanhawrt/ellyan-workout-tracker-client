@@ -19,7 +19,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkoutId }) => {
     const setData = async () => {
       try {
         const response = await fetchData(
-          `/workout-program/daily-workout/${dailyWorkoutId}`,
+          `/workout-program/exercise-list/${dailyWorkoutId}`,
           "Exercise List",
           true
         );
