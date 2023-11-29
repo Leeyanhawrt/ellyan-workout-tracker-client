@@ -137,7 +137,10 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
             REGISTER
           </Button>
           <p>
-            Have an account? <Link to="/login">Log in</Link>
+            Have an account?{" "}
+            <Link onClick={closeRegisterModal} to="/login">
+              Log in
+            </Link>
           </p>
         </form>
         <IoClose className="close-modal" onClick={closeRegisterModal} />

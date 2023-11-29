@@ -2,7 +2,7 @@ import Button from "./Button";
 import axios from "axios";
 import Modal from "./Modal";
 import Register from "./Register";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useModal, useModalUpdate } from "../contexts/ModalContext";
 import { toast } from "react-toastify";
 import "../assets/stylesheets/components/_Login.scss";
