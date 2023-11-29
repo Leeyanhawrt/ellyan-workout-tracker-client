@@ -1,5 +1,7 @@
 import { useUserMaxes } from "../contexts/UserMaxesContext";
 import { calculateWeight } from "../utils/calculateWeight";
+const LIFTS_TO_CALCULATE = ["bench press", "squat", "deadlift"];
+import "../assets/stylesheets/components/_ExerciseItem.scss";
 
 interface ExerciseItemProps {
   exercise: Exercise;
@@ -23,20 +25,21 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
 
   const { name, percentage, numberReps, numberSets, rpe } = exercise;
 
-  const calculatedLifts = ["bench press", "squat", "deadlift"];
+  const calculatedWeight = LIFTS_TO_CALCULATE.includes(name.toLowerCase())
+    ? calculateWeight(name, percentage, userMaxes)
+    : undefined;
 
-  let calculatedWeight;
-  if (calculatedLifts.includes(name.toLowerCase())) {
-    calculatedWeight = calculateWeight(name, percentage, userMaxes);
-  }
+  const repsAndRpe = rpe ? `@ ${rpe} RPE` : "";
+  const calculatedWeightText = calculatedWeight
+    ? `${calculatedWeight}lbs x `
+    : "";
+
+  const exerciseScheme = `${calculatedWeightText}${numberSets} sets x ${numberReps} reps ${repsAndRpe}`;
 
   return (
     <div className="exercise-item-container">
       <h5>{exercise.name}</h5>
-      <p>
-        {calculatedWeight && `${calculatedWeight}lbs x`} {numberSets} sets x{" "}
-        {numberReps} reps {rpe && `@ ${rpe} RPE`}
-      </p>
+      <p>{exerciseScheme}</p>
     </div>
   );
 };
