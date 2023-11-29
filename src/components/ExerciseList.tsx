@@ -13,6 +13,7 @@ interface Exercises {
   numberSets: number;
   numberReps: number;
   rpe: number;
+  percentage: number;
 }
 
 const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {

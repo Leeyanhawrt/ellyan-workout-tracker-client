@@ -2,25 +2,27 @@ import "../assets/stylesheets/components/_OneRepMax.scss";
 import Button from "./Button";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState, ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { fetchData } from "../utils/api";
+import { useUserMaxes, useUserMaxesUpdate } from "../contexts/UserMaxesContext";
 
 interface OneRepMaxProps {}
 
-interface OneRepMaxData {
+interface UserMaxes {
   squatRecord: number | undefined;
   benchRecord: number | undefined;
   deadliftRecord: number | undefined;
 }
 
 const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
-  const [inputs, setInputs] = useState<OneRepMaxData>({
-    squatRecord: undefined,
-    benchRecord: undefined,
-    deadliftRecord: undefined,
-  });
+  const userMaxes = useUserMaxes();
+  const setUserMaxes = useUserMaxesUpdate();
 
-  const { squatRecord, benchRecord, deadliftRecord } = inputs;
+  if (!userMaxes) {
+    return <div>Loading...</div>;
+  }
+
+  const { squatRecord, benchRecord, deadliftRecord } = userMaxes;
 
   useEffect(() => {
     const setData = async () => {
@@ -31,9 +33,9 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
           true
         );
 
-        const data: OneRepMaxData[] = response.data;
+        const data: UserMaxes[] = response.data;
         const { squatRecord, benchRecord, deadliftRecord } = data[0];
-        setInputs({ squatRecord, benchRecord, deadliftRecord });
+        setUserMaxes({ squatRecord, benchRecord, deadliftRecord });
       } catch (err) {
         console.error("Error Fetching One Rep Maxes:", err);
       }
@@ -42,8 +44,8 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputs({
-      ...inputs,
+    setUserMaxes({
+      ...userMaxes,
       [e.target.name]: parseInt(e.target.value, 10) || undefined,
     });
   };

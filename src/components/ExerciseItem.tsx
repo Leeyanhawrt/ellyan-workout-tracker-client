@@ -8,6 +8,7 @@ interface Exercise {
   numberSets: number;
   numberReps: number;
   rpe: number;
+  percentage: number;
 }
 
 const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {

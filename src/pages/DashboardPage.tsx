@@ -4,6 +4,7 @@ import OneRepMax from "../components/OneRepMax";
 import WorkoutProgram from "../components/WorkoutProgram";
 import { useUser, useUserUpdate } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
+import { UserMaxesProvider } from "../contexts/UserMaxesContext";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
@@ -51,11 +52,13 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const { firstName, lastName } = userInformation;
 
   return (
-    <div id="dashboard-container">
-      <h1>{`${firstName} ${lastName}`}</h1>
-      <OneRepMax />
-      <WorkoutProgram />
-    </div>
+    <UserMaxesProvider>
+      <div id="dashboard-container">
+        <h1>{`${firstName} ${lastName}`}</h1>
+        <OneRepMax />
+        <WorkoutProgram />
+      </div>
+    </UserMaxesProvider>
   );
 };
 
