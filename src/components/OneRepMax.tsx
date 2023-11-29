@@ -9,9 +9,9 @@ import { useUserMaxes, useUserMaxesUpdate } from "../contexts/UserMaxesContext";
 interface OneRepMaxProps {}
 
 interface UserMaxes {
-  squatRecord: number | undefined;
-  benchRecord: number | undefined;
-  deadliftRecord: number | undefined;
+  squat: number | undefined;
+  bench: number | undefined;
+  deadlift: number | undefined;
 }
 
 const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
@@ -22,7 +22,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  const { squatRecord, benchRecord, deadliftRecord } = userMaxes;
+  const { squat, bench, deadlift } = userMaxes;
 
   useEffect(() => {
     const setData = async () => {
@@ -34,8 +34,8 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
         );
 
         const data: UserMaxes[] = response.data;
-        const { squatRecord, benchRecord, deadliftRecord } = data[0];
-        setUserMaxes({ squatRecord, benchRecord, deadliftRecord });
+        const { squat, bench, deadlift } = data[0];
+        setUserMaxes({ squat, bench, deadlift });
       } catch (err) {
         console.error("Error Fetching One Rep Maxes:", err);
       }
@@ -58,9 +58,9 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
         {
-          squatRecord,
-          benchRecord,
-          deadliftRecord,
+          squat,
+          bench,
+          deadlift,
         },
         {
           headers: { token: localStorage.token },
@@ -85,9 +85,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
         <h2>Update Current Maxes:</h2>
         <h2>
           Total:{" "}
-          {Number(squatRecord || 0) +
-            Number(benchRecord || 0) +
-            Number(deadliftRecord || 0)}
+          {Number(squat || 0) + Number(bench || 0) + Number(deadlift || 0)}
         </h2>
         <form onSubmit={handleORMSubmit}>
           <div className="sbd-container u-margin-bottom-medium">
@@ -100,10 +98,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="squatRecord"
-                name="squatRecord"
+                id="squat"
+                name="squat"
                 placeholder="Squat"
-                defaultValue={squatRecord}
+                defaultValue={squat}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -116,10 +114,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="benchRecord"
-                name="benchRecord"
+                id="bench"
+                name="bench"
                 placeholder="Bench Press"
-                defaultValue={benchRecord}
+                defaultValue={bench}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -132,10 +130,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
               />
               <input
                 type="number"
-                id="deadliftRecord"
-                name="deadliftRecord"
+                id="deadlift"
+                name="deadlift"
                 placeholder="Deadlift"
-                defaultValue={deadliftRecord}
+                defaultValue={deadlift}
                 onChange={(e) => handleChange(e)}
               />
             </div>
