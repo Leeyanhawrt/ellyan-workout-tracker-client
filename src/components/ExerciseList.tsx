@@ -1,4 +1,3 @@
-import "../assets/stylesheets/components/_ExerciseList.scss";
 import { fetchData } from "../utils/api";
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";

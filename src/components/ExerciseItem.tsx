@@ -1,5 +1,3 @@
-import "../assets/stylesheets/components/_ExerciseItem.scss";
-
 interface ExerciseItemProps {
   exercise: Exercise;
 }
