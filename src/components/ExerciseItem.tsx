@@ -11,7 +11,7 @@ interface Exercise {
 }
 
 const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
-  return <div>{exercise.name}</div>;
+  return <div className="exercise-item-container">{exercise.name}</div>;
 };
 
 export default ExerciseItem;

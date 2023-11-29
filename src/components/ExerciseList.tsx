@@ -1,9 +1,10 @@
 import { fetchData } from "../utils/api";
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
+import DailyWorkout from "./DailyWorkout";
 
 interface ExerciseListProps {
-  dailyWorkoutId: number;
+  dailyWorkout: DailyWorkout;
 }
 
 interface Exercises {
@@ -14,14 +15,14 @@ interface Exercises {
   rpe: number;
 }
 
-const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkoutId }) => {
+const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
   const [exerciseList, setExerciseList] = useState<Exercises[]>([]);
 
   useEffect(() => {
     const setData = async () => {
       try {
         const response = await fetchData(
-          `/workout-program/exercise-list/${dailyWorkoutId}`,
+          `/workout-program/exercise-list/${dailyWorkout.id}`,
           "Exercise List",
           true
         );
@@ -37,6 +38,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkoutId }) => {
 
   return (
     <div className="exercise-list-container">
+      <h2>{`Day ${dailyWorkout.dayNumber}`}</h2>
       {exerciseList.map((exercise) => {
         return <ExerciseItem key={exercise.id} exercise={exercise} />;
       })}

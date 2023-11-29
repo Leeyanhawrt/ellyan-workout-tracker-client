@@ -14,7 +14,7 @@ const CarouselItem: React.FC<CarouselItemProps<DailyWorkout>> = ({
   if (dailyWorkout) {
     return (
       <div className="daily-workout-list carousel-item">
-        <ExerciseList dailyWorkoutId={item.id} />
+        <ExerciseList dailyWorkout={item} />
       </div>
     );
   }
