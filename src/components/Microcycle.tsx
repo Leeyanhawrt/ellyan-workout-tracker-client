@@ -33,7 +33,11 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
             <div
               onClick={() => updateMesocycle(microcycle.id)}
               key={microcycle.id}
-              className="microcycle-week"
+              className={`microcycle-week ${
+                microcycle.id === activeMicrocycle
+                  ? "microcycle-week-active"
+                  : ""
+              }`}
             >
               <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
               <RiArrowRightSLine className="microcycle-icon" />
