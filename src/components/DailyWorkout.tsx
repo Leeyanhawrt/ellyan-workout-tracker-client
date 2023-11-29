@@ -1,4 +1,3 @@
-import "../assets/stylesheets/components/_DailyWorkout.scss";
 import { useEffect, useState } from "react";
 import { fetchData } from "../utils/api";
 import Carousel from "./Carousel";
