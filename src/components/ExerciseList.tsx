@@ -1,15 +1,18 @@
 import "../assets/stylesheets/components/_ExerciseList.scss";
 import { fetchData } from "../utils/api";
 import { useEffect, useState } from "react";
+import ExerciseItem from "./ExerciseItem";
 
 interface ExerciseListProps {
   dailyWorkoutId: number;
 }
 
 interface Exercises {
+  id: number;
   name: string;
   numberSets: number;
   numberReps: number;
+  rpe: number;
 }
 
 const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkoutId }) => {
@@ -33,7 +36,13 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkoutId }) => {
     setData();
   }, []);
 
-  return <div>ExerciseList</div>;
+  return (
+    <div className="exercise-list-container">
+      {exerciseList.map((exercise) => {
+        return <ExerciseItem key={exercise.id} exercise={exercise} />;
+      })}
+    </div>
+  );
 };
 
 export default ExerciseList;
