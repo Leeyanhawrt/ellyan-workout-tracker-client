@@ -41,7 +41,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
 
   return (
     <div className="exercise-list-container">
-      <h2>{`Day ${dailyWorkout.dayNumber}`}</h2>
+      <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
       {exerciseList.map((exercise) => {
         return <ExerciseItem key={exercise.id} exercise={exercise} />;
       })}

@@ -20,7 +20,7 @@ export const calculateWeight = (
       : userMaxes["bench"];
 
   if (record !== undefined) {
-    const calculatedWeight = (Math.floor(record * percentage * 0.01) / 5) * 5;
+    const calculatedWeight = Math.floor((record * (percentage * 0.01)) / 5) * 5;
 
     return calculatedWeight;
   }

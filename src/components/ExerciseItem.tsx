@@ -36,7 +36,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
     ? `${calculatedWeight}lbs x `
     : "";
 
-  const exerciseScheme = `${calculatedWeightText}${numberSets} sets x ${numberReps} reps ${repsAndRpe}`;
+  const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpe}`;
 
   const classes = classNames("exercise-item-container", {
     "exercise-item-main": type === "main",

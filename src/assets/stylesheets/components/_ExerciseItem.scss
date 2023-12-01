@@ -2,16 +2,30 @@
 
 .exercise-item {
   &-container {
-  }
-  &-main {
-    background-color: $color-secondary-dark;
+    margin: 1.5rem 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.1rem 0.3rem 0 $color-grey;
+
+    h5,
+    p {
+      color: $color-grey-dark;
+    }
+
+    h5 {
+      letter-spacing: 0.1rem;
+    }
   }
 
-  &-variant {
+  &-main {
     background-color: $color-secondary;
   }
 
-  &-accessory {
+  &-variant {
     background-color: $color-secondary-light;
+  }
+
+  &-accessory {
+    background-color: $color-beige;
   }
 }
