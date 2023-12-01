@@ -1,5 +1,17 @@
 @import "../abstracts/variables";
 
-.exercise-item-container {
-  margin: 0;
+.exercise-item {
+  &-container {
+  }
+  &-main {
+    background-color: $color-secondary-dark;
+  }
+
+  &-variant {
+    background-color: $color-secondary;
+  }
+
+  &-accessory {
+    background-color: $color-secondary-light;
+  }
 }

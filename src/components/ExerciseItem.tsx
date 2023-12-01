@@ -2,6 +2,7 @@ import { useUserMaxes } from "../contexts/UserMaxesContext";
 import { calculateWeight } from "../utils/calculateWeight";
 const LIFTS_TO_CALCULATE = ["bench press", "squat", "deadlift"];
 import "../assets/stylesheets/components/_ExerciseItem.scss";
+import classNames from "classnames";
 
 interface ExerciseItemProps {
   exercise: Exercise;
@@ -14,6 +15,7 @@ interface Exercise {
   numberReps: number;
   rpe: number;
   percentage: number;
+  type: string;
 }
 
 const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
@@ -23,7 +25,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
     return <div>Loading...</div>;
   }
 
-  const { name, percentage, numberReps, numberSets, rpe } = exercise;
+  const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
 
   const calculatedWeight = LIFTS_TO_CALCULATE.includes(name.toLowerCase())
     ? calculateWeight(name, percentage, userMaxes)
@@ -36,8 +38,14 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
 
   const exerciseScheme = `${calculatedWeightText}${numberSets} sets x ${numberReps} reps ${repsAndRpe}`;
 
+  const classes = classNames("exercise-item-container", {
+    "exercise-item-main": type === "main",
+    "exercise-item-accessory": type === "accessory",
+    "exercise-item-variant": type === "main variation",
+  });
+
   return (
-    <div className="exercise-item-container">
+    <div className={classes}>
       <h5>{exercise.name}</h5>
       <p>{exerciseScheme}</p>
     </div>

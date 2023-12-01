@@ -2,6 +2,7 @@ import { fetchData } from "../utils/api";
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
 import DailyWorkout from "./DailyWorkout";
+import "../assets/stylesheets/components/_ExerciseList.scss";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -14,6 +15,7 @@ interface Exercises {
   numberReps: number;
   rpe: number;
   percentage: number;
+  type: string;
 }
 
 const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
