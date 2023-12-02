@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 
 #navbar {
   display: flex;
@@ -49,5 +50,14 @@
 
   &.nav-overlap {
     position: fixed;
+
+    @include respond(tablet-portrait) {
+      position: sticky;
+      background-color: $color-white;
+
+      p {
+        color: $color-black;
+      }
+    }
   }
 }
