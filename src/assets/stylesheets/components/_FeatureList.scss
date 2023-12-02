@@ -1,4 +1,11 @@
-ul {
+@import "../abstracts/mixins";
+
+#features-container {
   display: flex;
   gap: 1.5rem;
+
+  @include respond(tablet-portrait) {
+    flex-direction: column;
+    gap: 3rem;
+  }
 }
