@@ -1,16 +1,26 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 
 #video-container {
   position: relative;
   overflow: hidden;
   display: block;
   background-size: cover;
-  background-position: bottom;
-  width: 100%;
-  height: 525px;
+  background-position: center;
+  background-image: none;
+  height: 52.5rem;
   -webkit-transition: height 1s ease;
   transition: height 1s ease;
   margin: 0 auto;
+
+  @include respond(tablet-landscape) {
+    height: 40rem;
+  }
+
+  @include respond(tablet-portrait) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("/src/assets/photos/backgrounds/ndrc-team-photo.jpg");
+  }
 
   #bg-video {
     position: absolute;
@@ -19,6 +29,10 @@
     width: auto;
     height: auto;
     filter: brightness(50%);
+
+    @include respond(tablet-portrait) {
+      display: none;
+    }
   }
 
   .header {
@@ -33,9 +47,20 @@
     flex-direction: column;
     color: white;
 
+    h1 {
+      text-wrap: nowrap;
+
+      @include respond(phone) {
+        font-size: 5rem;
+      }
+    }
+
     span {
       display: inline-block;
       animation: 5.5s 0s infinite flip;
+      @include respond(tablet-portrait) {
+        animation: none;
+      }
     }
 
     p {

@@ -32,6 +32,14 @@ body {
 }
 
 .content-container {
-  max-width: 1064px;
+  max-width: 106rem;
   margin: 4rem auto;
+
+  @include respond(tablet-landscape) {
+    max-width: 95rem;
+  }
+
+  @include respond(tablet-portrait) {
+    max-width: 85rem;
+  }
 }

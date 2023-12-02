@@ -4,6 +4,9 @@
 .app-features {
   @include flexCenter;
   flex-direction: column;
+  @include respond(phone) {
+    margin: 0 2rem;
+  }
 }
 
 #testimonials-section {
