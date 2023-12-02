@@ -15,6 +15,10 @@
   transition: all 0.3s ease;
   border-bottom: 1px solid $color-nav-border;
 
+  @include respond(phone) {
+    padding: 0 3rem;
+  }
+
   .app-title {
     text-decoration: none;
     display: flex;
