@@ -6,6 +6,8 @@ import className from "classnames";
 import { useLocation } from "react-router-dom";
 import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
 import { IoIosMenu } from "react-icons/io";
+import { useModal } from "../contexts/ModalContext";
+import NavMenu from "./NavMenu";
 
 interface NavProps {}
 
@@ -15,6 +17,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   const location = useLocation();
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
+  const { showMobileModal, setMobileModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +31,10 @@ const Nav: React.FC<NavProps> = ({}) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const toggleMobileMenu = () => {
+    setMobileModal(!showMobileModal);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -72,8 +79,9 @@ const Nav: React.FC<NavProps> = ({}) => {
           </Button>
         )}
       </div>
-      <div id="mobile-nav">
+      <div id="mobile-nav" onClick={toggleMobileMenu}>
         <IoIosMenu className="menu-button" />
+        {showMobileModal && <NavMenu />}
       </div>
     </nav>
   );
