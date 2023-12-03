@@ -52,7 +52,7 @@ const Nav: React.FC<NavProps> = ({}) => {
     <nav id="navbar" className={`${classes}`}>
       <Link to="/" className="app-title">
         <img
-          src={`${import.meta.env.VITE_PUBLIC_PATH}/icons/kirby-deadlift.png`}
+          src={`${import.meta.env.VITE_PUBLIC_PATH}/icons/kirby-nav.png`}
           alt="Kirby Weightlifting"
         />
         <p>EllyanTracker</p>

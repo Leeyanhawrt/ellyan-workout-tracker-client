@@ -107,6 +107,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
             </div>
             <div className="max-container">
               <img
+                className="kirby-bench"
                 src={`${
                   import.meta.env.VITE_PUBLIC_PATH
                 }/icons/kirby-bench.png`}
