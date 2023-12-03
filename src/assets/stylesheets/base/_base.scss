@@ -25,6 +25,7 @@ html {
 body {
   box-sizing: border-box;
   padding: 0 auto;
+  overflow-x: hidden;
 
   @include respond(tablet-portrait) {
     padding: 0;
