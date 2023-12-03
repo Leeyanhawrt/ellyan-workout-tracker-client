@@ -3,7 +3,7 @@ import axios from "axios";
 import Modal from "./Modal";
 import Register from "./Register";
 import { useState, ChangeEvent } from "react";
-import { useModal, useModalUpdate } from "../contexts/ModalContext";
+import { useModal } from "../contexts/ModalContext";
 import { toast } from "react-toastify";
 import "../assets/stylesheets/components/_Login.scss";
 
@@ -22,15 +22,14 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
     password: "",
   });
 
-  const modalStatus = useModal();
-  const setModal = useModalUpdate();
+  const { setRegisterModal, showRegisterModal } = useModal();
 
   const openRegisterModal = () => {
-    setModal(true);
+    setRegisterModal(true);
   };
 
   const closeRegisterModal = () => {
-    setModal(false);
+    setRegisterModal(false);
   };
 
   const { email, password } = inputs;
@@ -99,7 +98,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       <p>
         Don't have an account? <a onClick={openRegisterModal}>Register</a>
       </p>
-      {modalStatus && (
+      {showRegisterModal && (
         <Modal>
           <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
         </Modal>

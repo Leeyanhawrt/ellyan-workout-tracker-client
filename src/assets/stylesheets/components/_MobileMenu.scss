@@ -1,0 +1,8 @@
+@import "../abstracts/variables";
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-bottom: 1px solid $color-nav-border;
+}

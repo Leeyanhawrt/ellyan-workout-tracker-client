@@ -15,8 +15,12 @@
   transition: all 0.3s ease;
   border-bottom: 1px solid $color-nav-border;
 
+  @include respond(tablet-portrait) {
+    padding: 0 5rem;
+  }
+
   @include respond(phone) {
-    padding: 0 3rem;
+    padding: 0 5rem;
   }
 
   .app-title {
@@ -62,6 +66,27 @@
       p {
         color: $color-black;
       }
+    }
+  }
+
+  #mobile-nav {
+    display: none;
+    margin-top: 1rem;
+
+    @include respond(phone) {
+      display: block;
+    }
+
+    .menu-button {
+      font-size: 5rem;
+      cursor: pointer;
+    }
+  }
+
+  #non-mobile-nav {
+    display: flex;
+    @include respond(phone) {
+      display: none;
     }
   }
 }
