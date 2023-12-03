@@ -38,5 +38,8 @@
 
   &:hover {
     transform: translateY(-1.5rem) scale(1.03);
+    @include respond(tablet-portrait) {
+      transform: scale(1.05);
+    }
   }
 }
