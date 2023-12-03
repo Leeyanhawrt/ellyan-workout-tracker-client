@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
 import { IoIosMenu } from "react-icons/io";
 import { useModal } from "../contexts/ModalContext";
-import NavMenu from "./NavMenu";
+import MobileMenu from "./MobileMenu";
+import { toast } from "react-toastify";
 
 interface NavProps {}
 
@@ -39,6 +40,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setAuth(false);
+    toast.success(`Successfully Logged Out!`);
   };
 
   const classes = className({
@@ -47,7 +49,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   });
 
   return (
-    <nav id="navbar" className={classes}>
+    <nav id="navbar" className={`${classes}`}>
       <Link to="/" className="app-title">
         <img
           src={`${import.meta.env.VITE_PUBLIC_PATH}/icons/kirby-deadlift.png`}
@@ -81,7 +83,7 @@ const Nav: React.FC<NavProps> = ({}) => {
       </div>
       <div id="mobile-nav" onClick={toggleMobileMenu}>
         <IoIosMenu className="menu-button" />
-        {showMobileModal && <NavMenu />}
+        {showMobileModal && <MobileMenu />}
       </div>
     </nav>
   );

@@ -22,8 +22,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
     password: "",
   });
 
-  const modalStatus = useModal();
-  const { setRegisterModal } = useModal();
+  const { setRegisterModal, showRegisterModal } = useModal();
 
   const openRegisterModal = () => {
     setRegisterModal(true);
@@ -99,7 +98,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       <p>
         Don't have an account? <a onClick={openRegisterModal}>Register</a>
       </p>
-      {modalStatus && (
+      {showRegisterModal && (
         <Modal>
           <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
         </Modal>
