@@ -15,6 +15,15 @@
       justify-content: center;
       gap: 10rem;
 
+      @include respond(tablet-portrait) {
+        gap: 3rem;
+      }
+
+      @include respond(phone) {
+        flex-direction: column;
+        gap: 0;
+      }
+
       input {
         @include inputStyle(22rem, rgba($color-white, 0.5), 0.25rem);
         background-color: rgba($color-tertiary-light, 0.7);
