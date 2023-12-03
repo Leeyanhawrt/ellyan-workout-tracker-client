@@ -5,7 +5,7 @@
   border-right: 1px solid $color-nav-border;
   display: flex;
   flex-direction: column;
-  text-wrap: nowrap;
+  white-space: nowrap;
   width: 15%;
 
   .microcycle-week {

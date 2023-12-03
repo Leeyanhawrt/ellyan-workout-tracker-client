@@ -48,7 +48,7 @@
     color: white;
 
     h1 {
-      text-wrap: nowrap;
+      white-space: nowrap;
 
       @include respond(phone) {
         font-size: 5rem;
