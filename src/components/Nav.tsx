@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import className from "classnames";
 import { useLocation } from "react-router-dom";
 import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
+import { IoIosMenu } from "react-icons/io";
 
 interface NavProps {}
 
@@ -47,7 +48,7 @@ const Nav: React.FC<NavProps> = ({}) => {
         />
         <p>EllyanTracker</p>
       </Link>
-      <div className="button-container">
+      <div className="button-container" id="non-mobile-nav">
         {authStatus ? (
           <>
             {location.pathname !== "/dashboard" && (
@@ -70,6 +71,9 @@ const Nav: React.FC<NavProps> = ({}) => {
             Login
           </Button>
         )}
+      </div>
+      <div id="mobile-nav">
+        <IoIosMenu className="menu-button" />
       </div>
     </nav>
   );

@@ -4,7 +4,7 @@ import Modal from "../components/Modal";
 import Register from "../components/Register";
 import TestimonialList from "../components/TestimonialList";
 import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
-import { useModal, useModalUpdate } from "../contexts/ModalContext";
+import { useModal } from "../contexts/ModalContext";
 import paddling_video from "../assets/videos/ndrc-paddling.mp4";
 import "../assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
@@ -15,19 +15,18 @@ const HomePage = () => {
   const navigate = useNavigate();
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
-  const modalStatus = useModal();
-  const setModal = useModalUpdate();
+  const { showRegisterModal, setRegisterModal } = useModal();
 
   const openRegisterModal = () => {
     if (authStatus) {
       navigate("/dashboard");
       return;
     }
-    setModal(true);
+    setRegisterModal(true);
   };
 
   const closeRegisterModal = () => {
-    setModal(false);
+    setRegisterModal(false);
   };
 
   return (
@@ -60,7 +59,7 @@ const HomePage = () => {
         </h2>
         <TestimonialList />
       </section>
-      {modalStatus && (
+      {showRegisterModal && (
         <Modal>
           <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
         </Modal>
