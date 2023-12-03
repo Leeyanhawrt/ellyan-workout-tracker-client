@@ -4,11 +4,23 @@
 #orm-container {
   @include dashboardComponent;
 
+  h2 {
+    @include respond(phone) {
+      font-size: 6rem;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    button {
+      @include respond(phone) {
+        padding: 2.5rem 10rem;
+      }
+    }
 
     .sbd-container {
       display: flex;
@@ -33,10 +45,19 @@
         font-size: 2rem;
         color: $color-grey-dark;
         transform: translateX(0.3rem);
+        @include respond(phone) {
+          width: 30rem;
+          height: 10rem;
+          font-size: 5rem;
+        }
       }
 
       img {
         height: 20rem;
+
+        @include respond(phone) {
+          height: 40rem;
+        }
       }
 
       .max-container {
