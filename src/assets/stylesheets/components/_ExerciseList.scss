@@ -1,5 +1,10 @@
+@import "../abstracts/mixins";
+
 .exercise-list-container {
   margin: 3rem 5rem;
+  @include respond(small-phone) {
+    margin: 3rem 3rem;
+  }
 
   h3 {
     margin-bottom: 2rem;

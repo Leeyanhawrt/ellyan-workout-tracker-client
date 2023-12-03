@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 
 .microcycles-container {
   background-color: $color-secondary;
@@ -7,6 +8,13 @@
   flex-direction: column;
   white-space: nowrap;
   width: 15%;
+  @include respond(tablet-portrait) {
+    width: 20%;
+  }
+
+  @include respond(phone) {
+    width: 25%;
+  }
 
   .microcycle-week {
     cursor: pointer;
@@ -33,4 +41,11 @@
 
 .daily-workout-container {
   width: 85%;
+  @include respond(tablet-portrait) {
+    width: 80%;
+  }
+
+  @include respond(phone) {
+    width: 75%;
+  }
 }
