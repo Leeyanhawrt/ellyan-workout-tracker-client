@@ -1,8 +1,16 @@
 @import "../abstracts/_mixins.scss";
 @import "../abstracts/variables";
 
-.user-profile-form {
+.form {
   @include dashboardComponent;
+
+  label {
+    font-size: 1.2rem;
+    font-family: "proxima", sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: $color-grey-dark;
+  }
 
   h2 {
     text-align: center;
@@ -10,22 +18,16 @@
 
   .row {
     display: flex;
-    max-width: 50%;
-    gap: 2rem;
 
-    div {
+    div:last-child {
+      margin-left: 2rem;
+    }
+
+    .flex-item {
       display: flex;
       flex-direction: column;
-      width: 50%;
-      margin: 4rem 0;
-
-      label {
-        font-size: 1.2rem;
-        font-family: "proxima", sans-serif;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        color: $color-grey-dark;
-      }
+      margin: 2rem 0;
+      flex: 1;
 
       select,
       input {
@@ -37,6 +39,11 @@
           color: $color-grey;
         }
       }
+    }
+
+    .grouping {
+      display: flex;
+      flex: 1;
     }
   }
 }
