@@ -1,18 +1,31 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DailyWorkout from "./DailyWorkout";
 
 interface CarouselProps<T> {
   items: T[];
   dailyWorkout?: boolean;
+  resetCarousel?: boolean;
+  revertCarouselReset?: () => void;
 }
 
 const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
   items,
   dailyWorkout,
+  resetCarousel,
+  revertCarouselReset,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  useEffect(() => {
+    if (resetCarousel) {
+      setActiveIndex(0);
+      if (revertCarouselReset) {
+        revertCarouselReset();
+      }
+    }
+  }, [resetCarousel]);
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
