@@ -57,7 +57,12 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const errorMessage = `${err.message} Check Server Status`;
+        let errorMessage;
+        if (err.response?.status === 401) {
+          errorMessage = `Incorrect Email or Password`;
+        } else {
+          errorMessage = `${err.message} Check Server Status`;
+        }
         console.error(errorMessage);
         toast.error(errorMessage);
       } else {
