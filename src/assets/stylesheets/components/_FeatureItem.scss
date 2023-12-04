@@ -17,7 +17,6 @@
   @include respond(tablet-portrait) {
     box-shadow: none;
     border: 1px solid $color-nav-border;
-    background-color: $color-grey-light;
   }
 
   @include respond(tablet-portrait) {
