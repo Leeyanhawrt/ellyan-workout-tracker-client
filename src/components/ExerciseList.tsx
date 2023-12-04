@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
 import DailyWorkout from "./DailyWorkout";
 import "../assets/stylesheets/components/_ExerciseList.scss";
+import Skeleton from "./Skeleton";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -19,6 +20,7 @@ interface Exercises {
 }
 
 const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [exerciseList, setExerciseList] = useState<Exercises[]>([]);
 
   useEffect(() => {
@@ -32,12 +34,17 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
 
         const data: Exercises[] = response.data;
         setExerciseList(data);
+        setIsLoading(false);
       } catch (err) {
         console.error("Error Fetching Exercise List:", err);
       }
     };
     setData();
   }, []);
+
+  if (isLoading) {
+    return <Skeleton times={6} boxHeight="6.4rem" boxWidth="20.4rem" />;
+  }
 
   return (
     <div className="exercise-list-container">

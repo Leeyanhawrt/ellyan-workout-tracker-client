@@ -1,0 +1,23 @@
+@import "../abstracts/variables";
+
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .skeleton-outer {
+    position: relative;
+    overflow: hidden;
+    background-color: #edf2f7;
+    border-radius: 0.25rem;
+    margin: 2.5rem 4rem;
+  }
+
+  .skeleton-inner {
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(to right, #edf2f7, #ffffff, #edf2f7);
+  }
+}
