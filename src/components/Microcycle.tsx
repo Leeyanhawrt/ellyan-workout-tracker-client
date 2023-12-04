@@ -14,6 +14,7 @@ interface Microcycle {
 
 const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
   const [activeMicrocycle, setActiveMicrocycle] = useState<number>(0);
+  const [resetCarousel, setResetCarousel] = useState<boolean>(false);
 
   useEffect(() => {
     if (microcycles.length > 0) {
@@ -21,8 +22,17 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
     }
   }, [microcycles]);
 
+  const carouselReset = () => {
+    setResetCarousel(true);
+  };
+
+  const revertReset = () => {
+    setResetCarousel(false);
+  };
+
   const updateMesocycle = (newMesocycle: number) => {
     setActiveMicrocycle(newMesocycle);
+    carouselReset();
   };
 
   return (
@@ -46,7 +56,11 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
         })}
       </div>
       <div className="daily-workout-container">
-        <DailyWorkout activeMicrocycle={activeMicrocycle} />
+        <DailyWorkout
+          revertCarouselReset={revertReset}
+          resetCarousel={resetCarousel}
+          activeMicrocycle={activeMicrocycle}
+        />
       </div>
     </>
   );

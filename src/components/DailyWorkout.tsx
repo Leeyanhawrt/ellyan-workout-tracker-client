@@ -4,6 +4,8 @@ import Carousel from "./Carousel";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;
+  resetCarousel: boolean;
+  revertCarouselReset: () => void;
 }
 
 interface DailyWorkout {
@@ -12,7 +14,11 @@ interface DailyWorkout {
   microcycleId: number;
 }
 
-const DailyWorkout: React.FC<DailyWorkoutProps> = ({ activeMicrocycle }) => {
+const DailyWorkout: React.FC<DailyWorkoutProps> = ({
+  activeMicrocycle,
+  resetCarousel,
+  revertCarouselReset,
+}) => {
   const [dailyWorkout, setDailyWorkout] = useState<DailyWorkout[]>([]);
 
   useEffect(() => {
@@ -39,7 +45,12 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({ activeMicrocycle }) => {
 
   return (
     <>
-      <Carousel items={dailyWorkout} dailyWorkout />
+      <Carousel
+        revertCarouselReset={revertCarouselReset}
+        resetCarousel={resetCarousel}
+        items={dailyWorkout}
+        dailyWorkout
+      />
     </>
   );
 };
