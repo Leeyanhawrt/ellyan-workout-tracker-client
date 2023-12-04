@@ -18,9 +18,18 @@
 
   .row {
     display: flex;
+    justify-content: center;
+
+    @include respond(tablet-portrait) {
+      flex-direction: column;
+    }
 
     div:last-child {
       margin-left: 2rem;
+
+      @include respond(tablet-portrait) {
+        margin-left: 0;
+      }
     }
 
     .flex-item {
@@ -44,6 +53,18 @@
     .grouping {
       display: flex;
       flex: 1;
+
+      div:not(:first-child) {
+        margin-left: 2rem;
+
+        @include respond(phone) {
+          margin-left: 0;
+        }
+      }
+
+      @include respond(phone) {
+        flex-direction: column;
+      }
     }
   }
 }
