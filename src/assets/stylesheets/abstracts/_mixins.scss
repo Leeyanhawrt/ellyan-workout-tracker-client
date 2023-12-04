@@ -65,7 +65,7 @@
 }
 
 @mixin dashboardComponent {
-  box-shadow: 0 0.5rem 10rem 0 #e4e6e7;
+  border-radius: 0.4rem;
   background-color: $color-dashboard-white;
   padding: 5rem;
 }
