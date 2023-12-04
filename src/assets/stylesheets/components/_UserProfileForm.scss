@@ -1,0 +1,42 @@
+@import "../abstracts/_mixins.scss";
+@import "../abstracts/variables";
+
+.user-profile-form {
+  @include dashboardComponent;
+
+  h2 {
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    max-width: 50%;
+    gap: 2rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 4rem 0;
+
+      label {
+        font-size: 1.2rem;
+        font-family: "proxima", sans-serif;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: $color-grey-dark;
+      }
+
+      select,
+      input {
+        height: 5rem;
+        text-indent: 1rem;
+        font-size: 1.6rem;
+
+        &::placeholder {
+          color: $color-grey;
+        }
+      }
+    }
+  }
+}
