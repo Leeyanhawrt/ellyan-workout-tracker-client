@@ -5,6 +5,7 @@ import WorkoutProgram from "../components/WorkoutProgram";
 import { useUser, useUserUpdate } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
 import { UserMaxesProvider } from "../contexts/UserMaxesContext";
+import UserProfileForm from "../components/UserProfileForm";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
@@ -55,6 +56,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
     <UserMaxesProvider>
       <div id="dashboard-container">
         <h1>{`${firstName} ${lastName}`}</h1>
+        <UserProfileForm />
         <OneRepMax />
         <WorkoutProgram />
       </div>
