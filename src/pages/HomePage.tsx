@@ -46,7 +46,7 @@ const HomePage = () => {
         id="features-section"
         className="content-container u-margin-bottom-medium"
       >
-        <div className="app-features u-margin-top-medium u-margin-bottom-medium">
+        <div className="app-features">
           <h2>{t("appFeatures")}</h2>
           <p className="u-margin-top-tiny">{t("appFeatureP")}</p>
         </div>
