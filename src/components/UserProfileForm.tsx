@@ -55,6 +55,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
         }
       );
       toast.success(response.data.message);
+      window.location.reload();
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errorMessage = err.response?.data?.error;
