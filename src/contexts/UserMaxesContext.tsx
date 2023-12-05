@@ -6,10 +6,10 @@ interface UserMaxesProviderProps {
 }
 
 interface UserMaxes {
-  squat: number | undefined;
-  bench: number | undefined;
-  deadlift: number | undefined;
-  [key: string]: number | undefined;
+  squat: number | string;
+  bench: number | string;
+  deadlift: number | string;
+  [key: string]: number | string;
 }
 
 type UserMaxesUpdateContextType = (value: UserMaxes) => void;
@@ -29,9 +29,9 @@ export function useUserMaxesUpdate() {
 
 export function UserMaxesProvider({ children }: UserMaxesProviderProps) {
   const [userMaxesInfo, setUserMaxesInfo] = useState<null | UserMaxes>({
-    squat: undefined,
-    bench: undefined,
-    deadlift: undefined,
+    squat: "",
+    bench: "",
+    deadlift: "",
   });
 
   const setUserMaxes = (value: UserMaxes) => {
