@@ -5,6 +5,7 @@ import WorkoutProgram from "../components/WorkoutProgram";
 import { useUser, useUserUpdate } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
 import { UserMaxesProvider } from "../contexts/UserMaxesContext";
+import UserProfileForm from "../components/UserProfileForm";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
@@ -15,6 +16,8 @@ interface UserInformation {
   lastName: string;
   email: string;
   id: number;
+  gender: string;
+  bodyweight: number;
   workoutProgramId: number;
 }
 
@@ -31,13 +34,23 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
       const response = await fetchData(`/dashboard`, "User Information", true);
       const data: UserInformation = response.data;
 
-      const { firstName, lastName, email, id, workoutProgramId } = data;
+      const {
+        firstName,
+        lastName,
+        email,
+        gender,
+        bodyweight,
+        id,
+        workoutProgramId,
+      } = data;
 
       setUserInformation({
         id,
         firstName,
         lastName,
         email,
+        gender,
+        bodyweight,
         workoutProgramId,
       });
     } catch (err) {
@@ -55,7 +68,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
     <UserMaxesProvider>
       <div id="dashboard-container">
         <h1>{`${firstName} ${lastName}`}</h1>
-        <OneRepMax />
+        <UserProfileForm user={userInformation} />
+        <OneRepMax user={userInformation} />
         <WorkoutProgram />
       </div>
     </UserMaxesProvider>

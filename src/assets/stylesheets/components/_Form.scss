@@ -1,0 +1,70 @@
+@import "../abstracts/_mixins.scss";
+@import "../abstracts/variables";
+
+.form {
+  @include dashboardComponent;
+
+  label {
+    font-size: 1.2rem;
+    font-family: "proxima", sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: $color-grey-dark;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+
+    @include respond(tablet-portrait) {
+      flex-direction: column;
+    }
+
+    div:last-child {
+      margin-left: 2rem;
+
+      @include respond(tablet-portrait) {
+        margin-left: 0;
+      }
+    }
+
+    .flex-item {
+      display: flex;
+      flex-direction: column;
+      margin: 2rem 0;
+      flex: 1;
+
+      select,
+      input {
+        height: 5rem;
+        text-indent: 1rem;
+        font-size: 1.6rem;
+
+        &::placeholder {
+          color: $color-grey;
+        }
+      }
+    }
+
+    .grouping {
+      display: flex;
+      flex: 1;
+
+      div:not(:first-child) {
+        margin-left: 2rem;
+
+        @include respond(phone) {
+          margin-left: 0;
+        }
+      }
+
+      @include respond(phone) {
+        flex-direction: column;
+      }
+    }
+  }
+}

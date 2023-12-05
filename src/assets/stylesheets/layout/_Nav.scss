@@ -13,7 +13,7 @@
   padding: 0 12rem;
   background-color: $color-white;
   transition: all 0.3s ease;
-  border-bottom: 1px solid $color-nav-border;
+  box-shadow: rgba(0, 0, 0, 0.08) 0 0.5rem 1rem;
 
   @include respond(tablet-portrait) {
     padding: 0 5rem;
