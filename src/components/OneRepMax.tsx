@@ -12,9 +12,9 @@ interface OneRepMaxProps {
 }
 
 interface UserMaxes {
-  squat: number | undefined;
-  bench: number | undefined;
-  deadlift: number | undefined;
+  squat: number | string;
+  bench: number | string;
+  deadlift: number | string;
 }
 
 interface UserInformation {
@@ -61,7 +61,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserMaxes({
       ...userMaxes,
-      [e.target.name]: parseInt(e.target.value, 10) || undefined,
+      [e.target.name]: parseInt(e.target.value, 10),
     });
   };
 
@@ -123,7 +123,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
                 id="squat"
                 name="squat"
                 placeholder="Squat"
-                defaultValue={squat}
+                value={squat || ""}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -140,7 +140,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
                 id="bench"
                 name="bench"
                 placeholder="Bench Press"
-                defaultValue={bench}
+                value={bench || ""}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -156,7 +156,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
                 id="deadlift"
                 name="deadlift"
                 placeholder="Deadlift"
-                defaultValue={deadlift}
+                value={deadlift || ""}
                 onChange={(e) => handleChange(e)}
               />
             </div>
