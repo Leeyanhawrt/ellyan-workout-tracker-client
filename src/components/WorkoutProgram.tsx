@@ -42,10 +42,8 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
   }
 
   return (
-    <div className="content-container">
-      <div className="workout-program-container">
-        <Microcycle microcycles={microcycles} />
-      </div>
+    <div className="workout-program-container">
+      <Microcycle microcycles={microcycles} />
     </div>
   );
 };

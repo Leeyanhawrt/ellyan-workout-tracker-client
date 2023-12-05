@@ -65,7 +65,25 @@
 }
 
 @mixin dashboardComponent {
+  width: 106rem;
   border-radius: 0.4rem;
   background-color: $color-dashboard-white;
   padding: 5rem;
+  padding-bottom: 0;
+  transform: translateX(10rem);
+
+  @include respond(tablet-landscape) {
+    width: 85rem;
+  }
+
+  @include respond(tablet-portrait) {
+    padding: 2rem;
+    padding-bottom: 0;
+    width: 75rem;
+  }
+
+  @include respond(tablet-portrait) {
+    width: 86rem;
+    transform: translateX(0);
+  }
 }

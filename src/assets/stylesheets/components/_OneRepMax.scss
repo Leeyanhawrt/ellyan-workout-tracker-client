@@ -6,7 +6,7 @@
 
   h2 {
     @include respond(phone) {
-      font-size: 4rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
   }
@@ -22,11 +22,15 @@
       justify-content: center;
       gap: 10rem;
 
+      @include respond(tablet-landscape) {
+        gap: 4rem;
+      }
+
       @include respond(tablet-portrait) {
         gap: 3rem;
       }
 
-      @include respond(phone) {
+      @include respond(tablet-portrait) {
         flex-direction: column;
         gap: 0;
       }
@@ -54,6 +58,11 @@
       img {
         height: 10rem;
         margin: 3rem 0;
+
+        @include respond(tablet-portrait) {
+          height: 20rem;
+          margin-bottom: 3rem;
+        }
 
         @include respond(phone) {
           height: 15rem;

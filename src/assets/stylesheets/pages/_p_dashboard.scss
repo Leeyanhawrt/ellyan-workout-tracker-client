@@ -1,12 +1,7 @@
 @import "../abstracts/mixins";
 @import "../abstracts/variables";
 
-#dashboard-container {
-  margin: 0;
-  background-color: $color-dashboard-background;
-  padding-bottom: 2rem;
-
-  h1 {
-    text-align: center;
-  }
+#dashboard {
+  display: flex;
+  justify-content: center;
 }
