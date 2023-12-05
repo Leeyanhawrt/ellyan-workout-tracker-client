@@ -92,69 +92,63 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
       : ``;
 
   return (
-    <div className="content-container u-margin-top-small">
-      <div id="orm-container">
-        <h2>Current Maxes</h2>
-        <h2>Total: {powerliftTotal}</h2>
+    <div id="orm-container">
+      <h2>Current Maxes</h2>
+      <h2>Total: {powerliftTotal}</h2>
 
-        <h2>{dotsScores}</h2>
-        <form onSubmit={handleORMSubmit}>
-          <div className="sbd-container u-margin-bottom-medium">
-            <div className="max-container">
-              <img
-                src={`${
-                  import.meta.env.VITE_PUBLIC_PATH
-                }/icons/kirby-squat.png`}
-                alt="Kirby Squat"
-              />
-              <input
-                type="number"
-                id="squat"
-                name="squat"
-                placeholder="Squat"
-                value={squat || ""}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className="max-container">
-              <img
-                className="kirby-bench"
-                src={`${
-                  import.meta.env.VITE_PUBLIC_PATH
-                }/icons/kirby-bench.png`}
-                alt="Kirby Bench"
-              />
-              <input
-                type="number"
-                id="bench"
-                name="bench"
-                placeholder="Bench Press"
-                value={bench || ""}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className="max-container">
-              <img
-                src={`${
-                  import.meta.env.VITE_PUBLIC_PATH
-                }/icons/kirby-deadlift.png`}
-                alt="Kirby Deadlift"
-              />
-              <input
-                type="number"
-                id="deadlift"
-                name="deadlift"
-                placeholder="Deadlift"
-                value={deadlift || ""}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
+      <h2>{dotsScores}</h2>
+      <form onSubmit={handleORMSubmit}>
+        <div className="sbd-container u-margin-bottom-medium">
+          <div className="max-container">
+            <img
+              src={`${import.meta.env.VITE_PUBLIC_PATH}/icons/kirby-squat.png`}
+              alt="Kirby Squat"
+            />
+            <input
+              type="number"
+              id="squat"
+              name="squat"
+              placeholder="Squat"
+              value={squat || ""}
+              onChange={(e) => handleChange(e)}
+            />
           </div>
-          <Button primary rectangle size={"large"}>
-            Update!
-          </Button>
-        </form>
-      </div>
+          <div className="max-container">
+            <img
+              className="kirby-bench"
+              src={`${import.meta.env.VITE_PUBLIC_PATH}/icons/kirby-bench.png`}
+              alt="Kirby Bench"
+            />
+            <input
+              type="number"
+              id="bench"
+              name="bench"
+              placeholder="Bench Press"
+              value={bench || ""}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="max-container">
+            <img
+              src={`${
+                import.meta.env.VITE_PUBLIC_PATH
+              }/icons/kirby-deadlift.png`}
+              alt="Kirby Deadlift"
+            />
+            <input
+              type="number"
+              id="deadlift"
+              name="deadlift"
+              placeholder="Deadlift"
+              value={deadlift || ""}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+        </div>
+        <Button primary size={"large"}>
+          Update!
+        </Button>
+      </form>
     </div>
   );
 };

@@ -7,10 +7,10 @@ import { fetchData } from "../utils/api";
 import { UserMaxesProvider } from "../contexts/UserMaxesContext";
 import UserProfileForm from "../components/UserProfileForm";
 import { User } from "../contexts/UserContext";
+import { Route, Routes } from "react-router-dom";
+import DashboardNav from "../components/DashboardNav";
 
-interface DashboardPageProps {
-  setAuth: (value: boolean) => void;
-}
+interface DashboardPageProps {}
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const userInformation = useUser();
@@ -53,15 +53,21 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName } = userInformation;
-
   return (
     <UserMaxesProvider>
-      <div id="dashboard-container">
-        <h1>{`${firstName} ${lastName}`}</h1>
-        <UserProfileForm user={userInformation} />
-        <OneRepMax user={userInformation} />
-        <WorkoutProgram />
+      <div id="dashboard">
+        <DashboardNav />
+        <Routes>
+          <Route
+            path="/preferences"
+            element={<UserProfileForm user={userInformation} />}
+          />
+          <Route
+            path="/edit_record"
+            element={<OneRepMax user={userInformation} />}
+          />
+          <Route path="/workout_program" element={<WorkoutProgram />} />
+        </Routes>
       </div>
     </UserMaxesProvider>
   );
