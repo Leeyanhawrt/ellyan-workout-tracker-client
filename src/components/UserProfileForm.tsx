@@ -52,7 +52,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_APP_BACKEND}/user`,
         {
           ...userInformation,
@@ -61,10 +61,10 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
           headers: { token: localStorage.token },
         }
       );
-      toast.success("Successfully Updated Profile Information!");
+      toast.success(response.data.message);
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const errorMessage = err.response?.data;
+        const errorMessage = err.response?.data?.error;
         console.error(errorMessage);
         toast.error(errorMessage);
       } else {
