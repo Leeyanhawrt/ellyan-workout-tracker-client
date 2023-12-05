@@ -1,5 +1,7 @@
 import { ChangeEvent, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Button from "./Button";
+import axios from "axios";
 
 interface UserProfileFormProps {
   user: UserInformation;
@@ -10,7 +12,7 @@ interface UserInformation {
   lastName: string;
   email: string;
   gender?: string;
-  bodyweight?: number | undefined;
+  bodyweight?: number | string;
 }
 
 const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
@@ -19,7 +21,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
     lastName: "",
     email: "",
     gender: "",
-    bodyweight: undefined,
+    bodyweight: "",
   });
 
   const { firstName, lastName, email, gender, bodyweight } = userInformation;
@@ -27,26 +29,56 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
   useEffect(() => {
     const { firstName, lastName, email, gender, bodyweight } = user;
     setUserInformation({ firstName, lastName, email, gender, bodyweight });
-  }, []);
+  }, [user]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserInformation({
-      ...userInformation,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    const parsedValue = name === "bodyweight" ? parseInt(value, 10) : value;
+
+    setUserInformation((prevUserInformation) => ({
+      ...prevUserInformation,
+      [e.target.name]: parsedValue,
+    }));
   };
 
   const handleSelectChange = (name: string, value: string) => {
-    setUserInformation({ ...userInformation, [name]: value });
+    setUserInformation((prevUserInformation) => ({
+      ...prevUserInformation,
+      [name]: value,
+    }));
   };
 
-  // const handleSubmit;
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_APP_BACKEND}/user`,
+        {
+          ...userInformation,
+        },
+        {
+          headers: { token: localStorage.token },
+        }
+      );
+      toast.success("Successfully Updated Profile Information!");
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const errorMessage = err.response?.data;
+        console.error(errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error((err as Error)?.message);
+        toast.error((err as Error)?.message);
+      }
+    }
+  };
 
   return (
     <div className="content-container">
       <div className="form">
         <h2>User Information</h2>
-        <form className="u-margin-top-medium">
+        <form className="u-margin-top-medium" onSubmit={handleSubmit}>
           <label>* REQUIRED FIELDS</label>
           <div className="row">
             <div className="flex-item">
@@ -56,7 +88,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
                 name="firstName"
                 id="firstName"
                 placeholder="First Name"
-                defaultValue={firstName}
+                value={firstName}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -67,7 +99,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
                 name="lastName"
                 id="lastName"
                 placeholder="Last Name"
-                defaultValue={lastName}
+                value={lastName}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -95,7 +127,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
                   name="bodyweight"
                   id="bodyweight"
                   placeholder="Weight"
-                  defaultValue={bodyweight}
+                  value={bodyweight || ""}
                   onChange={(e) => handleInputChange(e)}
                 />
               </div>
@@ -107,7 +139,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                defaultValue={email}
+                value={email}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
