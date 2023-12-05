@@ -35,13 +35,4 @@ body {
 .content-container {
   max-width: 106rem;
   margin: 3rem auto;
-
-  @include respond(tablet-landscape) {
-    max-width: 95rem;
-  }
-
-  @include respond(tablet-portrait) {
-    max-width: 85rem;
-    margin: 2rem auto;
-  }
 }

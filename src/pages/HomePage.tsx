@@ -19,7 +19,7 @@ const HomePage = () => {
 
   const openRegisterModal = () => {
     if (authStatus) {
-      navigate("/dashboard");
+      navigate("/dashboard/workout_program");
       return;
     }
     setRegisterModal(true);

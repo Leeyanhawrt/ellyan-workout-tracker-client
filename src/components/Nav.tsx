@@ -61,7 +61,12 @@ const Nav: React.FC<NavProps> = ({}) => {
         {authStatus ? (
           <>
             {location.pathname !== "/dashboard" && (
-              <Button to="/dashboard" size={"small"} rectangle primary>
+              <Button
+                to="/dashboard/workout_program"
+                size={"small"}
+                rectangle
+                primary
+              >
                 Dashboard
               </Button>
             )}

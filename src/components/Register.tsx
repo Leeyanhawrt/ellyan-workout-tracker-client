@@ -58,7 +58,7 @@ const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
       setAuth(true);
       closeRegisterModal();
       toast.success(`Successfully Registered ${firstName} ${lastName}`);
-      navigate("/dashboard");
+      navigate("/dashboard/workout_program");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const errorMessage = err.response?.data;

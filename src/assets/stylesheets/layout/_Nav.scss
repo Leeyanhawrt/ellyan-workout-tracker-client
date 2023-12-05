@@ -73,7 +73,7 @@
     display: none;
     margin-top: 1rem;
 
-    @include respond(phone) {
+    @include respond(tablet-portrait) {
       display: block;
     }
 
@@ -85,7 +85,7 @@
 
   #non-mobile-nav {
     display: flex;
-    @include respond(phone) {
+    @include respond(tablet-portrait) {
       display: none;
     }
   }
