@@ -69,7 +69,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
       <div id="dashboard-container">
         <h1>{`${firstName} ${lastName}`}</h1>
         <UserProfileForm user={userInformation} />
-        <OneRepMax />
+        <OneRepMax user={userInformation} />
         <WorkoutProgram />
       </div>
     </UserMaxesProvider>

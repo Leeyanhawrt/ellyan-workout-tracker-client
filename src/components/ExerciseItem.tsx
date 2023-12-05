@@ -1,5 +1,5 @@
 import { useUserMaxes } from "../contexts/UserMaxesContext";
-import { calculateWeight } from "../utils/calculateWeight";
+import { calculateWeight } from "../utils/calculateLifts";
 const LIFTS_TO_CALCULATE = ["bench press", "squat", "deadlift"];
 import "../assets/stylesheets/components/_ExerciseItem.scss";
 import classNames from "classnames";

@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 import { ChangeEvent, useEffect } from "react";
 import { fetchData } from "../utils/api";
 import { useUserMaxes, useUserMaxesUpdate } from "../contexts/UserMaxesContext";
+import { calculateDots } from "../utils/calculateLifts";
 
-interface OneRepMaxProps {}
+interface OneRepMaxProps {
+  user: UserInformation;
+}
 
 interface UserMaxes {
   squat: number | undefined;
@@ -14,13 +17,25 @@ interface UserMaxes {
   deadlift: number | undefined;
 }
 
-const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
+interface UserInformation {
+  firstName: string;
+  lastName: string;
+  email: string;
+  id: number;
+  gender: string;
+  bodyweight: number;
+  workoutProgramId: number;
+}
+
+const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
   const userMaxes = useUserMaxes();
   const setUserMaxes = useUserMaxesUpdate();
 
   if (!userMaxes) {
     return <div>Loading...</div>;
   }
+
+  const { gender, bodyweight } = user;
 
   const { squat, bench, deadlift } = userMaxes;
 
@@ -79,14 +94,21 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
     }
   };
 
+  const powerliftTotal =
+    Number(squat || 0) + Number(bench || 0) + Number(deadlift || 0);
+
+  const dotsScores =
+    gender && bodyweight
+      ? `DOTS: ${calculateDots(gender, bodyweight, powerliftTotal)}`
+      : ``;
+
   return (
     <div className="content-container u-margin-top-small">
       <div id="orm-container">
-        <h2>Current Maxes:</h2>
-        <h2>
-          Total:{" "}
-          {Number(squat || 0) + Number(bench || 0) + Number(deadlift || 0)}
-        </h2>
+        <h2>Current Maxes</h2>
+        <h2>Total: {powerliftTotal}</h2>
+
+        <h2>{dotsScores}</h2>
         <form onSubmit={handleORMSubmit}>
           <div className="sbd-container u-margin-bottom-medium">
             <div className="max-container">
