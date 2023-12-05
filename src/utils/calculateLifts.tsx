@@ -1,9 +1,4 @@
-interface UserMaxes {
-  squat: number | undefined;
-  bench: number | undefined;
-  deadlift: number | undefined;
-  [key: string]: number | undefined;
-}
+import { UserMaxes } from "../contexts/UserMaxesContext";
 
 export const calculateWeight = (
   exercise: string,
@@ -20,7 +15,8 @@ export const calculateWeight = (
       : userMaxes["bench"];
 
   if (record !== undefined) {
-    const calculatedWeight = Math.floor((record * (percentage * 0.01)) / 5) * 5;
+    const calculatedWeight =
+      Math.floor(((record as number) * (percentage * 0.01)) / 5) * 5;
 
     return calculatedWeight;
   }

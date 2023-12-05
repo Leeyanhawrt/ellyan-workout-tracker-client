@@ -5,15 +5,15 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-interface User {
+export type User = {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
-  gender: string;
-  bodyweight: number;
+  gender?: string;
+  bodyweight?: number | string;
   workoutProgramId: number;
-}
+};
 
 type UserUpdateContextType = (value: User) => void;
 

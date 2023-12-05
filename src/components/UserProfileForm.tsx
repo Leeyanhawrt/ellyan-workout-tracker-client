@@ -2,21 +2,14 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Button from "./Button";
 import axios from "axios";
+import { User } from "../contexts/UserContext";
 
 interface UserProfileFormProps {
-  user: UserInformation;
-}
-
-interface UserInformation {
-  firstName: string;
-  lastName: string;
-  email: string;
-  gender?: string;
-  bodyweight?: number | string;
+  user: User;
 }
 
 const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
-  const [userInformation, setUserInformation] = useState<UserInformation>({
+  const [userInformation, setUserInformation] = useState<Partial<User>>({
     firstName: "",
     lastName: "",
     email: "",

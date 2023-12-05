@@ -5,12 +5,12 @@ interface UserMaxesProviderProps {
   children: ReactNode;
 }
 
-interface UserMaxes {
+export type UserMaxes = {
   squat: number | string;
   bench: number | string;
   deadlift: number | string;
   [key: string]: number | string;
-}
+};
 
 type UserMaxesUpdateContextType = (value: UserMaxes) => void;
 

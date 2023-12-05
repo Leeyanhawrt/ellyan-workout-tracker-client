@@ -6,24 +6,22 @@ import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { User } from "../contexts/UserContext";
 
 interface RegisterProps {
   setAuth: (value: boolean) => void;
   closeRegisterModal: () => void;
 }
 
-interface UserData {
-  firstName: string;
-  lastName: string;
-  email: string;
+type UserWithPassword = User & {
   password: string;
   passwordConfirm: string;
-}
+};
 
 const Register: React.FC<RegisterProps> = ({ setAuth, closeRegisterModal }) => {
   const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState<UserData>({
+  const [inputs, setInputs] = useState<Partial<UserWithPassword>>({
     firstName: "",
     lastName: "",
     email: "",

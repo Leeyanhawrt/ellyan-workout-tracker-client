@@ -6,19 +6,10 @@ import { useUser, useUserUpdate } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
 import { UserMaxesProvider } from "../contexts/UserMaxesContext";
 import UserProfileForm from "../components/UserProfileForm";
+import { User } from "../contexts/UserContext";
 
 interface DashboardPageProps {
   setAuth: (value: boolean) => void;
-}
-
-interface UserInformation {
-  firstName: string;
-  lastName: string;
-  email: string;
-  id: number;
-  gender: string;
-  bodyweight: number;
-  workoutProgramId: number;
 }
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
@@ -32,7 +23,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const getUserInfo = async () => {
     try {
       const response = await fetchData(`/dashboard`, "User Information", true);
-      const data: UserInformation = response.data;
+      const data: User = response.data;
 
       const {
         firstName,

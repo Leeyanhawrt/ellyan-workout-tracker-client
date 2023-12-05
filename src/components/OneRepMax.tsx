@@ -4,27 +4,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ChangeEvent, useEffect } from "react";
 import { fetchData } from "../utils/api";
-import { useUserMaxes, useUserMaxesUpdate } from "../contexts/UserMaxesContext";
+import {
+  useUserMaxes,
+  useUserMaxesUpdate,
+  UserMaxes,
+} from "../contexts/UserMaxesContext";
 import { calculateDots } from "../utils/calculateLifts";
+import { User } from "../contexts/UserContext";
 
 interface OneRepMaxProps {
-  user: UserInformation;
-}
-
-interface UserMaxes {
-  squat: number | string;
-  bench: number | string;
-  deadlift: number | string;
-}
-
-interface UserInformation {
-  firstName: string;
-  lastName: string;
-  email: string;
-  id: number;
-  gender: string;
-  bodyweight: number;
-  workoutProgramId: number;
+  user: User;
 }
 
 const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
@@ -99,7 +88,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
 
   const dotsScores =
     gender && bodyweight
-      ? `DOTS: ${calculateDots(gender, bodyweight, powerliftTotal)}`
+      ? `DOTS: ${calculateDots(gender, bodyweight as number, powerliftTotal)}`
       : ``;
 
   return (
