@@ -2,7 +2,7 @@ import { fetchData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
 import DailyWorkout from "./DailyWorkout";
-import "/src/assets/stylesheets/components/_ExerciseList.scss";
+import "/src/assets/stylesheets/components/_Exercise.scss";
 import Skeleton from "../../components/Skeleton";
 
 interface ExerciseListProps {
@@ -47,7 +47,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
   }
 
   return (
-    <div className="exercise-list-container">
+    <div id="exercise-list-container">
       <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
       {exerciseList.map((exercise) => {
         return <ExerciseItem key={exercise.id} exercise={exercise} />;

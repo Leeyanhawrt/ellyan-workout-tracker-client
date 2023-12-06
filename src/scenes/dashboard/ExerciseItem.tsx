@@ -1,7 +1,7 @@
 import { useUserMaxes } from "../../contexts/UserMaxesContext";
 import { calculateWeight } from "../../utils/calculateLifts";
 const LIFTS_TO_CALCULATE = ["bench press", "squat", "deadlift"];
-import "/src/assets/stylesheets/components/_ExerciseItem.scss";
+import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
 
 interface ExerciseItemProps {
