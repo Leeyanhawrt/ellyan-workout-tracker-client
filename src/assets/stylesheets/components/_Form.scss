@@ -4,6 +4,11 @@
 .form {
   @include dashboardComponent;
 
+  @include respond(small-phone) {
+    padding: 1rem;
+    transform: translateX(0);
+  }
+
   label {
     font-size: 1.2rem;
     font-family: "proxima", sans-serif;

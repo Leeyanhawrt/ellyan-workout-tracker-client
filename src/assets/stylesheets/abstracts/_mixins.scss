@@ -79,4 +79,14 @@
     padding: 2rem;
     transform: translateX(0);
   }
+
+  @include respond(phone) {
+    padding: 1.5rem;
+    transform: translateX(0);
+  }
+
+  @include respond(small-phone) {
+    padding: 0rem;
+    transform: translateX(0);
+  }
 }
