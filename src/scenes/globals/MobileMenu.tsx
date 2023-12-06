@@ -2,7 +2,6 @@ import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import MobileMenuItem from "./MobileMenuItem";
 import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 
 interface MobileMenuProps {}
 
@@ -13,7 +12,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setAuth(false);
-    toast.success(`Successfully Logged Out!`);
+    window.location.reload();
   };
 
   const menuItems = [

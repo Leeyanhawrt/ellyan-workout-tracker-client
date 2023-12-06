@@ -8,7 +8,6 @@ import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { IoIosMenu } from "react-icons/io";
 import { useModal } from "../../contexts/ModalContext";
 import MobileMenu from "./MobileMenu";
-import { toast } from "react-toastify";
 
 interface NavProps {}
 
@@ -40,7 +39,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setAuth(false);
-    toast.success(`Successfully Logged Out!`);
+    window.location.reload();
   };
 
   const classes = className({
