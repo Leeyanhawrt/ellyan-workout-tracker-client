@@ -1,4 +1,4 @@
-import "/src/assets/stylesheets/components/_MobileMenuItem.scss";
+import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 

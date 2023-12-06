@@ -23,7 +23,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   ];
 
   return (
-    <ul className="mobile-menu">
+    <ul id="mobile-menu">
       {menuItems.map((item) => {
         return <MobileMenuItem key={item.resource} {...item} />;
       })}
