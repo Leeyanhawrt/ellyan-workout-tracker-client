@@ -26,7 +26,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
 
   const { gender, bodyweight } = user;
 
-  const { squat, bench, deadlift } = userMaxes;
+  const { squat, benchpress, deadlift } = userMaxes;
 
   useEffect(() => {
     const setData = async () => {
@@ -40,8 +40,8 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
         const data: UserMaxes[] = response.data;
 
         if (data.length) {
-          const { squat, bench, deadlift } = data[0];
-          setUserMaxes({ squat, bench, deadlift });
+          const { squat, benchpress, deadlift } = data[0];
+          setUserMaxes({ squat, benchpress, deadlift });
         }
       } catch (err) {
         console.error("Error Fetching One Rep Maxes:", err);
@@ -66,7 +66,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
         `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
         {
           squat,
-          bench,
+          benchpress,
           deadlift,
         },
         {
@@ -87,7 +87,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
   };
 
   const powerliftTotal =
-    Number(squat || 0) + Number(bench || 0) + Number(deadlift || 0);
+    Number(squat || 0) + Number(benchpress || 0) + Number(deadlift || 0);
 
   const dotsScores =
     gender && bodyweight
@@ -124,10 +124,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
             />
             <input
               type="number"
-              id="bench"
-              name="bench"
+              id="benchpress"
+              name="benchpress"
               placeholder="Bench Press"
-              value={bench || ""}
+              value={benchpress || ""}
               onChange={(e) => handleChange(e)}
             />
           </div>

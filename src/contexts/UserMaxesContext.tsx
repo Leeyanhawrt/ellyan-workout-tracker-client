@@ -7,7 +7,7 @@ interface UserMaxesProviderProps {
 
 export type UserMaxes = {
   squat: number | string;
-  bench: number | string;
+  benchpress: number | string;
   deadlift: number | string;
   [key: string]: number | string;
 };
@@ -30,7 +30,7 @@ export function useUserMaxesUpdate() {
 export function UserMaxesProvider({ children }: UserMaxesProviderProps) {
   const [userMaxesInfo, setUserMaxesInfo] = useState<null | UserMaxes>({
     squat: "",
-    bench: "",
+    benchpress: "",
     deadlift: "",
   });
 
