@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { BsGraphUp } from "react-icons/bs";
 import { RiGitRepositoryFill } from "react-icons/ri";
 import { IoCalendarSharp } from "react-icons/io5";
-import "/src/assets/stylesheets/components/_FeatureList.scss";
+import "/src/assets/stylesheets/components/_Feature.scss";
 
 interface FeatureListProps {}
 
