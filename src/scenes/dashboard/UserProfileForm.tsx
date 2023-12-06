@@ -1,45 +1,49 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import axios from "axios";
-import { User } from "../../contexts/UserContext";
 
-interface UserProfileFormProps {
-  user: User;
-}
+import { useUser, useUserUpdate, User } from "../../contexts/UserContext";
 
-const UserProfileForm: React.FC<UserProfileFormProps> = ({ user }) => {
-  const [userInformation, setUserInformation] = useState<Partial<User>>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    gender: "",
-    bodyweight: "",
-  });
+interface UserProfileFormProps {}
+
+const UserProfileForm: React.FC<UserProfileFormProps> = () => {
+  const userInformation = useUser();
+  const setUserInformation = useUserUpdate();
+
+  if (!userInformation) {
+    return <div>Loading...</div>;
+  }
 
   const { firstName, lastName, email, gender, bodyweight } = userInformation;
 
   useEffect(() => {
-    const { firstName, lastName, email, gender, bodyweight } = user;
-    setUserInformation({ firstName, lastName, email, gender, bodyweight });
-  }, [user]);
+    const { firstName, lastName, email, gender, bodyweight } = userInformation;
+    setUserInformation({
+      firstName,
+      lastName,
+      email,
+      gender,
+      bodyweight,
+    } as User);
+  }, []);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     const parsedValue = name === "bodyweight" ? parseInt(value, 10) : value;
 
-    setUserInformation((prevUserInformation) => ({
-      ...prevUserInformation,
+    setUserInformation({
+      ...userInformation,
       [e.target.name]: parsedValue,
-    }));
+    });
   };
 
   const handleSelectChange = (name: string, value: string) => {
-    setUserInformation((prevUserInformation) => ({
-      ...prevUserInformation,
+    setUserInformation({
+      ...userInformation,
       [name]: value,
-    }));
+    });
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {

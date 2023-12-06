@@ -60,10 +60,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
     <div id="dashboard">
       <DashboardNav />
       <Routes>
-        <Route
-          path="/preferences"
-          element={<UserProfileForm user={userInformation} />}
-        />
+        <Route path="/preferences" element={<UserProfileForm />} />
         <Route
           path="/edit_record"
           element={<OneRepMax user={userInformation} />}
