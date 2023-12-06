@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import "../assets/stylesheets/pages/_p_dashboard.scss";
-import OneRepMax from "../components/OneRepMax";
-import WorkoutProgram from "../components/WorkoutProgram";
-import { useUser, useUserUpdate } from "../contexts/UserContext";
-import { fetchData } from "../utils/api";
-import { UserMaxesProvider } from "../contexts/UserMaxesContext";
-import UserProfileForm from "../components/UserProfileForm";
-import { User } from "../contexts/UserContext";
+import "/src/assets/stylesheets/pages/_p_dashboard.scss";
+import OneRepMax from "./OneRepMax";
+import WorkoutProgram from "./WorkoutProgram";
+import { useUser, useUserUpdate } from "../../contexts/UserContext";
+import { fetchData } from "../../utils/api";
+import { UserMaxesProvider } from "../../contexts/UserMaxesContext";
+import UserProfileForm from "./UserProfileForm";
+import { User } from "../../contexts/UserContext";
 import { Route, Routes } from "react-router-dom";
-import DashboardNav from "../components/DashboardNav";
+import DashboardNav from "./DashboardNav";
 
 interface DashboardPageProps {}
 

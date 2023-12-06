@@ -1,12 +1,12 @@
-import BackgroundVideo from "../components/BackgroundVideo";
-import FeaturesList from "../components/FeatureList";
-import Modal from "../components/Modal";
-import Register from "../components/Register";
-import TestimonialList from "../components/TestimonialList";
-import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
-import { useModal } from "../contexts/ModalContext";
-import paddling_video from "../assets/videos/ndrc-paddling.mp4";
-import "../assets/stylesheets/pages/_p_home.scss";
+import BackgroundVideo from "../../components/BackgroundVideo";
+import FeaturesList from "./FeatureList";
+import Modal from "../../components/Modal";
+import Register from "./Register";
+import TestimonialList from "./TestimonialList";
+import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
+import { useModal } from "../../contexts/ModalContext";
+import paddling_video from "/src/assets/videos/ndrc-paddling.mp4";
+import "/src/assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 

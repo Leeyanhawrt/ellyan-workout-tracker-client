@@ -1,4 +1,4 @@
-import "../assets/stylesheets/components/_FeatureItem.scss";
+import "/src/assets/stylesheets/components/_FeatureItem.scss";
 
 interface FeatureItemProps {
   title: string;

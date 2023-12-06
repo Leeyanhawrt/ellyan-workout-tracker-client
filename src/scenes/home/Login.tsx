@@ -1,11 +1,11 @@
-import Button from "./Button";
+import Button from "../../components/Button";
 import axios from "axios";
-import Modal from "./Modal";
+import Modal from "../../components/Modal";
 import Register from "./Register";
 import { useState, ChangeEvent } from "react";
-import { useModal } from "../contexts/ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 import { toast } from "react-toastify";
-import "../assets/stylesheets/components/_Login.scss";
+import "/src/assets/stylesheets/components/_Login.scss";
 
 interface LoginProps {
   setAuth: (value: boolean) => void;

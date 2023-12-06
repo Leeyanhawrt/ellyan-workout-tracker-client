@@ -1,16 +1,16 @@
-import "../assets/stylesheets/components/_OneRepMax.scss";
-import Button from "./Button";
+import "/src/assets/stylesheets/components/_OneRepMax.scss";
+import Button from "../../components/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ChangeEvent, useEffect } from "react";
-import { fetchData } from "../utils/api";
+import { fetchData } from "../../utils/api";
 import {
   useUserMaxes,
   useUserMaxesUpdate,
   UserMaxes,
-} from "../contexts/UserMaxesContext";
-import { calculateDots } from "../utils/calculateLifts";
-import { User } from "../contexts/UserContext";
+} from "../../contexts/UserMaxesContext";
+import { calculateDots } from "../../utils/calculateLifts";
+import { User } from "../../contexts/UserContext";
 
 interface OneRepMaxProps {
   user: User;

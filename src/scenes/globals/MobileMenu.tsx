@@ -1,6 +1,6 @@
-import "../assets/stylesheets/components/_MobileMenu.scss";
+import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import MobileMenuItem from "./MobileMenuItem";
-import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
+import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 

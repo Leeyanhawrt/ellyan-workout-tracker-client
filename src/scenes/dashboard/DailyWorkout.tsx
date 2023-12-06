@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "../utils/api";
-import Carousel from "./Carousel";
+import { fetchData } from "../../utils/api";
+import Carousel from "../../components/Carousel";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;

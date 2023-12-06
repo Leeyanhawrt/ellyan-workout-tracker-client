@@ -1,8 +1,8 @@
-import "../assets/stylesheets/components/_WorkoutProgram.scss";
+import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import Microcycle from "./Microcycle";
 import { useEffect, useState } from "react";
-import { useUser } from "../contexts/UserContext";
-import { fetchData } from "../utils/api";
+import { useUser } from "../../contexts/UserContext";
+import { fetchData } from "../../utils/api";
 
 interface WorkoutProgramProps {}
 

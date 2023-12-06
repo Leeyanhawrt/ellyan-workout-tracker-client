@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TestimonialItem from "./TestimonialItem";
-import "../assets/stylesheets/components/_TestimonialList.scss";
-import { fetchData } from "../utils/api";
+import "/src/assets/stylesheets/components/_TestimonialList.scss";
+import { fetchData } from "../../utils/api";
 
 interface TestimonalInterface {
   id: number;

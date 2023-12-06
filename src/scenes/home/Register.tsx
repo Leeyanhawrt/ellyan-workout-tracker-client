@@ -1,12 +1,12 @@
-import Button from "./Button";
+import Button from "../../components/Button";
 import axios from "axios";
-import "../assets/stylesheets/components/_RegisterModal.scss";
+import "/src/assets/stylesheets/components/_RegisterModal.scss";
 import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { User } from "../contexts/UserContext";
+import { User } from "../../contexts/UserContext";
 
 interface RegisterProps {
   setAuth: (value: boolean) => void;

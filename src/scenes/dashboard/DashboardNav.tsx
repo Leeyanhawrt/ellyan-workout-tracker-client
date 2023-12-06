@@ -1,4 +1,4 @@
-import "../assets/stylesheets/components/_DashboardNav.scss";
+import "/src/assets/stylesheets/components/_DashboardNav.scss";
 import { BsPersonFillGear } from "react-icons/bs";
 import { FaCrown } from "react-icons/fa";
 import { IoBarbell } from "react-icons/io5";

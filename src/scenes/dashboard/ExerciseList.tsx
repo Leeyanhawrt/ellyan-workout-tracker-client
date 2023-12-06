@@ -1,9 +1,9 @@
-import { fetchData } from "../utils/api";
+import { fetchData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
 import DailyWorkout from "./DailyWorkout";
-import "../assets/stylesheets/components/_ExerciseList.scss";
-import Skeleton from "./Skeleton";
+import "/src/assets/stylesheets/components/_ExerciseList.scss";
+import Skeleton from "../../components/Skeleton";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;

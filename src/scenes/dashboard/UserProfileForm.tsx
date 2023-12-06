@@ -1,8 +1,8 @@
 import { ChangeEvent, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import Button from "./Button";
+import Button from "../../components/Button";
 import axios from "axios";
-import { User } from "../contexts/UserContext";
+import { User } from "../../contexts/UserContext";
 
 interface UserProfileFormProps {
   user: User;
