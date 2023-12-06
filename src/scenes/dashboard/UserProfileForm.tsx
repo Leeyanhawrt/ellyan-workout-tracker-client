@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import axios from "axios";
 
-import { useUser, useUserUpdate, User } from "../../contexts/UserContext";
+import { useUser, useUserUpdate } from "../../contexts/UserContext";
 
 interface UserProfileFormProps {}
 
@@ -20,12 +20,13 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
   useEffect(() => {
     const { firstName, lastName, email, gender, bodyweight } = userInformation;
     setUserInformation({
+      ...userInformation,
       firstName,
       lastName,
       email,
       gender,
       bodyweight,
-    } as User);
+    });
   }, []);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
