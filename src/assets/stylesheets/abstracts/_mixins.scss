@@ -77,12 +77,6 @@
 
   @include respond(tablet-portrait) {
     padding: 2rem;
-    padding-bottom: 0;
-    width: 75rem;
-  }
-
-  @include respond(tablet-portrait) {
-    width: 86rem;
     transform: translateX(0);
   }
 }
