@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TestimonialItem from "./TestimonialItem";
-import "../assets/stylesheets/components/_TestimonialList.scss";
-import { fetchData } from "../utils/api";
+import "/src/assets/stylesheets/components/_Testimonial.scss";
+import { fetchData } from "../../utils/api";
 
 interface TestimonalInterface {
   id: number;
@@ -36,7 +36,7 @@ const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
     return <TestimonialItem key={testimonial.id} {...testimonial} />;
   });
 
-  return <div className="testimonials-container">{renderedTestimonials}</div>;
+  return <div id="testimonials-container">{renderedTestimonials}</div>;
 };
 
 export default TestimonialList;

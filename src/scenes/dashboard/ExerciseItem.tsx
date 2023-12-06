@@ -1,7 +1,7 @@
-import { useUserMaxes } from "../contexts/UserMaxesContext";
-import { calculateWeight } from "../utils/calculateLifts";
-const LIFTS_TO_CALCULATE = ["bench press", "squat", "deadlift"];
-import "../assets/stylesheets/components/_ExerciseItem.scss";
+import { useUserMaxes } from "../../contexts/UserMaxesContext";
+import { calculateWeight } from "../../utils/calculateLifts";
+const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
+import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
 
 interface ExerciseItemProps {
@@ -27,8 +27,10 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
 
   const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
 
-  const calculatedWeight = LIFTS_TO_CALCULATE.includes(name.toLowerCase())
-    ? calculateWeight(name, percentage, userMaxes)
+  const exerciseName = name.toLowerCase().replace(/ /g, "");
+
+  const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
+    ? calculateWeight(exerciseName, percentage, userMaxes)
     : undefined;
 
   const repsAndRpe = rpe ? `@ ${rpe} RPE` : "";

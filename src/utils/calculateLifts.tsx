@@ -5,14 +5,11 @@ export const calculateWeight = (
   percentage: number,
   userMaxes: UserMaxes
 ) => {
-  if (!["squat", "bench press", "deadlift"].includes(exercise.toLowerCase())) {
+  if (!["squat", "benchpress", "deadlift"].includes(exercise)) {
     return;
   }
 
-  const record =
-    exercise.toLocaleLowerCase() !== "bench press"
-      ? userMaxes[exercise.toLowerCase()]
-      : userMaxes["bench"];
+  const record = userMaxes[exercise];
 
   if (record !== undefined) {
     const calculatedWeight =

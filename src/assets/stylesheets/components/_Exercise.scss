@@ -1,0 +1,48 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+#exercise-list-container {
+  margin: 3rem 5rem;
+  @include respond(small-phone) {
+    margin: 3rem 3rem;
+  }
+
+  h3 {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+  }
+
+  .exercise-item {
+    &-container {
+      margin: 1.5rem 2rem;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0.1rem 0.3rem 0 $color-grey;
+
+      @include respond(small-phone) {
+        margin: 1.5rem 0;
+      }
+
+      h5,
+      p {
+        color: $color-grey-dark;
+      }
+
+      h5 {
+        letter-spacing: 0.1rem;
+      }
+    }
+
+    &-main {
+      background-color: $color-secondary;
+    }
+
+    &-variant {
+      background-color: $color-secondary-light;
+    }
+
+    &-accessory {
+      background-color: $color-beige;
+    }
+  }
+}

@@ -1,16 +1,14 @@
-import "../assets/stylesheets/components/_OneRepMax.scss";
-import Button from "./Button";
+import "/src/assets/stylesheets/components/_OneRepMax.scss";
+import Button from "../../components/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { ChangeEvent, useEffect } from "react";
-import { fetchData } from "../utils/api";
+import { ChangeEvent } from "react";
 import {
   useUserMaxes,
   useUserMaxesUpdate,
-  UserMaxes,
-} from "../contexts/UserMaxesContext";
-import { calculateDots } from "../utils/calculateLifts";
-import { User } from "../contexts/UserContext";
+} from "../../contexts/UserMaxesContext";
+import { calculateDots } from "../../utils/calculateLifts";
+import { User } from "../../contexts/UserContext";
 
 interface OneRepMaxProps {
   user: User;
@@ -26,29 +24,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
 
   const { gender, bodyweight } = user;
 
-  const { squat, bench, deadlift } = userMaxes;
-
-  useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(
-          `/dashboard/orm-records`,
-          "One Rep Maxes",
-          true
-        );
-
-        const data: UserMaxes[] = response.data;
-
-        if (data.length) {
-          const { squat, bench, deadlift } = data[0];
-          setUserMaxes({ squat, bench, deadlift });
-        }
-      } catch (err) {
-        console.error("Error Fetching One Rep Maxes:", err);
-      }
-    };
-    setData();
-  }, []);
+  const { squat, benchpress, deadlift } = userMaxes;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserMaxes({
@@ -66,7 +42,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
         `${import.meta.env.VITE_APP_BACKEND}/dashboard/orm-records`,
         {
           squat,
-          bench,
+          benchpress,
           deadlift,
         },
         {
@@ -87,7 +63,7 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
   };
 
   const powerliftTotal =
-    Number(squat || 0) + Number(bench || 0) + Number(deadlift || 0);
+    Number(squat || 0) + Number(benchpress || 0) + Number(deadlift || 0);
 
   const dotsScores =
     gender && bodyweight
@@ -124,10 +100,10 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
             />
             <input
               type="number"
-              id="bench"
-              name="bench"
+              id="benchpress"
+              name="benchpress"
               placeholder="Bench Press"
-              value={bench || ""}
+              value={benchpress || ""}
               onChange={(e) => handleChange(e)}
             />
           </div>

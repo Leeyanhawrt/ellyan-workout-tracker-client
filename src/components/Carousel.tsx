@@ -1,7 +1,7 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState, useEffect } from "react";
-import DailyWorkout from "./DailyWorkout";
+import DailyWorkout from "../scenes/dashboard/DailyWorkout";
 
 interface CarouselProps<T> {
   items: T[];

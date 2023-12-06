@@ -1,8 +1,8 @@
-import "../assets/stylesheets/components/_WorkoutProgram.scss";
+import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import Microcycle from "./Microcycle";
 import { useEffect, useState } from "react";
-import { useUser } from "../contexts/UserContext";
-import { fetchData } from "../utils/api";
+import { useUser } from "../../contexts/UserContext";
+import { fetchData } from "../../utils/api";
 
 interface WorkoutProgramProps {}
 
@@ -42,7 +42,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
   }
 
   return (
-    <div className="workout-program-container">
+    <div id="workout-program-container">
       <Microcycle microcycles={microcycles} />
     </div>
   );

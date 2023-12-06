@@ -1,12 +1,12 @@
-import "../assets/stylesheets/layout/_Nav.scss";
-import Button from "./Button";
+import "/src/assets/stylesheets/layout/_Nav.scss";
+import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import className from "classnames";
 import { useLocation } from "react-router-dom";
-import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
+import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { IoIosMenu } from "react-icons/io";
-import { useModal } from "../contexts/ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 import MobileMenu from "./MobileMenu";
 import { toast } from "react-toastify";
 
