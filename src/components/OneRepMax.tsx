@@ -38,8 +38,11 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
         );
 
         const data: UserMaxes[] = response.data;
-        const { squat, bench, deadlift } = data[0];
-        setUserMaxes({ squat, bench, deadlift });
+
+        if (data.length) {
+          const { squat, bench, deadlift } = data[0];
+          setUserMaxes({ squat, bench, deadlift });
+        }
       } catch (err) {
         console.error("Error Fetching One Rep Maxes:", err);
       }
