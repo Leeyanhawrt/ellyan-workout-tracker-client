@@ -1,4 +1,4 @@
-import "/src/assets/stylesheets/components/_TestimonialItem.scss";
+import "/src/assets/stylesheets/components/_Testimonial.scss";
 import { useState } from "react";
 
 interface TestimonialItemProps {
