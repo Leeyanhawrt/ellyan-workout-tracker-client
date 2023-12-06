@@ -39,18 +39,19 @@ const DashboardNav: React.FC<DashboardNavProps> = ({}) => {
           {navItems.map((item, index) => {
             const { link, text, icon } = item;
             return (
-              <li
+              <Link
+                to={link}
                 key={index}
                 className={`nav-item ${
                   index === activeDashboard ? "nav-item-active" : ""
                 }`}
                 onClick={() => updateDashboard(index)}
               >
-                <Link to={link}>
+                <li>
                   {icon}
                   <p>{text}</p>
-                </Link>
-              </li>
+                </li>
+              </Link>
             );
           })}
         </ul>

@@ -69,7 +69,6 @@
   border-radius: 0.4rem;
   background-color: $color-dashboard-white;
   padding: 5rem;
-  padding-bottom: 0;
   transform: translateX(10rem);
 
   @include respond(tablet-landscape) {

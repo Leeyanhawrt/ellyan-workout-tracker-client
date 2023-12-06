@@ -13,38 +13,41 @@
   transition: all 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.08) 0 0.5rem 1rem;
 
-  nav {
-    height: 100%;
-  }
-
   @include respond(tablet-portrait) {
     display: none;
   }
 
-  .nav-list {
-    margin-top: 3rem;
+  nav {
+    height: 100%;
   }
 
-  .nav-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style: none;
-    padding: 1.75rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 1rem 0rem;
-    margin-left: 1rem;
-
-    &:hover {
-      background-color: $color-primary-light;
-    }
+  .nav-list {
+    margin-top: 3rem;
 
     a {
-      display: flex;
-      align-items: center;
       text-decoration: none;
-      gap: 1.5rem;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      list-style: none;
+      padding: 1.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 1rem 0rem;
+      margin-left: 1rem;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      &:hover {
+        background-color: $color-primary-light;
+      }
 
       svg,
       p {
@@ -55,11 +58,10 @@
         font-size: 2.2rem;
       }
     }
-  }
 
-  .nav-item-active {
-    background-color: $color-primary !important;
-    a {
+    .nav-item-active {
+      background-color: $color-primary;
+
       p,
       svg {
         color: $color-white;
