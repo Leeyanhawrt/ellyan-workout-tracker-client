@@ -1,4 +1,4 @@
-import "/src/assets/stylesheets/components/_Microcycle.scss";
+import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import { RiArrowRightSLine } from "react-icons/ri";
 import DailyWorkout from "./DailyWorkout";
 import { useState, useEffect } from "react";

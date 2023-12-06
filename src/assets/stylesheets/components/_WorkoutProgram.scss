@@ -1,11 +1,60 @@
 @import "../abstracts/variables";
 @import "../abstracts/mixins";
 
-.workout-program-container {
+#workout-program-container {
   @include dashboardComponent;
 
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   overflow: hidden;
+
+  .microcycles-container {
+    background-color: $color-secondary;
+    border-right: 1px solid $color-nav-border;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    width: 15%;
+    @include respond(tablet-portrait) {
+      width: 20%;
+    }
+
+    @include respond(phone) {
+      width: 25%;
+    }
+
+    .microcycle-week {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5rem;
+      padding: 1.5rem;
+
+      .microcycle-icon {
+        font-size: 2rem;
+        color: $color-dashboard-white;
+      }
+
+      h4 {
+        color: $color-dashboard-white;
+      }
+    }
+
+    .microcycle-week-active {
+      background-color: $color-secondary-dark;
+    }
+  }
+
+  .daily-workout-container {
+    width: 85%;
+    @include respond(tablet-portrait) {
+      width: 80%;
+    }
+
+    @include respond(phone) {
+      width: 75%;
+    }
+  }
 }
