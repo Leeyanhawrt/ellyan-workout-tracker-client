@@ -73,9 +73,9 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
   };
 
   return (
-    <div className="form">
+    <div className="form-container">
       <h2>User Information</h2>
-      <form className="u-margin-top-medium" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>* REQUIRED FIELDS</label>
         <div className="row">
           <div className="flex-item">

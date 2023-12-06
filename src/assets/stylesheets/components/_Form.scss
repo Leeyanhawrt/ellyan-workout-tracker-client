@@ -1,12 +1,20 @@
 @import "../abstracts/_mixins.scss";
 @import "../abstracts/variables";
 
-.form {
+.form-container {
   @include dashboardComponent;
 
   @include respond(small-phone) {
     padding: 1rem;
     transform: translateX(0);
+  }
+
+  form {
+    margin-top: 3rem;
+
+    @include respond(tablet-portrait) {
+      margin-top: 0.75rem;
+    }
   }
 
   label {

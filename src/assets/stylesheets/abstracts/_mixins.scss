@@ -86,7 +86,7 @@
   }
 
   @include respond(small-phone) {
-    padding: 0rem;
+    padding: 1rem 0rem;
     transform: translateX(0);
   }
 }
