@@ -2,12 +2,10 @@ import "/src/assets/stylesheets/components/_OneRepMax.scss";
 import Button from "../../components/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { ChangeEvent, useEffect } from "react";
-import { fetchData } from "../../utils/api";
+import { ChangeEvent } from "react";
 import {
   useUserMaxes,
   useUserMaxesUpdate,
-  UserMaxes,
 } from "../../contexts/UserMaxesContext";
 import { calculateDots } from "../../utils/calculateLifts";
 import { User } from "../../contexts/UserContext";
@@ -27,28 +25,6 @@ const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
   const { gender, bodyweight } = user;
 
   const { squat, benchpress, deadlift } = userMaxes;
-
-  useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(
-          `/dashboard/orm-records`,
-          "One Rep Maxes",
-          true
-        );
-
-        const data: UserMaxes[] = response.data;
-
-        if (data.length) {
-          const { squat, benchpress, deadlift } = data[0];
-          setUserMaxes({ squat, benchpress, deadlift });
-        }
-      } catch (err) {
-        console.error("Error Fetching One Rep Maxes:", err);
-      }
-    };
-    setData();
-  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserMaxes({

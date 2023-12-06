@@ -4,15 +4,18 @@ import OneRepMax from "./OneRepMax";
 import WorkoutProgram from "./WorkoutProgram";
 import { useUser, useUserUpdate } from "../../contexts/UserContext";
 import { fetchData } from "../../utils/api";
-import { UserMaxesProvider } from "../../contexts/UserMaxesContext";
 import UserProfileForm from "./UserProfileForm";
 import { User } from "../../contexts/UserContext";
 import { Route, Routes } from "react-router-dom";
 import DashboardNav from "./DashboardNav";
+import useFetchMaxes from "../../hooks/useFetchMaxes";
 
 interface DashboardPageProps {}
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
+  // Updates Users Maxes in Context;
+  useFetchMaxes();
+
   const userInformation = useUser();
   const setUserInformation = useUserUpdate();
 
@@ -54,22 +57,20 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   }
 
   return (
-    <UserMaxesProvider>
-      <div id="dashboard">
-        <DashboardNav />
-        <Routes>
-          <Route
-            path="/preferences"
-            element={<UserProfileForm user={userInformation} />}
-          />
-          <Route
-            path="/edit_record"
-            element={<OneRepMax user={userInformation} />}
-          />
-          <Route path="/workout_program" element={<WorkoutProgram />} />
-        </Routes>
-      </div>
-    </UserMaxesProvider>
+    <div id="dashboard">
+      <DashboardNav />
+      <Routes>
+        <Route
+          path="/preferences"
+          element={<UserProfileForm user={userInformation} />}
+        />
+        <Route
+          path="/edit_record"
+          element={<OneRepMax user={userInformation} />}
+        />
+        <Route path="/workout_program" element={<WorkoutProgram />} />
+      </Routes>
+    </div>
   );
 };
 

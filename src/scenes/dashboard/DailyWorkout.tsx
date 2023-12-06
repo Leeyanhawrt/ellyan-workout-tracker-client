@@ -31,6 +31,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
         );
 
         const data: DailyWorkout[] = response.data;
+
         setDailyWorkout(data);
       } catch (err) {
         console.error("Error Fetching Daily Workouts:", err);
