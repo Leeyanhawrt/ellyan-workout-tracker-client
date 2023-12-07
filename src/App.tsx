@@ -29,7 +29,7 @@ const App = () => {
                 !isAuthenticated ? (
                   <Login setAuth={setAuth} />
                 ) : (
-                  <Navigate to="/dashboard/workout_program" />
+                  <Navigate to="/dashboard/workout_program" replace />
                 )
               }
             />
