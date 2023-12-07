@@ -6,17 +6,18 @@ import { useState, ChangeEvent } from "react";
 import { useModal } from "../../contexts/ModalContext";
 import { toast } from "react-toastify";
 import "/src/assets/stylesheets/components/_Login.scss";
+import { useAuthUpdate } from "../../contexts/AuthContext";
 
-interface LoginProps {
-  setAuth: (value: boolean) => void;
-}
+interface LoginProps {}
 
 interface LoginData {
   email: string;
   password: string;
 }
 
-const Login: React.FC<LoginProps> = ({ setAuth }) => {
+const Login: React.FC<LoginProps> = () => {
+  const setAuth = useAuthUpdate();
+
   const [inputs, setInputs] = useState<LoginData>({
     email: "",
     password: "",
@@ -105,7 +106,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
       </p>
       {showRegisterModal && (
         <Modal>
-          <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
+          <Register closeRegisterModal={closeRegisterModal} />
         </Modal>
       )}
     </div>

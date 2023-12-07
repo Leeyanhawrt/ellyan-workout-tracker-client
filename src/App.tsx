@@ -1,5 +1,4 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useAuthUpdate } from "./contexts/AuthContext";
 import { ModalProvider } from "./contexts/ModalContext";
 import { UserMaxesProvider } from "./contexts/UserMaxesContext";
 import { ToastContainer } from "react-toastify";
@@ -8,12 +7,11 @@ import HomePage from "./scenes/home/HomePage";
 import Footer from "./components/Footer";
 import Login from "./scenes/home/Login";
 import DashboardPage from "./scenes/dashboard/DashboardPage";
+import AdminPage from "./scenes/admin/AdminPage";
 import Nav from "./scenes/globals/Nav";
 import useAuthentication from "./hooks/useAuthentication";
 
 const App = () => {
-  const setAuth = useAuthUpdate();
-
   const { isAuthenticated } = useAuthentication();
 
   return (
@@ -27,7 +25,7 @@ const App = () => {
               path="/login"
               element={
                 !isAuthenticated ? (
-                  <Login setAuth={setAuth} />
+                  <Login />
                 ) : (
                   <Navigate to="/dashboard/workout_program" replace />
                 )
@@ -37,6 +35,12 @@ const App = () => {
               path="/dashboard/*"
               element={
                 isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/admin/*"
+              element={
+                isAuthenticated ? <AdminPage /> : <Navigate to="/login" />
               }
             />
           </Routes>
