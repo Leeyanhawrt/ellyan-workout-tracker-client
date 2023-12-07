@@ -7,11 +7,11 @@ import { UserProvider } from "./contexts/UserContext.tsx";
 import "./i18n/config.js";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <AuthProvider>
-    <UserProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
+      <UserProvider>
         <App />
-      </BrowserRouter>
-    </UserProvider>
-  </AuthProvider>
+      </UserProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );
