@@ -26,7 +26,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_BACKEND}/auth/admin`,
+        `${import.meta.env.VITE_APP_BACKEND}/auth/login`,
         {
           email,
           password,
