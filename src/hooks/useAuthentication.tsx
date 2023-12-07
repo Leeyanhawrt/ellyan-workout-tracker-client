@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useAuth, useAuthUpdate } from "../contexts/AuthContext";
+import { useUserUpdate } from "../contexts/UserContext";
 import { fetchData } from "../utils/api";
 
 const useAuthentication = () => {
   const authState = useAuth();
   const setAuthState = useAuthUpdate();
+  const setUser = useUserUpdate();
 
   const isAuth = async () => {
     try {
@@ -16,7 +18,12 @@ const useAuthentication = () => {
 
       const data = response.data;
 
-      data === true ? setAuthState(true) : setAuthState(false);
+      if (data) {
+        setAuthState(true);
+        setUser(data);
+      } else {
+        setAuthState(false);
+      }
     } catch (err) {
       console.error((err as Error)?.message);
     }
@@ -24,7 +31,7 @@ const useAuthentication = () => {
 
   useEffect(() => {
     isAuth();
-  }, [isAuth]);
+  }, []);
 
   return { isAuthenticated: authState };
 };

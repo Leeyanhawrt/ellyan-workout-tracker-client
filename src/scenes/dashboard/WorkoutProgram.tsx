@@ -1,8 +1,8 @@
 import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import Microcycle from "./Microcycle";
 import { useEffect, useState } from "react";
-import { useUser } from "../../contexts/UserContext";
 import { fetchData } from "../../utils/api";
+import { useUser } from "../../contexts/UserContext";
 
 interface WorkoutProgramProps {}
 
@@ -14,12 +14,12 @@ interface Microcycles {
 const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
   const [microcycles, setMicrocycles] = useState<Microcycles[]>([]);
 
-  const userInformation = useUser();
+  const user = useUser();
 
   useEffect(() => {
-    if (userInformation) {
+    if (user) {
       const setData = async () => {
-        const { workoutProgramId } = userInformation;
+        const { workoutProgramId } = user;
 
         try {
           const response = await fetchData(
@@ -35,11 +35,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
       };
       setData();
     }
-  }, [userInformation]);
-
-  if (!userInformation) {
-    return <div>Loading...</div>;
-  }
+  }, []);
 
   return (
     <div id="workout-program-container">

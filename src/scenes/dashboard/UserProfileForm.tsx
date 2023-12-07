@@ -2,25 +2,23 @@ import { ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 import axios from "axios";
-
 import { useUser, useUserUpdate } from "../../contexts/UserContext";
 
 interface UserProfileFormProps {}
 
-const UserProfileForm: React.FC<UserProfileFormProps> = () => {
-  const userInformation = useUser();
-  const setUserInformation = useUserUpdate();
+const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
+  const user = useUser();
+  const setUser = useUserUpdate();
 
-  if (!userInformation) {
+  if (!user) {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName, email, gender, bodyweight } = userInformation;
+  const { firstName, lastName, email, gender, bodyweight } = user;
 
   useEffect(() => {
-    const { firstName, lastName, email, gender, bodyweight } = userInformation;
-    setUserInformation({
-      ...userInformation,
+    setUser({
+      ...user,
       firstName,
       lastName,
       email,
@@ -34,15 +32,15 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
 
     const parsedValue = name === "bodyweight" ? parseInt(value, 10) : value;
 
-    setUserInformation({
-      ...userInformation,
+    setUser({
+      ...user,
       [e.target.name]: parsedValue,
     });
   };
 
   const handleSelectChange = (name: string, value: string) => {
-    setUserInformation({
-      ...userInformation,
+    setUser({
+      ...user,
       [name]: value,
     });
   };
@@ -53,7 +51,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_BACKEND}/user`,
         {
-          ...userInformation,
+          ...user,
         },
         {
           headers: { token: localStorage.token },
@@ -107,7 +105,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
             <div className="flex-item">
               <label>GENDER</label>
               <select
-                value={gender ? gender : ""}
+                value={gender || ""}
                 onChange={(e) => handleSelectChange("gender", e.target.value)}
               >
                 <option hidden value="">
@@ -126,6 +124,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = () => {
                 placeholder="Weight"
                 value={bodyweight || ""}
                 onChange={(e) => handleInputChange(e)}
+                min="0"
               />
             </div>
           </div>

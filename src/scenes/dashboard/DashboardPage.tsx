@@ -2,22 +2,20 @@ import { useEffect } from "react";
 import "/src/assets/stylesheets/pages/_p_dashboard.scss";
 import OneRepMax from "./OneRepMax";
 import WorkoutProgram from "./WorkoutProgram";
-import { useUser, useUserUpdate } from "../../contexts/UserContext";
 import { fetchData } from "../../utils/api";
 import UserProfileForm from "./UserProfileForm";
-import { User } from "../../contexts/UserContext";
 import { Route, Routes } from "react-router-dom";
+import { useUserUpdate, User, useUser } from "../../contexts/UserContext";
 import DashboardNav from "./DashboardNav";
 import useFetchMaxes from "../../hooks/useFetchMaxes";
 
 interface DashboardPageProps {}
 
 const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
-  // Updates Users Maxes in Context;
-  useFetchMaxes();
+  const user = useUser();
+  const setUser = useUserUpdate();
 
-  const userInformation = useUser();
-  const setUserInformation = useUserUpdate();
+  useFetchMaxes();
 
   useEffect(() => {
     getUserInfo();
@@ -38,7 +36,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         workoutProgramId,
       } = data;
 
-      setUserInformation({
+      setUser({
         id,
         firstName,
         lastName,
@@ -46,13 +44,13 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         gender,
         bodyweight,
         workoutProgramId,
-      });
+      } as User);
     } catch (err) {
       console.error(`Error Fetching User Information: ${err}`);
     }
   };
 
-  if (!userInformation) {
+  if (!user) {
     return <div>Loading...</div>;
   }
 
@@ -61,10 +59,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
       <DashboardNav />
       <Routes>
         <Route path="/preferences" element={<UserProfileForm />} />
-        <Route
-          path="/edit_record"
-          element={<OneRepMax user={userInformation} />}
-        />
+        <Route path="/edit_record" element={<OneRepMax />} />
         <Route path="/workout_program" element={<WorkoutProgram />} />
       </Routes>
     </div>

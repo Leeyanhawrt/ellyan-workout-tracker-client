@@ -8,17 +8,17 @@ import {
   useUserMaxesUpdate,
 } from "../../contexts/UserMaxesContext";
 import { calculateDots } from "../../utils/calculateLifts";
-import { User } from "../../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 
-interface OneRepMaxProps {
-  user: User;
-}
+interface OneRepMaxProps {}
 
-const OneRepMax: React.FC<OneRepMaxProps> = ({ user }) => {
+const OneRepMax: React.FC<OneRepMaxProps> = ({}) => {
   const userMaxes = useUserMaxes();
   const setUserMaxes = useUserMaxesUpdate();
 
-  if (!userMaxes) {
+  const user = useUser();
+
+  if (!userMaxes || !user) {
     return <div>Loading...</div>;
   }
 
