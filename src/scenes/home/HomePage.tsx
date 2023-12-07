@@ -3,7 +3,7 @@ import FeaturesList from "./FeatureList";
 import Modal from "../../components/Modal";
 import Register from "./Register";
 import TestimonialList from "./TestimonialList";
-import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useModal } from "../../contexts/ModalContext";
 import paddling_video from "/src/assets/videos/ndrc-paddling.mp4";
 import "/src/assets/stylesheets/pages/_p_home.scss";
@@ -14,7 +14,6 @@ const HomePage = () => {
   const { t } = useTranslation("", { keyPrefix: "pages.home" });
   const navigate = useNavigate();
   const authStatus = useAuth();
-  const setAuth = useAuthUpdate();
   const { showRegisterModal, setRegisterModal } = useModal();
 
   const openRegisterModal = () => {
@@ -61,7 +60,7 @@ const HomePage = () => {
       </section>
       {showRegisterModal && (
         <Modal>
-          <Register setAuth={setAuth} closeRegisterModal={closeRegisterModal} />
+          <Register closeRegisterModal={closeRegisterModal} />
         </Modal>
       )}
     </>
