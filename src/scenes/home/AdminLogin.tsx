@@ -4,6 +4,7 @@ import { useState, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import "/src/assets/stylesheets/components/_Login.scss";
 import { useAuthUpdate } from "../../contexts/AuthContext";
+import { useUserUpdate } from "../../contexts/UserContext";
 
 interface AdminLoginProps {}
 
@@ -14,6 +15,7 @@ interface LoginData {
 
 const AdminLogin: React.FC<AdminLoginProps> = () => {
   const setAuth = useAuthUpdate();
+  const setUser = useUserUpdate();
 
   const [inputs, setInputs] = useState<LoginData>({
     email: "",
@@ -33,11 +35,12 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
         }
       );
 
-      const jwtToken = await response.data;
+      const data = await response.data;
 
-      if (jwtToken) {
-        localStorage.setItem("token", jwtToken.token);
+      if (data) {
+        localStorage.setItem("token", data.token);
         setAuth(true);
+        setUser(data.user);
         toast.success("Admin Login Successful!");
       } else {
         setAuth(false);
