@@ -1,15 +1,15 @@
-import { fetchData } from "../../utils/api";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ExerciseItem from "./ExerciseItem";
 import DailyWorkout from "./DailyWorkout";
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import Skeleton from "../../components/Skeleton";
+import useAxios from "../../hooks/useAxios";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
 }
 
-interface Exercises {
+interface Exercise {
   id: number;
   name: string;
   numberSets: number;
@@ -20,29 +20,22 @@ interface Exercises {
 }
 
 const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [exerciseList, setExerciseList] = useState<Exercises[]>([]);
+  const {
+    data: exerciseList,
+    loading,
+    fetchData,
+  } = useAxios<Exercise[]>(
+    [],
+    `/workout-program/exercise-list/${dailyWorkout.id}`,
+    `Exercise List`,
+    true
+  );
 
   useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(
-          `/workout-program/exercise-list/${dailyWorkout.id}`,
-          "Exercise List",
-          true
-        );
-
-        const data: Exercises[] = response.data;
-        setExerciseList(data);
-        setIsLoading(false);
-      } catch (err) {
-        console.error("Error Fetching Exercise List:", err);
-      }
-    };
-    setData();
+    fetchData();
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return <Skeleton times={6} boxHeight="6.4rem" boxWidth="20.4rem" />;
   }
 

@@ -1,41 +1,38 @@
 import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import Microcycle from "./Microcycle";
-import { useEffect, useState } from "react";
-import { fetchData } from "../../utils/api";
+import { useEffect } from "react";
 import { useUser } from "../../contexts/UserContext";
+import useAxios from "../../hooks/useAxios";
 
 interface WorkoutProgramProps {}
 
-interface Microcycles {
-  id: number;
-  microcycleNumber: number;
-}
-
 const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
-  const [microcycles, setMicrocycles] = useState<Microcycles[]>([]);
-
   const user = useUser();
 
-  useEffect(() => {
-    if (user) {
-      const setData = async () => {
-        const { workoutProgramId } = user;
+  let workoutProgramId;
 
-        try {
-          const response = await fetchData(
-            `/workout-program/microcycle/${workoutProgramId}`,
-            "Microcycles",
-            true
-          );
-          const data: Microcycles[] = response.data;
-          setMicrocycles(data);
-        } catch (err) {
-          console.error("Error Fetching Microcycles:", err);
-        }
-      };
-      setData();
-    }
+  if (user) {
+    workoutProgramId = user.workoutProgramId;
+  }
+
+  const {
+    data: microcycles,
+    loading,
+    fetchData,
+  } = useAxios<Microcycle[]>(
+    [],
+    `/workout-program/microcycle/${workoutProgramId}`,
+    `Microcycles`,
+    true
+  );
+
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div id="workout-program-container">

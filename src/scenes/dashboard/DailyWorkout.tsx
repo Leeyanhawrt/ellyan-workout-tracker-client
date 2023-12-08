@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { fetchData } from "../../utils/api";
+import { useEffect } from "react";
 import Carousel from "../../components/Carousel";
+import useAxios from "../../hooks/useAxios";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;
@@ -19,28 +19,22 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
   resetCarousel,
   revertCarouselReset,
 }) => {
-  const [dailyWorkout, setDailyWorkout] = useState<DailyWorkout[]>([]);
+  const {
+    data: dailyWorkout,
+    loading,
+    fetchData,
+  } = useAxios<DailyWorkout[]>(
+    [],
+    `/workout-program/daily-workout/${activeMicrocycle}`,
+    `Daily Workout`,
+    true
+  );
 
   useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(
-          `/workout-program/daily-workout/${activeMicrocycle}`,
-          "Daily Workout",
-          true
-        );
-
-        const data: DailyWorkout[] = response.data;
-
-        setDailyWorkout(data);
-      } catch (err) {
-        console.error("Error Fetching Daily Workouts:", err);
-      }
-    };
-    setData();
+    fetchData();
   }, [activeMicrocycle]);
 
-  if (dailyWorkout.length === 0) {
+  if (dailyWorkout.length === 0 || loading) {
     return <div>Loading...</div>;
   }
 

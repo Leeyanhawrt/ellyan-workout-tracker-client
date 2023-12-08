@@ -28,11 +28,7 @@ const useAxios = <T,>(
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return { data, loading, error };
+  return { data, loading, error, fetchData };
 };
 
 export default useAxios;

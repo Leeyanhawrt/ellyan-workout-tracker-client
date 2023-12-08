@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import TestimonialItem from "./TestimonialItem";
 import "/src/assets/stylesheets/components/_Testimonial.scss";
-import { fetchData } from "../../utils/api";
+import useAxios from "../../hooks/useAxios";
 
-interface TestimonalInterface {
+interface Testimonial {
   id: number;
   first_name: string;
   last_name: string;
@@ -15,22 +15,19 @@ interface TestimonalInterface {
 interface TestimonialListProps {}
 
 const TestimonialList: React.FC<TestimonialListProps> = ({}) => {
-  const [testimonials, setTestimonials] = useState<TestimonalInterface[]>([]);
+  const {
+    data: testimonials,
+    loading,
+    fetchData,
+  } = useAxios<Testimonial[]>([], `/testimonial`, `Testimonials`);
 
   useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(`/testimonial`, "Testimonials");
-
-        const data: TestimonalInterface[] = response.data;
-        setTestimonials(data);
-      } catch (err) {
-        console.error("Error Fetching Testimonials:", err);
-      }
-    };
-
-    setData();
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const renderedTestimonials = testimonials.map((testimonial) => {
     return <TestimonialItem key={testimonial.id} {...testimonial} />;

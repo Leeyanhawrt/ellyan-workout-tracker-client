@@ -1,30 +1,23 @@
-import { useEffect, useState } from "react";
-import { fetchData } from "../../utils/api";
+import { useEffect } from "react";
 import { User } from "../../contexts/UserContext";
 import UserItem from "./UserItem";
+import useAxios from "../../hooks/useAxios";
 
 interface UsersListProps {}
 
 const UsersList: React.FC<UsersListProps> = ({}) => {
-  const [users, setUsers] = useState<User[]>([]);
+  const {
+    data: users,
+    loading,
+    fetchData,
+  } = useAxios<User[]>([], `/admin/user`, `Users List`, true);
 
-  if (!users) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
   useEffect(() => {
-    const setData = async () => {
-      try {
-        const response = await fetchData(`/admin/user/`, "Users List", true);
-
-        const data: User[] = response.data;
-
-        setUsers(data);
-      } catch (err) {
-        console.error("Error Fetching Daily Workouts:", err);
-      }
-    };
-    setData();
+    fetchData();
   }, []);
 
   return (
