@@ -1,0 +1,56 @@
+@import "/src/assets/stylesheets/abstracts/mixins";
+@import "/src/assets/stylesheets/abstracts/variables";
+
+#users-table {
+  @include dashboardComponent;
+  margin: 25px 0;
+  font-size: 1.2rem;
+  border-collapse: collapse;
+  font-family: "proxima-nova" sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  td::first-letter {
+    text-transform: capitalize;
+  }
+
+  thead {
+    background-color: $color-table-purple;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 1.2rem 1.5rem;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+  tbody tr:last-of-type {
+    border-bottom: 2px solid $color-table-purple;
+  }
+
+  tbody tr.active-row {
+    font-weight: bold;
+    color: $color-table-purple;
+  }
+
+  th:first-of-type {
+    border-top-left-radius: 1rem;
+  }
+  th:last-of-type {
+    border-top-right-radius: 1rem;
+  }
+  tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 1rem;
+  }
+  tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 1rem;
+  }
+}

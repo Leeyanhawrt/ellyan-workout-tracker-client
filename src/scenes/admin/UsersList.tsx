@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { User } from "../../contexts/UserContext";
-import UserItem from "./UserItem";
 import useAxios from "../../hooks/useAxios";
+import UserItem from "./UserItem";
+import "/src/assets/stylesheets/components/admin/_Users.scss";
 
 interface UsersListProps {}
 
@@ -12,20 +13,32 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
     fetchData,
   } = useAxios<User[]>([], `/admin/user`, `Users List`, true);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   useEffect(() => {
     fetchData();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-      {users.map((user) => {
-        return <UserItem key={user.id} {...user} />;
-      })}
-    </>
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Bodyweight</th>
+          <th>Workout Program</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map((user) => {
+          return <UserItem key={user.id} {...user} />;
+        })}
+      </tbody>
+    </table>
   );
 };
 
