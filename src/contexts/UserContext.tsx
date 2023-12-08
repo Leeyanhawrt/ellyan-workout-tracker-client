@@ -14,6 +14,7 @@ export type User = {
   bodyweight?: number | string;
   workoutProgramId: number;
   roles?: string[];
+  workoutProgramName?: string;
 };
 
 type UserUpdateContextType = (value: User) => void;

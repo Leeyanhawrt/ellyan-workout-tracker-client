@@ -6,6 +6,11 @@ import useAxios from "../../hooks/useAxios";
 
 interface WorkoutProgramProps {}
 
+export type WorkoutProgram = {
+  id: number;
+  name: string;
+};
+
 const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
   const user = useUser();
 

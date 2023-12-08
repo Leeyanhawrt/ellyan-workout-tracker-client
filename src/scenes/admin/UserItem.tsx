@@ -5,6 +5,7 @@ type UserItemProps = {
   email: string;
   gender?: string;
   bodyweight?: number | string;
+  workoutProgramName?: string;
   workoutProgramId: number;
 };
 
@@ -16,6 +17,7 @@ const UserItem: React.FC<UserItemProps> = ({
   gender,
   bodyweight,
   workoutProgramId,
+  workoutProgramName,
 }) => {
   return (
     <>
@@ -25,7 +27,7 @@ const UserItem: React.FC<UserItemProps> = ({
         <td>{email}</td>
         <td>{gender}</td>
         <td>{bodyweight}</td>
-        <td>{workoutProgramId}</td>
+        <td>{workoutProgramName}</td>
       </tr>
     </>
   );
