@@ -3,7 +3,7 @@
 
 #users-table {
   @include dashboardComponent;
-  margin: 25px 0;
+  margin: 5rem;
   font-size: 1.2rem;
   border-collapse: collapse;
   font-family: "proxima-nova" sans-serif;
@@ -52,5 +52,10 @@
   }
   tr:last-of-type td:last-of-type {
     border-bottom-right-radius: 1rem;
+  }
+
+  svg {
+    font-size: 2rem;
+    cursor: pointer;
   }
 }

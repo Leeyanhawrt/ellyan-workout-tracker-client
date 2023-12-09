@@ -55,7 +55,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   }
 
   return (
-    <div className="dashboard">
+    <div id="dashboard">
       <DashboardNav />
       <Routes>
         <Route path="/preferences" element={<UserProfileForm />} />

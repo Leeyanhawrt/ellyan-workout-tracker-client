@@ -1,3 +1,6 @@
+import { FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router";
+
 type UserItemProps = {
   id: number;
   firstName: string;
@@ -15,10 +18,14 @@ const UserItem: React.FC<UserItemProps> = ({
   lastName,
   email,
   gender,
-  bodyweight,
-  workoutProgramId,
   workoutProgramName,
 }) => {
+  const navigate = useNavigate();
+
+  const navigateUser = (id: number) => {
+    navigate(`/manage_users/${id}`);
+  };
+
   return (
     <>
       <tr>
@@ -26,8 +33,10 @@ const UserItem: React.FC<UserItemProps> = ({
         <td>{lastName}</td>
         <td>{email}</td>
         <td>{gender}</td>
-        <td>{bodyweight}</td>
         <td>{workoutProgramName}</td>
+        <td>
+          <FaEdit onClick={() => navigateUser(id)} />
+        </td>
       </tr>
     </>
   );

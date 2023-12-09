@@ -29,8 +29,8 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
           <th>Last Name</th>
           <th>Email</th>
           <th>Gender</th>
-          <th>Bodyweight</th>
           <th>Workout Program</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
