@@ -22,8 +22,8 @@ const UserItem: React.FC<UserItemProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const navigateUser = (id: number) => {
-    navigate(`/manage_users/${id}`);
+  const navigateUser = (userId: number) => {
+    navigate(`/admin/manage_users/${userId}`);
   };
 
   return (
