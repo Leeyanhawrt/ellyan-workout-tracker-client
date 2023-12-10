@@ -63,6 +63,8 @@
 
         &:disabled {
           font-weight: 900;
+          background-color: $color-secondary-light;
+          color: $color-grey;
         }
       }
     }
