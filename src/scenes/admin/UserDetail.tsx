@@ -57,7 +57,7 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
           <div className="grouping">
             <div className="flex-item">
               <label>GENDER</label>
-              <select value={""} disabled>
+              <select value={user.gender} disabled>
                 <option hidden value="">
                   Select Gender
                 </option>
@@ -72,7 +72,7 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
                 name="bodyweight"
                 id="bodyweight"
                 placeholder="Weight"
-                value={""}
+                value={user.bodyweight}
                 min="0"
                 disabled
               />
@@ -86,7 +86,7 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
               id="email"
               disabled
               placeholder="Email"
-              value={""}
+              value={user.email}
             />
           </div>
         </div>

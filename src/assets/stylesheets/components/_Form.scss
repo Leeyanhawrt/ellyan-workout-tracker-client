@@ -56,6 +56,7 @@
         height: 5rem;
         text-indent: 1rem;
         font-size: 1.6rem;
+        color: $color-black;
 
         &::placeholder {
           color: $color-grey;
@@ -64,7 +65,8 @@
         &:disabled {
           font-weight: 900;
           background-color: $color-secondary-light;
-          color: $color-grey;
+          opacity: 0.5;
+          border: 2px solid $color-disabled-border;
         }
       }
     }
