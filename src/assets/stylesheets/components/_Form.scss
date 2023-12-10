@@ -60,6 +60,10 @@
         &::placeholder {
           color: $color-grey;
         }
+
+        &:disabled {
+          font-weight: 900;
+        }
       }
     }
 
