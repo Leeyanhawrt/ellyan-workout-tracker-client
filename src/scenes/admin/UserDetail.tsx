@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
+import WorkoutProgramForm from "./WorkoutProgramForm";
 
 type UserDetailProps = {};
 
@@ -90,6 +91,7 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
             />
           </div>
         </div>
+        <WorkoutProgramForm workoutProgramId={user.workoutProgramId} />
         <div className="row u-margin-top-medium">
           <Button size={"large"} primary>
             Save Changes
