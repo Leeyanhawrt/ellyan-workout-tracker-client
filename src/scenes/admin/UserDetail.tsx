@@ -8,7 +8,7 @@ import WorkoutProgramForm from "./WorkoutProgramForm";
 type UserDetailProps = {};
 
 type UserDetail = {
-  workoutProgram: string | number | undefined;
+  workoutProgram: number | undefined;
 };
 
 const UserDetail: React.FC<UserDetailProps> = ({}) => {
@@ -21,16 +21,32 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
   } = useAxios<Partial<User>>({}, `/admin/user/${userId}`, "User Data", true);
 
   const [inputs, setInputs] = useState<UserDetail>({
-    workoutProgram: "",
+    workoutProgram: undefined,
   });
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setInputs({
+      ...inputs,
+      workoutProgram: user.workoutProgramId,
+    });
+  }, [user]);
+
+  const handleSelectChange = (name: string, value: string) => {
+    setInputs({
+      ...inputs,
+      [name]: parseInt(value, 10),
+    });
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const { workoutProgram } = inputs;
 
   return (
     <div className="form-container">
@@ -99,7 +115,10 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
             />
           </div>
         </div>
-        <WorkoutProgramForm workoutProgramId={user.workoutProgramId} />
+        <WorkoutProgramForm
+          workoutProgramId={workoutProgram}
+          handleSelectChange={handleSelectChange}
+        />
         <div className="row u-margin-top-medium">
           <Button size={"large"} primary>
             Save Changes

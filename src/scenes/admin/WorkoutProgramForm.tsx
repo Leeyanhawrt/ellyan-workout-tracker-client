@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import { WorkoutProgram } from "../dashboard/WorkoutProgram";
 
 type WorkoutProgramFormProps = {
-  workoutProgramId?: number;
+  workoutProgramId?: number | undefined;
+  handleSelectChange: (name: string, value: string) => void;
 };
 
 const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
   workoutProgramId,
+  handleSelectChange,
 }) => {
-  const [inputs, setInputs] = useState({
-    workoutProgram: workoutProgramId || "",
-  });
-
-  const { workoutProgram } = inputs;
-
   const {
     data: workoutProgramList,
     loading,
@@ -34,20 +30,13 @@ const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
     return <div>Loading...</div>;
   }
 
-  const handleSelectChange = (name: string, value: string) => {
-    setInputs({
-      ...inputs,
-      [name]: parseInt(value, 10),
-    });
-  };
-
   return (
     <>
       <div className="row">
         <div className="flex-item">
           <label htmlFor="workout-program">WORKOUT PROGRAM</label>
           <select
-            value={workoutProgram || ""}
+            value={workoutProgramId || ""}
             onChange={(e) =>
               handleSelectChange("workoutProgram", e.target.value)
             }
