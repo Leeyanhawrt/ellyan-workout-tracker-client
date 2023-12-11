@@ -1,11 +1,15 @@
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
 import WorkoutProgramForm from "./WorkoutProgramForm";
 
 type UserDetailProps = {};
+
+type UserDetail = {
+  workoutProgram: string | number | undefined;
+};
 
 const UserDetail: React.FC<UserDetailProps> = ({}) => {
   const { userId } = useParams();
@@ -15,6 +19,10 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
     loading,
     fetchData,
   } = useAxios<Partial<User>>({}, `/admin/user/${userId}`, "User Data", true);
+
+  const [inputs, setInputs] = useState<UserDetail>({
+    workoutProgram: "",
+  });
 
   useEffect(() => {
     fetchData();
