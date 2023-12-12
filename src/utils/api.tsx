@@ -34,6 +34,8 @@ export const postData = async <T,>(
     if (response.status === 201) {
       toast.success(response.data.message);
     }
+
+    return response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       const error = err.response?.data.error || err.message;
