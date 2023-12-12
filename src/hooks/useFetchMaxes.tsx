@@ -18,7 +18,7 @@ const useFetchMaxes = () => {
         true
       );
 
-      const data: UserMaxes[] = response.data;
+      const data: UserMaxes[] = response?.data;
 
       if (data.length) {
         const { squat, benchpress, deadlift } = data[0];

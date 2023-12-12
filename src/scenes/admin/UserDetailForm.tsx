@@ -5,7 +5,6 @@ import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
 import WorkoutProgramForm from "./WorkoutProgramForm";
 import { postData } from "../../utils/api";
-import { toast } from "react-toastify";
 
 type UserDetailFormProps = {};
 
@@ -50,7 +49,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     e
   ) => {
     e.preventDefault();
-    postData(`/admin/user`, { ...inputs }, true);
+    postData<UserDetail>(`/admin/user`, { ...inputs }, true);
   };
 
   if (loading) {

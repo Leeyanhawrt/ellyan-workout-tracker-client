@@ -24,7 +24,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   const getUserInfo = async () => {
     try {
       const response = await fetchData(`/dashboard`, "User Information", true);
-      const data: User = response.data;
+      const data: User = response?.data;
 
       const {
         firstName,
