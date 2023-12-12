@@ -2,6 +2,7 @@ import { FaUsers } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "/src/assets/stylesheets/components/_AdminNav.scss";
+import { FaDumbbell } from "react-icons/fa";
 
 interface AdminNavProps {}
 
@@ -12,6 +13,11 @@ const AdminNav: React.FC<AdminNavProps> = ({}) => {
       link: "/admin/manage_users",
       text: "Manage Users",
       icon: <FaUsers />,
+    },
+    {
+      link: "/admin/workout_programs",
+      text: "Workout Programs",
+      icon: <FaDumbbell />,
     },
   ];
 
