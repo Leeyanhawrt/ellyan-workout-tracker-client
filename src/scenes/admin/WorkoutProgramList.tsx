@@ -22,7 +22,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   }
 
   return (
-    <table id="users-table">
+    <table id="workout-program-table">
       <thead>
         <tr>
           <th>First Name</th>
