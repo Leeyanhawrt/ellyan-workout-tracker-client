@@ -14,7 +14,7 @@
   }
 
   thead {
-    background-color: $color-table-purple;
+    background-color: $color-quaternary;
     color: #ffffff;
     text-align: left;
   }
@@ -33,12 +33,12 @@
   }
 
   tbody tr:last-of-type {
-    border-bottom: 2px solid $color-table-purple;
+    border-bottom: 2px solid $color-quaternary;
   }
 
   tbody tr.active-row {
     font-weight: bold;
-    color: $color-table-purple;
+    color: $color-quaternary;
   }
 
   th:first-of-type {

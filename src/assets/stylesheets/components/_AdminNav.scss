@@ -46,7 +46,7 @@
       }
 
       &:hover {
-        background-color: $color-tertiary-dark;
+        background-color: $color-pentanary-dark;
       }
 
       svg,
@@ -60,7 +60,7 @@
     }
 
     .nav-item-active {
-      background-color: $color-tertiary;
+      background-color: $color-pentanary;
 
       p,
       svg {
