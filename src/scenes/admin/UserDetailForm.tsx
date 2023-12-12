@@ -5,13 +5,13 @@ import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
 import WorkoutProgramForm from "./WorkoutProgramForm";
 
-type UserDetailProps = {};
+type UserDetailFormProps = {};
 
 type UserDetail = {
   workoutProgram: number | undefined;
 };
 
-const UserDetail: React.FC<UserDetailProps> = ({}) => {
+const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
   const { userId } = useParams();
 
   const {
@@ -128,4 +128,4 @@ const UserDetail: React.FC<UserDetailProps> = ({}) => {
     </div>
   );
 };
-export default UserDetail;
+export default UserDetailForm;
