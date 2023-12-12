@@ -20,7 +20,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     data: user,
     loading,
     fetchData,
-  } = useAxios<Partial<User>>({}, `/admin/user/${userId}`, "User Data", true);
+  } = useAxios<Partial<User>>({}, `/admin/users/${userId}`, "User Data", true);
 
   const [inputs, setInputs] = useState<UserDetail>({
     userId: userId !== undefined ? parseInt(userId, 10) : undefined,
@@ -49,7 +49,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     e
   ) => {
     e.preventDefault();
-    postData<UserDetail>(`/admin/user`, { ...inputs }, true);
+    postData<UserDetail>(`/admin/users`, { ...inputs }, true);
   };
 
   if (loading) {

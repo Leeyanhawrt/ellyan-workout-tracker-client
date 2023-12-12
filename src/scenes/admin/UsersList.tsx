@@ -11,7 +11,7 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
     data: users,
     loading,
     fetchData,
-  } = useAxios<User[]>([], `/admin/user`, `Users List`, true);
+  } = useAxios<User[]>([], `/admin/users`, `Users List`, true);
 
   useEffect(() => {
     fetchData();

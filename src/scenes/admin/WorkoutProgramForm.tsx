@@ -17,7 +17,7 @@ const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
     fetchData,
   } = useAxios<WorkoutProgram[]>(
     [],
-    `/admin/user/workout_programs`,
+    `/admin/users/workout_programs`,
     "Workout Program",
     true
   );

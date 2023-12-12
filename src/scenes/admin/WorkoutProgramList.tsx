@@ -11,7 +11,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     data: users,
     loading,
     fetchData,
-  } = useAxios<User[]>([], `/admin/user`, `Users List`, true);
+  } = useAxios<User[]>([], `/admin/workout_programs`, `Users List`, true);
 
   useEffect(() => {
     fetchData();
