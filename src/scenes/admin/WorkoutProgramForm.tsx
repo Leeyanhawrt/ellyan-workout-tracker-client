@@ -38,7 +38,7 @@ const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
           <select
             value={workoutProgramId || ""}
             onChange={(e) =>
-              handleSelectChange("workoutProgram", e.target.value)
+              handleSelectChange("workoutProgramId", e.target.value)
             }
           >
             <option hidden value="">

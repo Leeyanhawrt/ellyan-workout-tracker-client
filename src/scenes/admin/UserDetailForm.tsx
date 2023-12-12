@@ -4,11 +4,14 @@ import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
 import WorkoutProgramForm from "./WorkoutProgramForm";
+import { postData } from "../../utils/api";
+import { toast } from "react-toastify";
 
 type UserDetailFormProps = {};
 
 type UserDetail = {
-  workoutProgram: number | undefined;
+  workoutProgramId: number | undefined;
+  userId: number | undefined;
 };
 
 const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
@@ -21,7 +24,8 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
   } = useAxios<Partial<User>>({}, `/admin/user/${userId}`, "User Data", true);
 
   const [inputs, setInputs] = useState<UserDetail>({
-    workoutProgram: undefined,
+    userId: userId !== undefined ? parseInt(userId, 10) : undefined,
+    workoutProgramId: undefined,
   });
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
   useEffect(() => {
     setInputs({
       ...inputs,
-      workoutProgram: user.workoutProgramId,
+      workoutProgramId: user.workoutProgramId,
     });
   }, [user]);
 
@@ -42,16 +46,23 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     });
   };
 
+  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e
+  ) => {
+    e.preventDefault();
+    postData(`/admin/user`, { ...inputs }, true);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const { workoutProgram } = inputs;
+  const { workoutProgramId } = inputs;
 
   return (
     <div className="form-container">
       <h2>User Information</h2>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label>* REQUIRED FIELDS</label>
         <div className="row">
           <div className="flex-item">
@@ -116,7 +127,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
           </div>
         </div>
         <WorkoutProgramForm
-          workoutProgramId={workoutProgram}
+          workoutProgramId={workoutProgramId}
           handleSelectChange={handleSelectChange}
         />
         <div className="row u-margin-top-medium">
