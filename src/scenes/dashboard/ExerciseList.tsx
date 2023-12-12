@@ -26,7 +26,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({ dailyWorkout }) => {
     fetchData,
   } = useAxios<Exercise[]>(
     [],
-    `/workout-program/exercise-list/${dailyWorkout.id}`,
+    `/workout_program/exercise-list/${dailyWorkout.id}`,
     `Exercise List`,
     true
   );

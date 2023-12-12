@@ -26,7 +26,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({}) => {
     fetchData,
   } = useAxios<Microcycle[]>(
     [],
-    `/workout-program/microcycle/${workoutProgramId}`,
+    `/workout_program/microcycle/${workoutProgramId}`,
     `Microcycles`,
     true
   );

@@ -25,7 +25,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
     fetchData,
   } = useAxios<DailyWorkout[]>(
     [],
-    `/workout-program/daily-workout/${activeMicrocycle}`,
+    `/workout_program/daily_workout/${activeMicrocycle}`,
     `Daily Workout`,
     true
   );
