@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
-import UserItem from "./UserItem";
-import "/src/assets/stylesheets/components/admin/_Users.scss";
+import WorkoutProgramItem from "./WorkoutProgramItem";
+import { WorkoutProgram } from "../dashboard/WorkoutProgram";
+import "/src/assets/stylesheets/components/_Table.scss";
 
 interface WorkoutProgramListProps {}
 
@@ -11,7 +11,12 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     data: workoutPrograms,
     loading,
     fetchData,
-  } = useAxios<User[]>([], `/admin/workout_programs`, `Users List`, true);
+  } = useAxios<WorkoutProgram[]>(
+    [],
+    `/admin/workout_programs`,
+    `Users List`,
+    true
+  );
 
   useEffect(() => {
     fetchData();
@@ -21,8 +26,10 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
+  console.log(workoutPrograms);
+
   return (
-    <table id="workout-program-table">
+    <table className="table">
       <thead>
         <tr>
           <th>Program Name</th>
@@ -30,8 +37,10 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => {
-          return <UserItem key={user.id} {...user} />;
+        {workoutPrograms.map((workoutProgram) => {
+          return (
+            <WorkoutProgramItem key={workoutProgram.id} {...workoutProgram} />
+          );
         })}
       </tbody>
     </table>

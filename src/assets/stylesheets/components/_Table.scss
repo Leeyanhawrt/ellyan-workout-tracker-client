@@ -1,7 +1,7 @@
 @import "/src/assets/stylesheets/abstracts/mixins";
 @import "/src/assets/stylesheets/abstracts/variables";
 
-#users-table {
+.table {
   @include dashboardComponent;
   margin: 5rem;
   font-size: 1.2rem;

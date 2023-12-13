@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import UserItem from "./UserItem";
-import "/src/assets/stylesheets/components/admin/_Users.scss";
+import "/src/assets/stylesheets/components/_Table.scss";
 
 interface UsersListProps {}
 
@@ -22,7 +22,7 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
   }
 
   return (
-    <table id="users-table">
+    <table className="table">
       <thead>
         <tr>
           <th>First Name</th>
