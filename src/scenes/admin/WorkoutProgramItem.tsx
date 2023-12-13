@@ -12,8 +12,8 @@ const WorkoutProgramItem: React.FC<WorkoutProgramItemProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const navigateUser = (userId: number) => {
-    navigate(`/admin/manage_users/${userId}`);
+  const navigateUser = (workoutProgramId: number) => {
+    navigate(`/admin/workout_programs/${workoutProgramId}`);
   };
 
   return (
