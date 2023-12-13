@@ -29,7 +29,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 5rem;
       padding: 1.5rem;
 
       .microcycle-icon {
@@ -49,6 +48,7 @@
       display: flex;
       justify-content: center;
       cursor: pointer;
+      padding-bottom: 1.5rem;
 
       :hover {
         color: $color-secondary-dark;
