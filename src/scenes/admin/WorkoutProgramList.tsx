@@ -26,8 +26,6 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  console.log(workoutPrograms);
-
   return (
     <table className="table">
       <thead>

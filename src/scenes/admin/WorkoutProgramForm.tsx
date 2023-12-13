@@ -1,22 +1,25 @@
 import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
-import WorkoutProgramItem from "./WorkoutProgramItem";
 import { WorkoutProgram } from "../dashboard/WorkoutProgram";
-import "/src/assets/stylesheets/components/_Table.scss";
+import { useParams } from "react-router";
 
 interface WorkoutProgramFormProps {}
 
 const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({}) => {
+  const { workoutProgramId } = useParams();
+
   const {
     data: workoutPrograms,
     loading,
     fetchData,
   } = useAxios<WorkoutProgram[]>(
     [],
-    `/admin/workout_programs`,
-    `Users List`,
+    `/admin/workout_programs/microcycle/${workoutProgramId}`,
+    `Microcylces`,
     true
   );
+
+  console.log(workoutPrograms);
 
   useEffect(() => {
     fetchData();
@@ -26,25 +29,7 @@ const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  console.log(workoutPrograms);
-
-  return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Program Name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {workoutPrograms.map((workoutProgram) => {
-          return (
-            <WorkoutProgramItem key={workoutProgram.id} {...workoutProgram} />
-          );
-        })}
-      </tbody>
-    </table>
-  );
+  return <></>;
 };
 
 export default WorkoutProgramForm;
