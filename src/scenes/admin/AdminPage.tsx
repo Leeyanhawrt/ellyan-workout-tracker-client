@@ -4,7 +4,7 @@ import UsersList from "./UsersList";
 import UserDetailForm from "./UserDetailForm";
 import "/src/assets/stylesheets/pages/_p_admin.scss";
 import WorkoutProgramList from "./WorkoutProgramList";
-import WorkoutProgramForm from "./WorkoutProgramForm";
+import WorkoutProgram from "../dashboard/WorkoutProgram";
 
 interface AdminPageProps {}
 
@@ -17,8 +17,8 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
         <Route path="manage_users/:userId" element={<UserDetailForm />} />
         <Route path="workout_programs" element={<WorkoutProgramList />} />
         <Route
-          path="workout_programs/:workoutProgramId"
-          element={<WorkoutProgramForm />}
+          path="workout_programs/:programId"
+          element={<WorkoutProgram edittable />}
         />
       </Routes>
     </div>
