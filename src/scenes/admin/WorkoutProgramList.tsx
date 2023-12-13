@@ -25,11 +25,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     <table id="workout-program-table">
       <thead>
         <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Gender</th>
-          <th>Workout Program</th>
+          <th>Program Name</th>
           <th></th>
         </tr>
       </thead>
