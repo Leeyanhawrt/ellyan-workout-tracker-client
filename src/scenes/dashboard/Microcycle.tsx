@@ -2,9 +2,14 @@ import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import { RiArrowRightSLine } from "react-icons/ri";
 import DailyWorkout from "./DailyWorkout";
 import { useState, useEffect } from "react";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { postData } from "../../utils/api";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
+  edittable?: boolean;
+  workoutProgramId?: number | string;
+  handleAdd: (newMicrocycle: Microcycle) => void;
 }
 
 interface Microcycle {
@@ -12,7 +17,12 @@ interface Microcycle {
   microcycleNumber: number;
 }
 
-const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
+const Microcycle: React.FC<MicrocycleProps> = ({
+  microcycles,
+  edittable,
+  workoutProgramId,
+  handleAdd,
+}) => {
   const [activeMicrocycle, setActiveMicrocycle] = useState<number>(0);
   const [resetCarousel, setResetCarousel] = useState<boolean>(false);
 
@@ -30,9 +40,18 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
     setResetCarousel(false);
   };
 
-  const updateMesocycle = (newMesocycle: number) => {
-    setActiveMicrocycle(newMesocycle);
+  const updateMicrocycle = (newMicrocycle: number) => {
+    setActiveMicrocycle(newMicrocycle);
     carouselReset();
+  };
+
+  const addMicrocycle = async () => {
+    const response = await postData(
+      `/admin/workout_programs/microcycle`,
+      { microcycleNumber: microcycles.length, workoutProgramId },
+      true
+    );
+    handleAdd(response?.data.microcycle);
   };
 
   return (
@@ -41,7 +60,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
         {microcycles.map((microcycle) => {
           return (
             <div
-              onClick={() => updateMesocycle(microcycle.id)}
+              onClick={() => updateMicrocycle(microcycle.id)}
               key={microcycle.id}
               className={`microcycle-week ${
                 microcycle.id === activeMicrocycle
@@ -54,6 +73,11 @@ const Microcycle: React.FC<MicrocycleProps> = ({ microcycles }) => {
             </div>
           );
         })}
+        {edittable && (
+          <div onClick={addMicrocycle} className="microcycle-add">
+            <IoIosAddCircleOutline />
+          </div>
+        )}
       </div>
       <div className="daily-workout-container">
         <DailyWorkout

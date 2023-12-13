@@ -42,6 +42,19 @@
       }
     }
 
+    .microcycle-add {
+      margin-top: 1.5rem;
+      font-size: 4rem;
+      color: white;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+
+      :hover {
+        color: $color-secondary-dark;
+      }
+    }
+
     .microcycle-week-active {
       background-color: $color-secondary-dark;
     }
