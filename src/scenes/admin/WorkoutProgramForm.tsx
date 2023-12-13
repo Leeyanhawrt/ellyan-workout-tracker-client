@@ -1,24 +1,20 @@
 import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
+import WorkoutProgramItem from "./WorkoutProgramItem";
 import { WorkoutProgram } from "../dashboard/WorkoutProgram";
+import "/src/assets/stylesheets/components/_Table.scss";
 
-type WorkoutProgramFormProps = {
-  workoutProgramId?: number | undefined;
-  handleSelectChange: (name: string, value: string) => void;
-};
+interface WorkoutProgramFormProps {}
 
-const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
-  workoutProgramId,
-  handleSelectChange,
-}) => {
+const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({}) => {
   const {
-    data: workoutProgramList,
+    data: workoutPrograms,
     loading,
     fetchData,
   } = useAxios<WorkoutProgram[]>(
     [],
-    `/admin/users/workout_programs`,
-    "Workout Program",
+    `/admin/workout_programs`,
+    `Users List`,
     true
   );
 
@@ -30,32 +26,25 @@ const WorkoutProgramForm: React.FC<WorkoutProgramFormProps> = ({
     return <div>Loading...</div>;
   }
 
+  console.log(workoutPrograms);
+
   return (
-    <>
-      <div className="row">
-        <div className="flex-item">
-          <label htmlFor="workout-program">WORKOUT PROGRAM</label>
-          <select
-            value={workoutProgramId || ""}
-            onChange={(e) =>
-              handleSelectChange("workoutProgramId", e.target.value)
-            }
-          >
-            <option hidden value="">
-              Select Workout Program
-            </option>
-            {workoutProgramList.map((workoutProgram) => {
-              return (
-                <option key={workoutProgram.id} value={workoutProgram.id}>
-                  {workoutProgram.name}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className="flex-item"></div>
-      </div>
-    </>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Program Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {workoutPrograms.map((workoutProgram) => {
+          return (
+            <WorkoutProgramItem key={workoutProgram.id} {...workoutProgram} />
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
+
 export default WorkoutProgramForm;

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
-import WorkoutProgramForm from "./WorkoutProgramForm";
+import UserWorkoutProgramForm from "./UserWorkoutProgramForm";
 import { postData } from "../../utils/api";
 
 type UserDetailFormProps = {};
@@ -125,7 +125,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
             />
           </div>
         </div>
-        <WorkoutProgramForm
+        <UserWorkoutProgramForm
           workoutProgramId={workoutProgramId}
           handleSelectChange={handleSelectChange}
         />
