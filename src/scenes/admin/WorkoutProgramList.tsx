@@ -8,7 +8,7 @@ interface WorkoutProgramListProps {}
 
 const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   const {
-    data: users,
+    data: workoutPrograms,
     loading,
     fetchData,
   } = useAxios<User[]>([], `/admin/workout_programs`, `Users List`, true);
