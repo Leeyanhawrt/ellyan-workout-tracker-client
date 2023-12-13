@@ -2,12 +2,17 @@ import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState, useEffect } from "react";
 import DailyWorkout from "../scenes/dashboard/DailyWorkout";
+import { IoIosAdd } from "react-icons/io";
+import { postData } from "../utils/api";
 
 interface CarouselProps<T> {
   items: T[];
   dailyWorkout?: boolean;
   resetCarousel?: boolean;
   revertCarouselReset?: () => void;
+  edittable?: boolean;
+  handleAdd: (newDailyWorkout: DailyWorkout) => void;
+  microcycleId: number;
 }
 
 const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
@@ -15,6 +20,9 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
   dailyWorkout,
   resetCarousel,
   revertCarouselReset,
+  edittable,
+  handleAdd,
+  microcycleId,
 }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -35,6 +43,15 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
     }
 
     setActiveIndex(newIndex);
+  };
+
+  const addDailyWorkout = async () => {
+    const response = await postData(
+      `/admin/workout_programs/daily_workout`,
+      { dayNumber: items.length, microcycleId },
+      true
+    );
+    handleAdd(response?.data.dailyWorkout);
   };
 
   return (
@@ -81,6 +98,16 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
               </button>
             );
           })}
+          {edittable && (
+            <button
+              onClick={addDailyWorkout}
+              className="carousel-item-add indicator-buttons"
+            >
+              <span>
+                <IoIosAdd />
+              </span>
+            </button>
+          )}
         </div>
         <button
           onClick={() => updateIndex(activeIndex + 1)}

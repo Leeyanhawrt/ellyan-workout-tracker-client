@@ -81,6 +81,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
       </div>
       <div className="daily-workout-container">
         <DailyWorkout
+          edittable={edittable}
           revertCarouselReset={revertReset}
           resetCarousel={resetCarousel}
           activeMicrocycle={activeMicrocycle}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "../../components/Carousel";
 import useAxios from "../../hooks/useAxios";
 
@@ -6,6 +6,7 @@ interface DailyWorkoutProps {
   activeMicrocycle: number;
   resetCarousel: boolean;
   revertCarouselReset: () => void;
+  edittable?: boolean;
 }
 
 interface DailyWorkout {
@@ -18,23 +19,30 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
   activeMicrocycle,
   resetCarousel,
   revertCarouselReset,
+  edittable,
 }) => {
-  const {
-    data: dailyWorkout,
-    loading,
-    fetchData,
-  } = useAxios<DailyWorkout[]>(
+  const [dailyWorkoutList, setDailyWorkoutList] = useState<DailyWorkout[]>([]);
+
+  const { data, loading, fetchData } = useAxios<DailyWorkout[]>(
     [],
     `/workout_program/daily_workout/${activeMicrocycle}`,
     `Daily Workout`,
     true
   );
 
+  const appendDailyWorkout = (newDailyWorkout: DailyWorkout) => {
+    setDailyWorkoutList([...dailyWorkoutList, newDailyWorkout]);
+  };
+
   useEffect(() => {
     fetchData();
   }, [activeMicrocycle]);
 
-  if (dailyWorkout.length === 0 || loading) {
+  useEffect(() => {
+    setDailyWorkoutList(data);
+  }, [data]);
+
+  if (dailyWorkoutList.length === 0 || loading) {
     return <div>Loading...</div>;
   }
 
@@ -43,8 +51,11 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
       <Carousel
         revertCarouselReset={revertCarouselReset}
         resetCarousel={resetCarousel}
-        items={dailyWorkout}
+        items={dailyWorkoutList}
         dailyWorkout
+        edittable={edittable}
+        handleAdd={appendDailyWorkout}
+        microcycleId={activeMicrocycle}
       />
     </>
   );

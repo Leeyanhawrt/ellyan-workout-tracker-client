@@ -30,6 +30,16 @@
         font-size: 2rem;
       }
     }
+
+    .carousel-item-add {
+      font-size: 4rem;
+      color: $color-secondary-dark;
+      margin-top: 0.8rem;
+
+      :hover {
+        color: $color-black;
+      }
+    }
   }
 
   .button-arrow {
