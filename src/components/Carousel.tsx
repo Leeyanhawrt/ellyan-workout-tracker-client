@@ -66,6 +66,7 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
               key={item.id}
               item={item}
               dailyWorkout={dailyWorkout}
+              edittable={edittable}
             />
           );
         })}

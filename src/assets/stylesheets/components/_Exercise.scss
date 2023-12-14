@@ -18,6 +18,8 @@
       padding: 1rem 2rem;
       border-radius: 1rem;
       box-shadow: 0 0.1rem 0.3rem 0 $color-grey;
+      height: 8.5rem;
+      width: 30.5rem;
 
       @include respond(small-phone) {
         margin: 1.5rem 0;
@@ -30,6 +32,71 @@
 
       h5 {
         letter-spacing: 0.1rem;
+      }
+    }
+
+    &-add {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-grey;
+      color: white;
+      font-size: 5.8rem;
+      cursor: pointer;
+    }
+
+    &-form {
+      height: 15rem;
+      background-color: $color-grey;
+      display: flex;
+      flex-direction: column;
+
+      .form-cancel {
+        align-self: flex-end;
+        font-size: 5rem;
+        color: $color-grey-dark;
+        :hover {
+          color: $color-dashboard-white;
+        }
+      }
+
+      input,
+      select {
+        font-family: "proxima-nova-extrabold", sans-serif;
+        font-weight: 900;
+        color: $color-grey-dark;
+        font-size: 1.5rem;
+        padding: 1rem 0;
+        text-align: center;
+
+        &::placeholder {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
+
+      .exercise-name {
+        margin-top: 0.5rem;
+
+        input {
+          width: 100%;
+        }
+      }
+
+      .exercise-scheme,
+      .exercise-load {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        input,
+        select {
+          width: 50%;
+        }
+      }
+
+      input,
+      select {
+        height: 2.5rem;
       }
     }
 
