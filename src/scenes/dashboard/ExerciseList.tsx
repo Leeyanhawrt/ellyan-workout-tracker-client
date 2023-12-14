@@ -71,7 +71,12 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
       ) : (
         ""
       )}
-      {showEdit && <ExerciseForm handleClose={closeShowEdit} />}
+      {showEdit && (
+        <ExerciseForm
+          dailyWorkoutId={dailyWorkout.id}
+          handleClose={closeShowEdit}
+        />
+      )}
     </div>
   );
 };
