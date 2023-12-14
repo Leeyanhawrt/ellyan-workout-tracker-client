@@ -23,7 +23,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
 }) => {
   const [dailyWorkoutList, setDailyWorkoutList] = useState<DailyWorkout[]>([]);
 
-  const { data, loading, error, fetchData } = useAxios<DailyWorkout[]>(
+  const { data, loading, fetchData } = useAxios<DailyWorkout[]>(
     [],
     `/workout_program/daily_workout/${activeMicrocycle}`,
     `Daily Workout`,
@@ -36,23 +36,15 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
 
   useEffect(() => {
     fetchData();
-    console.log("Fetching Data");
   }, [activeMicrocycle]);
 
   useEffect(() => {
-    console.log("Setting Data");
     setDailyWorkoutList(data);
   }, [data]);
-
-  if (error) {
-    console.log(error);
-  }
 
   if (loading || !data.length) {
     return <div>Loading...</div>;
   }
-
-  console.log("Data Changed");
 
   return (
     <>

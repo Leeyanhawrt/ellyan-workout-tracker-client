@@ -28,8 +28,12 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
 }) => {
   const [showEdit, setShowEdit] = useState<boolean>(false);
 
-  const handleShowEdit = () => {
+  const openShowEdit = () => {
     setShowEdit(true);
+  };
+
+  const closeShowEdit = () => {
+    setShowEdit(false);
   };
 
   const {
@@ -59,7 +63,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
       })}
       {edittable && !showEdit ? (
         <div
-          onClick={handleShowEdit}
+          onClick={openShowEdit}
           className="exercise-item-container exercise-item-add"
         >
           <IoIosAddCircleOutline />
@@ -69,7 +73,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
       )}
       {showEdit && (
         <div className="exercise-item-container exercise-item-form">
-          <MdCancel className="form-cancel" />
+          <MdCancel onClick={closeShowEdit} className="form-cancel" />
           <form>
             <div className="exercise-name">
               <input
