@@ -12,7 +12,7 @@ interface ExerciseListProps {
   edittable?: boolean;
 }
 
-interface Exercise {
+export type Exercise = {
   id: number;
   name: string;
   numberSets: number;
@@ -20,13 +20,14 @@ interface Exercise {
   rpe: number;
   percentage: number;
   type: string;
-}
+};
 
 const ExerciseList: React.FC<ExerciseListProps> = ({
   dailyWorkout,
   edittable,
 }) => {
   const [showEdit, setShowEdit] = useState<boolean>(false);
+  const [exerciseList, setExerciseList] = useState<Exercise[]>([]);
 
   const openShowEdit = () => {
     setShowEdit(true);
@@ -36,11 +37,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setShowEdit(false);
   };
 
-  const {
-    data: exerciseList,
-    loading,
-    fetchData,
-  } = useAxios<Exercise[]>(
+  const { data, loading, fetchData } = useAxios<Exercise[]>(
     [],
     `/workout_program/exercise_list/${dailyWorkout.id}`,
     `Exercise List`,
@@ -50,6 +47,14 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setExerciseList(data);
+  }, [data]);
+
+  const appendExercise = (newExercise: Exercise) => {
+    setExerciseList([...exerciseList, newExercise]);
+  };
 
   if (loading) {
     return <Skeleton times={6} boxHeight="6.4rem" boxWidth="20.4rem" />;
@@ -73,6 +78,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
       )}
       {showEdit && (
         <ExerciseForm
+          handleAdd={appendExercise}
           dailyWorkoutId={dailyWorkout.id}
           handleClose={closeShowEdit}
         />

@@ -2,6 +2,8 @@ import "/src/assets/stylesheets/components/_Exercise.scss";
 import { MdCancel } from "react-icons/md";
 import { ChangeEvent, useState } from "react";
 import { postData } from "../../utils/api";
+import { MdCheckCircle } from "react-icons/md";
+import { Exercise } from "../dashboard/ExerciseList";
 
 type ExerciseForm = {
   exerciseName: string;
@@ -16,11 +18,13 @@ type ExerciseForm = {
 interface ExerciseFormProps {
   handleClose: () => void;
   dailyWorkoutId: number;
+  handleAdd: (newExercise: Exercise) => void;
 }
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
   handleClose,
   dailyWorkoutId,
+  handleAdd,
 }) => {
   const [inputs, setInputs] = useState<ExerciseForm>({
     exerciseName: "",
@@ -49,15 +53,26 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    postData(`/admin/workout_programs/exercise`, { ...inputs }, true);
-  };
+    const response = await postData(
+      `/admin/workout_programs/exercise`,
+      { ...inputs },
+      true
+    );
 
-  console.log(rpe);
+    if (response?.status === 201) {
+      handleAdd(response?.data?.dailyWorkout);
+    }
+
+    handleClose();
+  };
 
   return (
     <div className="exercise-item-container exercise-item-form">
-      <MdCancel onClick={handleClose} className="form-cancel" />
-      <form onSubmit={handleSubmit}>
+      <div className="icon-container">
+        <MdCheckCircle className="form-icon" onClick={handleSubmit} />
+        <MdCancel onClick={handleClose} className="form-icon" />
+      </div>
+      <form>
         <div className="exercise-name">
           <input
             type="text"
@@ -76,6 +91,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             placeholder="# Sets"
             value={sets}
             onChange={handleChange}
+            min="0"
           />
           <input
             type="number"
@@ -84,6 +100,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             placeholder="# Reps"
             value={reps}
             onChange={handleChange}
+            min="0"
           />
         </div>
         <div className="exercise-load">
@@ -95,6 +112,8 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             value={rpe}
             onChange={handleChange}
             disabled={percentage !== ""}
+            min="0"
+            max="10"
           />
           <input
             type="number"
@@ -103,7 +122,9 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             placeholder="%"
             value={percentage}
             onChange={handleChange}
+            min="0"
             disabled={rpe !== ""}
+            max="100"
           />
         </div>
       </form>

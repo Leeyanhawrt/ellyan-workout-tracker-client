@@ -46,18 +46,21 @@
     }
 
     &-form {
-      height: 15rem;
+      height: 100%;
       background-color: $color-grey;
       display: flex;
       flex-direction: column;
 
-      .form-cancel {
-        align-self: flex-end;
-        font-size: 5rem;
-        color: $color-grey-dark;
-        cursor: pointer;
-        :hover {
-          color: $color-dashboard-white;
+      .icon-container {
+        display: flex;
+        justify-content: flex-end;
+        .form-icon {
+          font-size: 3rem;
+          color: $color-grey-dark;
+          cursor: pointer;
+          :hover {
+            color: $color-dashboard-white;
+          }
         }
       }
 
