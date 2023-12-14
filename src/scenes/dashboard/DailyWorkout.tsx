@@ -42,7 +42,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
     setDailyWorkoutList(data);
   }, [data]);
 
-  if (loading) {
+  if (loading || !data.length) {
     return <div>Loading...</div>;
   }
 
