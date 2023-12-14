@@ -1,17 +1,20 @@
 import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import MobileMenuItem from "./MobileMenuItem";
+import { useState, useEffect } from "react";
 import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
 
 interface MobileMenuProps {}
 
 const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
-  const user = useUser();
+  const MENU_TYPES = {
+    DASHBOARD: 1,
+    ADMIN: 2,
+  };
+
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
-
-  const isAdmin = user?.roles?.includes("admin");
+  const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -19,38 +22,57 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
     window.location.reload();
   };
 
-  let menuItems = [
+  let dashboardItems = [
     { to: `/dashboard/workout_program`, resource: `Workout Program` },
     { to: `/dashboard/edit_record`, resource: `Personal Record` },
     { to: `/dashboard/preferences`, resource: `Profile` },
   ];
 
   const adminItems = [
-    { to: `/admin/workout_programs`, resource: `Admin Workout Programs` },
-    { to: `/admin/manage_users`, resource: `Admin Manage Users` },
+    { to: `/admin/workout_programs`, resource: `Manage Workout Programs` },
+    { to: `/admin/manage_users`, resource: `Manage Users` },
   ];
-
-  if (isAdmin) {
-    menuItems = menuItems.concat(adminItems);
-  }
 
   return (
     <ul id="mobile-menu">
-      {menuItems.map((item) => {
-        return <MobileMenuItem key={item.resource} {...item} />;
-      })}
+      <ul
+        className={`dashboard-list ${
+          activeMenu === MENU_TYPES.DASHBOARD ? "active" : ""
+        }`}
+        onClick={() => setActiveMenu(1)}
+      >
+        <p>Dashboard</p>
+        <div className="menu-list">
+          {dashboardItems.map((item) => {
+            return <MobileMenuItem key={item.resource} {...item} />;
+          })}
+        </div>
+      </ul>
+      <ul
+        className={`admin-list ${
+          activeMenu === MENU_TYPES.ADMIN ? "active" : ""
+        }`}
+        onClick={() => setActiveMenu(2)}
+      >
+        <p>Admin</p>
+        <div className="menu-list">
+          {adminItems.map((item) => {
+            return <MobileMenuItem key={item.resource} {...item} />;
+          })}
+        </div>
+      </ul>
       {authStatus ? (
         <>
-          <div className="mobile-menu-item">
+          <div className="mobile-menu-static">
             <Link to="/" onClick={handleLogout}>
-              <li className="mobile-menu-item">Logout</li>
+              <li>Logout</li>
             </Link>
           </div>
         </>
       ) : (
-        <div className="mobile-menu-item">
+        <div className="mobile-menu-static">
           <Link to={`/login`}>
-            <li className="mobile-menu-item">Login</li>
+            <li>Login</li>
           </Link>
         </div>
       )}

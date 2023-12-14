@@ -85,8 +85,8 @@ const Nav: React.FC<NavProps> = ({}) => {
           </Button>
         )}
       </div>
-      <div id="mobile-nav" onClick={toggleMobileMenu}>
-        <IoIosMenu className="menu-button" />
+      <div id="mobile-nav">
+        <IoIosMenu onClick={toggleMobileMenu} className="menu-button" />
         {showMobileModal && <MobileMenu />}
       </div>
     </nav>

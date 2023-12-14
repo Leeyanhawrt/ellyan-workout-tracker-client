@@ -1,26 +1,74 @@
 @import "../abstracts/variables";
 
-#mobile-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  border-bottom: 1px solid $color-nav-border;
+#mobile-nav {
+  #mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-bottom: 1px solid $color-nav-border;
 
-  .mobile-menu-item {
-    li {
+    ul {
       width: 100vw;
-      list-style: none;
-      padding: 2rem;
       border-top: 1px solid $color-nav-border;
       z-index: 99;
       background-color: $color-white;
+      cursor: pointer;
+
+      p {
+        padding: 2rem;
+        font-family: "proxima nova", sans-serif;
+        color: $color-grey;
+        font-size: 1.6rem;
+      }
+
+      .menu-list {
+        height: 0;
+        opacity: 0;
+      }
     }
 
-    a {
-      text-decoration: none;
-      color: $color-grey;
-      font-family: "proxima nova", sans-serif;
-      font-size: 1.6rem;
+    ul.active {
+      .menu-list {
+        height: auto;
+        opacity: 1;
+      }
+    }
+
+    .mobile-menu-item,
+    .mobile-menu-static {
+      li {
+        width: 100vw;
+        list-style: none;
+        padding: 2rem;
+        border-top: 1px solid $color-nav-border;
+        z-index: 99;
+        background-color: $color-white;
+      }
+
+      a {
+        text-decoration: none;
+        color: $color-grey;
+        font-family: "proxima nova", sans-serif;
+        font-size: 1.6rem;
+      }
+    }
+
+    .mobile-menu-item {
+      li {
+        color: white;
+      }
+    }
+
+    .dashboard-list {
+      li {
+        background-color: $color-secondary;
+      }
+    }
+
+    .admin-list {
+      li {
+        background-color: $color-tertiary;
+      }
     }
   }
 }
