@@ -5,7 +5,7 @@ import "/src/assets/stylesheets/components/_Exercise.scss";
 import Skeleton from "../../components/Skeleton";
 import useAxios from "../../hooks/useAxios";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { MdCancel } from "react-icons/md";
+import ExerciseForm from "../admin/ExerciseForm";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -71,49 +71,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
       ) : (
         ""
       )}
-      {showEdit && (
-        <div className="exercise-item-container exercise-item-form">
-          <MdCancel onClick={closeShowEdit} className="form-cancel" />
-          <form>
-            <div className="exercise-name">
-              <input
-                type="text"
-                name="exerciseName"
-                id="exerciseName"
-                placeholder="Exercise Name"
-              />
-            </div>
-            <div className="exercise-scheme">
-              <input
-                type="number"
-                name="numberSets"
-                id="numberSets"
-                placeholder="# Sets"
-              />
-              <input
-                type="number"
-                name="numberReps"
-                id="numberReps"
-                placeholder="# Reps"
-              />
-            </div>
-            <div className="exercise-load">
-              <input
-                type="number"
-                name="perceivedExhaustion"
-                id="perceivedExhaustion"
-                placeholder="@ RPE"
-              />
-              <input
-                type="number"
-                name="percentage"
-                id="percentage"
-                placeholder="%"
-              />
-            </div>
-          </form>
-        </div>
-      )}
+      {showEdit && <ExerciseForm handleClose={closeShowEdit} />}
     </div>
   );
 };
