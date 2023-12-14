@@ -1,8 +1,9 @@
 import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import MobileMenuItem from "./MobileMenuItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
 
 interface MobileMenuProps {}
 
@@ -12,9 +13,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
     ADMIN: 2,
   };
 
+  const user = useUser();
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
+  const isAdmin = user?.roles?.includes("admin");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -48,19 +51,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
           })}
         </div>
       </ul>
-      <ul
-        className={`admin-list ${
-          activeMenu === MENU_TYPES.ADMIN ? "active" : ""
-        }`}
-        onClick={() => setActiveMenu(2)}
-      >
-        <p>Admin</p>
-        <div className="menu-list">
-          {adminItems.map((item) => {
-            return <MobileMenuItem key={item.resource} {...item} />;
-          })}
-        </div>
-      </ul>
+      {isAdmin && (
+        <ul
+          className={`admin-list ${
+            activeMenu === MENU_TYPES.ADMIN ? "active" : ""
+          }`}
+          onClick={() => setActiveMenu(2)}
+        >
+          <p>Admin</p>
+          <div className="menu-list">
+            {adminItems.map((item) => {
+              return <MobileMenuItem key={item.resource} {...item} />;
+            })}
+          </div>
+        </ul>
+      )}
       {authStatus ? (
         <>
           <div className="mobile-menu-static">
