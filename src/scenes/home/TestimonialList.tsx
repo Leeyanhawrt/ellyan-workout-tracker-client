@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import TestimonialItem from "./TestimonialItem";
 import "/src/assets/stylesheets/components/_Testimonial.scss";
 import useAxios from "../../hooks/useAxios";
