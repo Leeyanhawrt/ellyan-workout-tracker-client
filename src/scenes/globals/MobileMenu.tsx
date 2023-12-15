@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
+import { useModal } from "../../contexts/ModalContext";
 
 interface MobileMenuProps {}
 
@@ -16,11 +17,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   const user = useUser();
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
+  const { setMobileModal } = useModal();
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
   const isAdmin = user?.roles?.includes("admin");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setMobileModal(false);
     setAuth(false);
     window.location.reload();
   };
@@ -38,19 +41,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
 
   return (
     <ul id="mobile-menu">
-      <ul
-        className={`dashboard-list ${
-          activeMenu === MENU_TYPES.DASHBOARD ? "active" : ""
-        }`}
-        onClick={() => setActiveMenu(1)}
-      >
-        <p>Dashboard</p>
-        <div className="menu-list">
-          {dashboardItems.map((item) => {
-            return <MobileMenuItem key={item.resource} {...item} />;
-          })}
-        </div>
-      </ul>
+      {authStatus && (
+        <ul
+          className={`dashboard-list ${
+            activeMenu === MENU_TYPES.DASHBOARD ? "active" : ""
+          }`}
+          onClick={() => setActiveMenu(1)}
+        >
+          <p>Dashboard</p>
+          <div className="menu-list">
+            {dashboardItems.map((item) => {
+              return <MobileMenuItem key={item.resource} {...item} />;
+            })}
+          </div>
+        </ul>
+      )}
       {isAdmin && (
         <ul
           className={`admin-list ${
@@ -76,7 +81,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
         </>
       ) : (
         <div className="mobile-menu-static">
-          <Link to={`/login`}>
+          <Link to={`/login`} onClick={() => setMobileModal(false)}>
             <li>Login</li>
           </Link>
         </div>
