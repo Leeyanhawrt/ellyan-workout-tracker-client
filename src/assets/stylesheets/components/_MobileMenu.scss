@@ -22,15 +22,13 @@
       }
 
       .menu-list {
-        height: 0;
-        opacity: 0;
+        display: none;
       }
     }
 
     ul.active {
       .menu-list {
-        height: auto;
-        opacity: 1;
+        display: block;
       }
     }
 
