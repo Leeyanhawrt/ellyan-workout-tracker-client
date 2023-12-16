@@ -59,7 +59,7 @@ const App = () => {
                 !isAuthenticated ? (
                   <AdminLogin />
                 ) : user?.roles?.some((role) => role === "admin") ? (
-                  <Navigate to="/admin" replace />
+                  <Navigate to="/admin/manage_users" replace />
                 ) : (
                   <Unauthorized />
                 )
