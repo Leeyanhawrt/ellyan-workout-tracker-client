@@ -1,5 +1,6 @@
 import { useUserMaxes } from "../../contexts/UserMaxesContext";
 import { calculateWeight } from "../../utils/calculateLifts";
+import { FaRegTrashCan } from "react-icons/fa6";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
@@ -52,6 +53,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise, edittable }) => {
     <div className={classes}>
       <h5>{exercise.name}</h5>
       <p>{exerciseScheme}</p>
+      {edittable && <FaRegTrashCan className="exercise-item-delete" />}
     </div>
   );
 };

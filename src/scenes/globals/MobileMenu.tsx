@@ -20,7 +20,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   const { setMobileModal } = useModal();
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
   const isAdmin = user?.roles?.includes("admin");
-  console.log(user);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
