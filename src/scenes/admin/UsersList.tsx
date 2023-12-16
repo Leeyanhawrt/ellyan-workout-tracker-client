@@ -22,7 +22,7 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
   }
 
   return (
-    <table className="table">
+    <table className="table table-oversized">
       <thead>
         <tr>
           <th>First Name</th>

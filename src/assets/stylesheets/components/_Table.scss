@@ -9,6 +9,14 @@
   font-family: "proxima-nova" sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
+  @include respond(tablet-landscape) {
+    width: 90rem;
+  }
+
+  @include respond(phone) {
+    margin: 5rem 1rem;
+  }
+
   td::first-letter {
     text-transform: capitalize;
   }
@@ -57,5 +65,14 @@
   svg {
     font-size: 2rem;
     cursor: pointer;
+  }
+}
+
+.table-oversized {
+  @include respond(small-phone) {
+    display: block;
+    margin: 5rem 1rem;
+    padding: 0;
+    overflow-x: auto;
   }
 }
