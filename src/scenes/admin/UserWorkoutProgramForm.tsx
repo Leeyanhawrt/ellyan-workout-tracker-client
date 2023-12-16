@@ -33,7 +33,7 @@ const UserWorkoutProgramForm: React.FC<UserWorkoutProgramFormProps> = ({
   return (
     <>
       <div className="row">
-        <div className="flex-item">
+        <div className="flex-item single">
           <label htmlFor="workout-program">WORKOUT PROGRAM</label>
           <select
             value={workoutProgramId || ""}
@@ -53,7 +53,6 @@ const UserWorkoutProgramForm: React.FC<UserWorkoutProgramFormProps> = ({
             })}
           </select>
         </div>
-        <div className="flex-item"></div>
       </div>
     </>
   );

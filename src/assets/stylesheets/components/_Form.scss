@@ -29,6 +29,10 @@
     text-align: center;
   }
 
+  .row:last-of-type {
+    margin-top: 2rem;
+  }
+
   .row {
     display: flex;
     justify-content: center;
@@ -69,6 +73,10 @@
           border: 2px solid $color-disabled-border;
         }
       }
+    }
+
+    .flex-item.single {
+      margin-left: 0;
     }
 
     .grouping {

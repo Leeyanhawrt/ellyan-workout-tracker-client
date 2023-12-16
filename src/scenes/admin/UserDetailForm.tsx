@@ -129,7 +129,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
           workoutProgramId={workoutProgramId}
           handleSelectChange={handleSelectChange}
         />
-        <div className="row u-margin-top-medium">
+        <div className="row">
           <Button size={"large"} primary>
             Save Changes
           </Button>

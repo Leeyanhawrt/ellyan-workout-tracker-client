@@ -140,7 +140,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
             />
           </div>
         </div>
-        <div className="row u-margin-top-medium">
+        <div className="row">
           <Button size={"large"} primary>
             Save Changes
           </Button>
