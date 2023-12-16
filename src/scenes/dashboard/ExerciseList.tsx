@@ -56,6 +56,13 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setExerciseList([...exerciseList, newExercise]);
   };
 
+  const removeExercise = (exerciseIndex: number) => {
+    const updatedExercises = exerciseList.filter((exercise) => {
+      return exercise.id !== exerciseIndex;
+    });
+    setExerciseList(updatedExercises);
+  };
+
   if (loading) {
     return <Skeleton times={6} boxHeight="6.4rem" boxWidth="20.4rem" />;
   }
@@ -69,6 +76,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
             key={exercise.id}
             exercise={exercise}
             edittable={edittable}
+            removeExercise={removeExercise}
           />
         );
       })}

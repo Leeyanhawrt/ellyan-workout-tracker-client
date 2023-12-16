@@ -4,10 +4,12 @@ import { FaRegTrashCan } from "react-icons/fa6";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
+import { deleteData } from "../../utils/api";
 
 interface ExerciseItemProps {
   exercise: Exercise;
   edittable?: boolean;
+  removeExercise: (exerciseIndex: number) => void;
 }
 
 interface Exercise {
@@ -20,12 +22,27 @@ interface Exercise {
   type: string;
 }
 
-const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise, edittable }) => {
+const ExerciseItem: React.FC<ExerciseItemProps> = ({
+  exercise,
+  edittable,
+  removeExercise,
+}) => {
   const userMaxes = useUserMaxes();
 
   if (!userMaxes) {
     return <div>Loading...</div>;
   }
+
+  const handleDelete = async () => {
+    const response = await deleteData(
+      `/admin/workout_programs/exercise/${exercise.id}`,
+      true
+    );
+
+    if (response?.status === 200) {
+      removeExercise(exercise.id);
+    }
+  };
 
   const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
 
@@ -53,7 +70,12 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise, edittable }) => {
     <div className={classes}>
       <h5>{exercise.name}</h5>
       <p>{exerciseScheme}</p>
-      {edittable && <FaRegTrashCan className="exercise-item-delete" />}
+      {edittable && (
+        <FaRegTrashCan
+          onClick={handleDelete}
+          className="exercise-item-delete"
+        />
+      )}
     </div>
   );
 };
