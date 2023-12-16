@@ -6,6 +6,7 @@ import classNames from "classnames";
 
 interface ExerciseItemProps {
   exercise: Exercise;
+  edittable?: boolean;
 }
 
 interface Exercise {
@@ -18,7 +19,7 @@ interface Exercise {
   type: string;
 }
 
-const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
+const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise, edittable }) => {
   const userMaxes = useUserMaxes();
 
   if (!userMaxes) {
@@ -33,12 +34,13 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({ exercise }) => {
     ? calculateWeight(exerciseName, percentage, userMaxes)
     : undefined;
 
-  const repsAndRpe = rpe ? `@ ${rpe} RPE` : "";
+  const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
   const calculatedWeightText = calculatedWeight
     ? `${calculatedWeight}lbs x `
     : "";
+  const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
 
-  const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpe}`;
+  const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpeText} ${percentageText}`;
 
   const classes = classNames("exercise-item-container", {
     "exercise-item-main": type === "main",

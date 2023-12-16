@@ -64,7 +64,13 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     <div id="exercise-list-container">
       <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
       {exerciseList.map((exercise) => {
-        return <ExerciseItem key={exercise.id} exercise={exercise} />;
+        return (
+          <ExerciseItem
+            key={exercise.id}
+            exercise={exercise}
+            edittable={edittable}
+          />
+        );
       })}
       {edittable && !showEdit ? (
         <div
