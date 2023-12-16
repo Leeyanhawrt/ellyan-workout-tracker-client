@@ -46,7 +46,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
 
   const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
 
-  const exerciseName = name.toLowerCase().replace(/ /g, "");
+  const exerciseName = name?.toLowerCase().replace(/ /g, "");
 
   const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
     ? calculateWeight(exerciseName, percentage, userMaxes)
