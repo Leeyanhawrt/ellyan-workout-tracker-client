@@ -22,7 +22,7 @@ export type Exercise = {
   type: string;
 };
 
-type GroupedExercises = {
+export type GroupedExercises = {
   [exerciseName: string]: Exercise[];
 };
 
@@ -93,7 +93,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
         return (
           <ExerciseItem
             key={exercise.id}
-            exercise={exercise}
+            exercise={groupedExercises}
             edittable={edittable}
             removeExercise={removeExercise}
           />

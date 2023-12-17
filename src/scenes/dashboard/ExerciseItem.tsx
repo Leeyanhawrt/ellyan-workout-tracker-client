@@ -5,9 +5,10 @@ const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
 import { deleteData } from "../../utils/api";
+import { GroupedExercises } from "./ExerciseList";
 
 interface ExerciseItemProps {
-  exercise: Exercise;
+  exercise: GroupedExercises;
   edittable?: boolean;
   removeExercise: (exerciseIndex: number) => void;
 }
