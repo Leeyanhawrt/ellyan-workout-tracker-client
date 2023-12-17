@@ -22,6 +22,10 @@ export type Exercise = {
   type: string;
 };
 
+type GroupedExercises = {
+  [exerciseName: string]: Exercise[];
+};
+
 const ExerciseList: React.FC<ExerciseListProps> = ({
   dailyWorkout,
   edittable,
@@ -51,6 +55,21 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
   useEffect(() => {
     setExerciseList(data);
   }, [data]);
+
+  const groupedExercises: GroupedExercises = exerciseList.reduce(
+    (result, exercise) => {
+      const exerciseName = exercise.name;
+
+      if (!result[exerciseName]) {
+        result[exerciseName] = [];
+      }
+
+      result[exerciseName].push(exercise);
+
+      return result;
+    },
+    {} as GroupedExercises
+  );
 
   const appendExercise = (newExercise: Exercise) => {
     setExerciseList([...exerciseList, newExercise]);
