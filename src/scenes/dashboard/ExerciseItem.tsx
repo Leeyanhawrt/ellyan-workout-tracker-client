@@ -53,7 +53,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   return (
     <>
       <div className={classes}>
-        {exerciseList.map((exercise) => {
+        {exerciseList.map((exercise, index) => {
           const { name, percentage, numberReps, numberSets, rpe, type } =
             exercise;
 
@@ -74,14 +74,16 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
 
           return (
             <div key={exercise.id}>
-              <h5>{exercise.name}</h5>
-              <p>{exerciseScheme}</p>
-              {edittable && (
-                <FaRegTrashCan
-                  onClick={() => handleDelete(exercise.id)}
-                  className="exercise-item-delete"
-                />
-              )}
+              {index === 0 && <h5>{exercise.name}</h5>}
+              <div className="exercise-description">
+                <p>{exerciseScheme} </p>
+                {edittable && (
+                  <FaRegTrashCan
+                    onClick={() => handleDelete(exercise.id)}
+                    className="exercise-item-delete"
+                  />
+                )}
+              </div>
             </div>
           );
         })}
