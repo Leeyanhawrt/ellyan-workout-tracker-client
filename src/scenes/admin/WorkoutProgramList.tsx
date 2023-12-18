@@ -83,8 +83,11 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
         <tr>
           <th>Program Name</th>
           {!showAddProgram ? (
-            <th onClick={toggleAddProgram} className="add-program-container">
-              <RiPlayListAddFill className="add-program" />
+            <th className="add-program-container">
+              <RiPlayListAddFill
+                onClick={toggleAddProgram}
+                className="add-program"
+              />
             </th>
           ) : (
             <th className="add-program-container">

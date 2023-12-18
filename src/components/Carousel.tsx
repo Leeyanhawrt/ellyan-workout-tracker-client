@@ -99,7 +99,7 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
               </button>
             );
           })}
-          {edittable && (
+          {edittable && microcycleId ? (
             <button
               onClick={addDailyWorkout}
               className="carousel-item-add indicator-buttons"
@@ -108,6 +108,8 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
                 <IoIosAdd />
               </span>
             </button>
+          ) : (
+            ""
           )}
         </div>
         <button
