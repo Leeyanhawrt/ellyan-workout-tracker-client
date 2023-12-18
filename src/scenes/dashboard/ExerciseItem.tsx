@@ -44,22 +44,6 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     }
   };
 
-  // const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
-
-  // const exerciseName = name?.toLowerCase().replace(/ /g, "");
-
-  // const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
-  //   ? calculateWeight(exerciseName, percentage, userMaxes)
-  //   : undefined;
-
-  // const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
-  // const calculatedWeightText = calculatedWeight
-  //   ? `${calculatedWeight}lbs x `
-  //   : "";
-  // const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
-
-  // const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpeText} ${percentageText}`;
-
   const classes = classNames("exercise-item-container", {
     // "exercise-item-main": type === "main",
     // "exercise-item-accessory": type === "accessory",
@@ -70,22 +54,40 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     <>
       <div className={classes}>
         {exerciseList.map((exercise) => {
-          return <h5>{exercise.name}</h5>;
+          const { name, percentage, numberReps, numberSets, rpe, type } =
+            exercise;
+
+          const exerciseName = name?.toLowerCase().replace(/ /g, "");
+
+          const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
+            ? calculateWeight(exerciseName, percentage, userMaxes)
+            : undefined;
+
+          const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
+          const calculatedWeightText = calculatedWeight
+            ? `${calculatedWeight}lbs x `
+            : "";
+          const percentageText =
+            edittable && percentage ? `@ ${percentage}%` : "";
+
+          const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpeText} ${percentageText}`;
+
+          return (
+            <div key={exercise.id}>
+              <h5>{exercise.name}</h5>
+              <p>{exerciseScheme}</p>
+              {edittable && (
+                <FaRegTrashCan
+                  onClick={() => handleDelete(exercise.id)}
+                  className="exercise-item-delete"
+                />
+              )}
+            </div>
+          );
         })}
       </div>
-      ;
     </>
   );
-  // <div className={classes}>
-  // <h5>{exercise.name}</h5>
-  // <p>{exerciseScheme}</p>
-  //   {edittable && (
-  //     <FaRegTrashCan
-  //       onClick={handleDelete}
-  //       className="exercise-item-delete"
-  //     />
-  //   )}
-  // </div>
 };
 
 export default ExerciseItem;
