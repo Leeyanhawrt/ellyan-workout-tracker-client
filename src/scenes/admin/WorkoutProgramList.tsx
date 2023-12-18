@@ -55,15 +55,19 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    if (inputs.programName?.length === 0) {
+      toast.error("Please Provide Program Name");
+      return;
+    }
+
     const response = await postData(
-      `/admin/workout_programs/`,
+      `/admin/workout_programs`,
       { ...inputs },
       true
     );
 
     if (response?.status === 201) {
-      appendProgram(response?.data?.dailyWorkout);
-      toast.success("Successfully Added New Program");
+      appendProgram(response?.data?.workoutProgram);
     }
 
     setShowAddProgram(false);
@@ -91,7 +95,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
                   name="programName"
                   id="programName"
                   placeholder="Program Name"
-                  value={programName}
+                  value={programName || ""}
                 />
                 <IoIosCheckmarkCircleOutline
                   className="add-program"
