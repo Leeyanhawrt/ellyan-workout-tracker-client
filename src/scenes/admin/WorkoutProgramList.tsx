@@ -63,10 +63,10 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
 
     if (response?.status === 201) {
       appendProgram(response?.data?.dailyWorkout);
+      toast.success("Successfully Added New Program");
     }
 
     setShowAddProgram(false);
-    toast.success("Successfully Added New Program");
   };
 
   if (loading) {
