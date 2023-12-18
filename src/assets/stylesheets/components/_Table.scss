@@ -67,9 +67,31 @@
     cursor: pointer;
   }
 
-  .add-program {
-    transform: translateY(0.3rem);
-    font-size: 2.5rem;
+  .add-program-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .add-program {
+      display: flex;
+      align-items: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      &:hover {
+        color: $color-pentanary-light;
+      }
+    }
+  }
+
+  .flex-table-content {
+    display: flex;
+    justify-content: center;
   }
 }
 

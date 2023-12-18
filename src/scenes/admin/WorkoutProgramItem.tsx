@@ -20,7 +20,7 @@ const WorkoutProgramItem: React.FC<WorkoutProgramItemProps> = ({
     <>
       <tr>
         <td>{name}</td>
-        <td>
+        <td className="flex-table-content">
           <FaEdit onClick={() => navigateUser(id)} />
         </td>
       </tr>

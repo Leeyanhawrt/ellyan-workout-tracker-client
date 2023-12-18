@@ -6,6 +6,7 @@ import "/src/assets/stylesheets/components/_Table.scss";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { postData } from "../../utils/api";
 import { toast } from "react-toastify";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 interface WorkoutProgramListProps {}
 
@@ -18,7 +19,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   const [inputs, setInputs] = useState<WorkoutProgramDetail>({
     programName: undefined,
   });
-  const [programList, setProgramList] = useState<WorkoutProgram[]>([]);
+  const [workoutPrograms, setWorkoutPrograms] = useState<WorkoutProgram[]>([]);
 
   const { programName } = inputs;
 
@@ -34,7 +35,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   }, []);
 
   useEffect(() => {
-    setProgramList(data);
+    setWorkoutPrograms(data);
   }, [data]);
 
   const toggleAddProgram = () => {
@@ -49,7 +50,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   };
 
   const appendProgram = (newProgram: WorkoutProgram) => {
-    setProgramList([...programList, newProgram]);
+    setWorkoutPrograms([...workoutPrograms, newProgram]);
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -82,15 +83,21 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
               <RiPlayListAddFill className="add-program" />
             </th>
           ) : (
-            <th>
-              <input
-                onChange={handleChange}
-                type="text"
-                name="programName"
-                id="programName"
-                placeholder="Program Name"
-                value={programName}
-              />
+            <th className="add-program-container">
+              <form onSubmit={handleSubmit}>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  name="programName"
+                  id="programName"
+                  placeholder="Program Name"
+                  value={programName}
+                />
+                <IoIosCheckmarkCircleOutline
+                  className="add-program"
+                  onClick={handleSubmit}
+                />
+              </form>
             </th>
           )}
         </tr>
