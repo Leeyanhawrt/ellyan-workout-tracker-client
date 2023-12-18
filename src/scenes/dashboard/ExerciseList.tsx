@@ -89,11 +89,11 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
   return (
     <div id="exercise-list-container">
       <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
-      {exerciseList.map((exercise) => {
+      {Object.entries(groupedExercises).map(([key, exercise]) => {
         return (
           <ExerciseItem
-            key={exercise.id}
-            exercise={groupedExercises}
+            key={key}
+            exerciseList={exercise}
             edittable={edittable}
             removeExercise={removeExercise}
           />
