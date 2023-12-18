@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import WorkoutProgramItem from "./WorkoutProgramItem";
 import { WorkoutProgram } from "../dashboard/WorkoutProgram";
 import "/src/assets/stylesheets/components/_Table.scss";
+import { RiPlayListAddFill } from "react-icons/ri";
 
 interface WorkoutProgramListProps {}
 
@@ -31,7 +32,9 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
       <thead>
         <tr>
           <th>Program Name</th>
-          <th></th>
+          <th>
+            <RiPlayListAddFill className="add-program" />
+          </th>
         </tr>
       </thead>
       <tbody>
