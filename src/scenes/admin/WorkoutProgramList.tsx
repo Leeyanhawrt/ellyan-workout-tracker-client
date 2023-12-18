@@ -15,11 +15,11 @@ type WorkoutProgramDetail = {
 };
 
 const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
+  const [workoutPrograms, setWorkoutPrograms] = useState<WorkoutProgram[]>([]);
   const [showAddProgram, setShowAddProgram] = useState<boolean>(false);
   const [inputs, setInputs] = useState<WorkoutProgramDetail>({
     programName: undefined,
   });
-  const [workoutPrograms, setWorkoutPrograms] = useState<WorkoutProgram[]>([]);
 
   const { programName } = inputs;
 
@@ -40,6 +40,13 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
 
   const toggleAddProgram = () => {
     setShowAddProgram((prevShow) => !prevShow);
+  };
+
+  const removeWorkoutProgram = (workoutProgramId: number) => {
+    const updatedPrograms = workoutPrograms.filter((program) => {
+      return program.id !== workoutProgramId;
+    });
+    setWorkoutPrograms(updatedPrograms);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +119,11 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
       <tbody>
         {workoutPrograms.map((workoutProgram) => {
           return (
-            <WorkoutProgramItem key={workoutProgram.id} {...workoutProgram} />
+            <WorkoutProgramItem
+              key={workoutProgram.id}
+              {...workoutProgram}
+              removeProgram={removeWorkoutProgram}
+            />
           );
         })}
       </tbody>
