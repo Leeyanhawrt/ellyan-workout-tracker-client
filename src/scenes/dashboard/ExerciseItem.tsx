@@ -45,6 +45,8 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     }
   };
 
+  console.log(exercise);
+
   const { name, percentage, numberReps, numberSets, rpe, type } = exercise;
 
   const exerciseName = name?.toLowerCase().replace(/ /g, "");
