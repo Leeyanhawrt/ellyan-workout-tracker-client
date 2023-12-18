@@ -96,6 +96,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
             exerciseList={exercise}
             edittable={edittable}
             removeExercise={removeExercise}
+            type={exercise[0].type}
           />
         );
       })}

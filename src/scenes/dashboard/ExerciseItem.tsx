@@ -9,6 +9,7 @@ import { deleteData } from "../../utils/api";
 interface ExerciseItemProps {
   exerciseList: Exercise[];
   edittable?: boolean;
+  type: string;
   removeExercise: (exerciseIndex: number) => void;
 }
 
@@ -26,6 +27,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   exerciseList,
   edittable,
   removeExercise,
+  type,
 }) => {
   const userMaxes = useUserMaxes();
 
@@ -45,17 +47,16 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   };
 
   const classes = classNames("exercise-item-container", {
-    // "exercise-item-main": type === "main",
-    // "exercise-item-accessory": type === "accessory",
-    // "exercise-item-variant": type === "main variation",
+    "exercise-item-main": type === "main",
+    "exercise-item-accessory": type === "accessory",
+    "exercise-item-variant": type === "main variation",
   });
 
   return (
     <>
       <div className={classes}>
         {exerciseList.map((exercise, index) => {
-          const { name, percentage, numberReps, numberSets, rpe, type } =
-            exercise;
+          const { name, percentage, numberReps, numberSets, rpe } = exercise;
 
           const exerciseName = name?.toLowerCase().replace(/ /g, "");
 
@@ -76,7 +77,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
             <div key={exercise.id}>
               {index === 0 && <h5>{exercise.name}</h5>}
               <div className="exercise-description">
-                <p>{exerciseScheme} </p>
+                <p>{exerciseScheme}</p>
                 {edittable && (
                   <FaRegTrashCan
                     onClick={() => handleDelete(exercise.id)}
