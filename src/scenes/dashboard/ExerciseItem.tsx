@@ -37,6 +37,10 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     return <div>Loading...</div>;
   }
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   const handleDelete = async (exerciseId: number) => {
     const response = await deleteData(
       `/admin/workout_programs/exercise/${exerciseId}`,
@@ -67,7 +71,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
                 exerciseName,
                 percentage,
                 userMaxes,
-                user?.roundDown
+                user.roundDown
               )
             : undefined;
 
