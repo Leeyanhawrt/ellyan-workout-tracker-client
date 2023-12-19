@@ -35,6 +35,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         id,
         workoutProgramId,
         roles,
+        roundDown,
       } = data;
 
       setUser({
@@ -46,6 +47,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
         bodyweight,
         workoutProgramId,
         roles,
+        roundDown,
       } as User);
     } catch (err) {
       console.error(`Error Fetching User Information: ${err}`);
