@@ -41,7 +41,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     const { name, value } = e.target;
 
     if (name === "exerciseName") {
-      setInputs({ ...inputs, [name]: value.trimEnd() });
+      setInputs({ ...inputs, [name]: value });
       return;
     }
 
