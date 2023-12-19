@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
@@ -11,6 +11,7 @@ type UserDetailFormProps = {};
 type UserDetail = {
   workoutProgramId: number | undefined;
   userId: number | undefined;
+  roundDown: boolean | undefined;
 };
 
 const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
@@ -25,6 +26,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
   const [inputs, setInputs] = useState<UserDetail>({
     userId: userId !== undefined ? parseInt(userId, 10) : undefined,
     workoutProgramId: undefined,
+    roundDown: undefined,
   });
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     setInputs({
       ...inputs,
       workoutProgramId: user.workoutProgramId,
+      roundDown: user.roundDown,
     });
   }, [user]);
 
@@ -42,6 +45,14 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     setInputs({
       ...inputs,
       [name]: parseInt(value, 10),
+    });
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: checked,
     });
   };
 
@@ -56,7 +67,9 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  const { workoutProgramId } = inputs;
+  const { workoutProgramId, roundDown } = inputs;
+
+  console.log(roundDown);
 
   return (
     <div className="form-container">
@@ -123,6 +136,19 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
               placeholder="Email"
               value={user.email}
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="flex-item checkbox single">
+            <label>
+              <input
+                type="checkbox"
+                checked={roundDown ?? false}
+                onChange={handleCheckboxChange}
+                name="roundDown"
+              />
+              Round Down Lifts
+            </label>
           </div>
         </div>
         <UserWorkoutProgramForm

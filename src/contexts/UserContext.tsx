@@ -15,6 +15,7 @@ export type User = {
   workoutProgramId: number;
   roles?: string[];
   workoutProgramName?: string;
+  roundDown: boolean;
 };
 
 type UserUpdateContextType = (value: User) => void;
