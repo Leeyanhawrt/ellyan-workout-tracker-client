@@ -14,7 +14,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName, email, gender, bodyweight } = user;
+  const { firstName, lastName, email, gender, bodyweight, roundDown } = user;
 
   useEffect(() => {
     setUser({
@@ -24,6 +24,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
       email,
       gender,
       bodyweight,
+      roundDown,
     });
   }, []);
 
@@ -42,6 +43,14 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
     setUser({
       ...user,
       [name]: value,
+    });
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setUser({
+      ...user,
+      [name]: checked,
     });
   };
 
@@ -138,6 +147,19 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({}) => {
               value={email}
               onChange={(e) => handleInputChange(e)}
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="flex-item checkbox single">
+            <label>
+              <input
+                type="checkbox"
+                checked={roundDown ?? false}
+                onChange={handleCheckboxChange}
+                name="roundDown"
+              />
+              Round Down Lifts
+            </label>
           </div>
         </div>
         <div className="row">
