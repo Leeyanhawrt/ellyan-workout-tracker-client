@@ -72,7 +72,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
         <MdCheckCircle className="form-icon" onClick={handleSubmit} />
         <MdCancel onClick={handleClose} className="form-icon" />
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="exercise-name">
           <input
             type="text"
