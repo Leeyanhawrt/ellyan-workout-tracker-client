@@ -5,6 +5,7 @@ const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
 import { deleteData } from "../../utils/api";
+import { useUser } from "../../contexts/UserContext";
 
 interface ExerciseItemProps {
   exerciseList: Exercise[];
@@ -30,6 +31,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   type,
 }) => {
   const userMaxes = useUserMaxes();
+  const user = useUser();
 
   if (!userMaxes) {
     return <div>Loading...</div>;
@@ -61,7 +63,12 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
           const exerciseName = name?.toLowerCase().replace(/ /g, "");
 
           const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
-            ? calculateWeight(exerciseName, percentage, userMaxes)
+            ? calculateWeight(
+                exerciseName,
+                percentage,
+                userMaxes,
+                user?.roundDown
+              )
             : undefined;
 
           const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
