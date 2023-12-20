@@ -69,8 +69,6 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
 
   const { workoutProgramId, roundDown } = inputs;
 
-  console.log(roundDown);
-
   return (
     <div className="form-container">
       <h2>User Information</h2>

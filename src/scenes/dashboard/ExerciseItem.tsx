@@ -22,6 +22,7 @@ interface Exercise {
   rpe: number;
   percentage: number;
   type: string;
+  variant: string;
 }
 
 const ExerciseItem: React.FC<ExerciseItemProps> = ({
@@ -62,18 +63,23 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     <>
       <div className={classes}>
         {exerciseList.map((exercise, index) => {
-          const { name, percentage, numberReps, numberSets, rpe } = exercise;
+          const { name, percentage, numberReps, numberSets, rpe, variant } =
+            exercise;
 
           const exerciseName = name?.toLowerCase().replace(/ /g, "");
 
-          const calculatedWeight = LIFTS_TO_CALCULATE.includes(exerciseName)
-            ? calculateWeight(
-                exerciseName,
-                percentage,
-                userMaxes,
-                user.roundDown
-              )
-            : undefined;
+          console.log(variant);
+
+          const calculatedWeight =
+            LIFTS_TO_CALCULATE.includes(exerciseName) ||
+            LIFTS_TO_CALCULATE.includes(variant)
+              ? calculateWeight(
+                  exerciseName,
+                  percentage,
+                  userMaxes,
+                  user.roundDown
+                )
+              : undefined;
 
           const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
           const calculatedWeightText = calculatedWeight

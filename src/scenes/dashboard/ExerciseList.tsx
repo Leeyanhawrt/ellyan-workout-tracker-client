@@ -20,6 +20,7 @@ export type Exercise = {
   rpe: number;
   percentage: number;
   type: string;
+  variant: string;
 };
 
 export type GroupedExercises = {
@@ -47,6 +48,8 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     `Exercise List`,
     true
   );
+
+  console.log(exerciseList);
 
   useEffect(() => {
     fetchData();
