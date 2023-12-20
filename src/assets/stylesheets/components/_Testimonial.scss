@@ -41,12 +41,12 @@
       }
     }
 
-    &:hover &-image img {
+    &:hover .testimonial-image img {
       transform: scale(1);
       filter: blur(3px) brightness(80%);
     }
 
-    &:hover &-author {
+    &:hover .testimonial-author {
       opacity: 1;
       top: 25%;
     }
