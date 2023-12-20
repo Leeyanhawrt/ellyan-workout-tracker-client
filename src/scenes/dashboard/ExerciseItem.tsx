@@ -66,20 +66,9 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
           const { name, percentage, numberReps, numberSets, rpe, variant } =
             exercise;
 
-          const exerciseName = name?.toLowerCase().replace(/ /g, "");
-
-          console.log(variant);
-
-          const calculatedWeight =
-            LIFTS_TO_CALCULATE.includes(exerciseName) ||
-            LIFTS_TO_CALCULATE.includes(variant)
-              ? calculateWeight(
-                  exerciseName,
-                  percentage,
-                  userMaxes,
-                  user.roundDown
-                )
-              : undefined;
+          const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
+            ? calculateWeight(variant, percentage, userMaxes, user.roundDown)
+            : undefined;
 
           const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
           const calculatedWeightText = calculatedWeight
@@ -92,7 +81,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
 
           return (
             <div key={exercise.id}>
-              {index === 0 && <h5>{exercise.name}</h5>}
+              {index === 0 && <h5>{name}</h5>}
               <div className="exercise-description">
                 <p>{exerciseScheme}</p>
                 {edittable && (

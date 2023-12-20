@@ -49,8 +49,6 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     true
   );
 
-  console.log(exerciseList);
-
   useEffect(() => {
     fetchData();
   }, []);

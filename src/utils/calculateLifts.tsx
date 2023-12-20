@@ -1,16 +1,16 @@
 import { UserMaxes } from "../contexts/UserMaxesContext";
 
 export const calculateWeight = (
-  exercise: string,
+  variant: string,
   percentage: number,
   userMaxes: UserMaxes,
   roundDown: boolean
 ) => {
-  if (!["squat", "benchpress", "deadlift"].includes(exercise)) {
+  if (!["squat", "benchpress", "deadlift"].includes(variant)) {
     return;
   }
 
-  const record = userMaxes[exercise];
+  const record = userMaxes[variant];
 
   if (record !== undefined) {
     const calculatedWeight = roundDown
