@@ -127,6 +127,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             max="100"
           />
         </div>
+        <button type="submit" style={{ display: "none" }}></button>
       </form>
     </div>
   );
