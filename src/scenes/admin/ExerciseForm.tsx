@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { postData } from "../../utils/api";
 import { MdCheckCircle } from "react-icons/md";
 import { Exercise } from "../dashboard/ExerciseList";
+import { toast } from "react-toastify";
 
 type ExerciseForm = {
   exerciseName: string;
@@ -47,12 +48,32 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
 
     setInputs({
       ...inputs,
-      [e.target.name]: parseInt(e.target.value, 10) || "",
+      [e.target.name]: parseFloat(e.target.value) || "",
     });
+  };
+
+  const validateDecimal = () => {
+    const decimalRegex = /^([1-9]|10|10\.0|10\.5|[1-9](\.0|\.5)?)$/;
+    const isValid = decimalRegex.test(rpe.toString());
+    isValid
+      ? ""
+      : toast.error(
+          "Invalid RPE input. Please enter a number between 1 and 10, in 0.5 increments."
+        );
+    return isValid;
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    const isValid = validateDecimal();
+
+    if (!isValid) {
+      toast.error(
+        "Invalid RPE input. Please enter a number between 1 and 10, in 0.5 increments."
+      );
+      return;
+    }
+
     const response = await postData(
       `/admin/workout_programs/exercise`,
       { ...inputs },
@@ -112,8 +133,10 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
             value={rpe}
             onChange={handleChange}
             disabled={percentage !== ""}
+            onBlur={validateDecimal}
             min="0"
             max="10"
+            step="0.5"
           />
           <input
             type="number"
