@@ -53,7 +53,8 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   };
 
   const validateDecimal = () => {
-    const decimalRegex = /^([1-9]|10|10\.0|10\.5|[1-9](\.0|\.5)?)$/;
+    const decimalRegex = /^(|([1-9]|10|10\.0|10\.5|[1-9](\.0|\.5)?))$/;
+
     const isValid = decimalRegex.test(rpe.toString());
     return isValid;
   };
