@@ -62,7 +62,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     e.preventDefault();
     const isValid = validateDecimal();
 
-    if (!isValid) {
+    if (!isValid && !percentage) {
       toast.error(
         "Invalid RPE input. Please enter a number between 1 and 10, in 0.5 increments."
       );
