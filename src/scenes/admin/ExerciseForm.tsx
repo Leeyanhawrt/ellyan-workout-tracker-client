@@ -55,14 +55,6 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   const validateDecimal = () => {
     const decimalRegex = /^([1-9]|10|10\.0|10\.5|[1-9](\.0|\.5)?)$/;
     const isValid = decimalRegex.test(rpe.toString());
-
-    if (!rpe) return;
-
-    isValid
-      ? ""
-      : toast.error(
-          "Invalid RPE input. Please enter a number between 1 and 10, in 0.5 increments."
-        );
     return isValid;
   };
 
