@@ -22,6 +22,10 @@
     svg {
       font-size: 3rem;
       color: $color-social-icon;
+      &:hover {
+        color: $color-primary;
+        cursor: pointer;
+      }
     }
   }
 }
