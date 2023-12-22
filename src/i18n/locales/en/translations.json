@@ -19,6 +19,8 @@
     }
   },
   "layouts": {
-    "footer": {}
+    "footer": {
+      "designedBy": "Designed and crafted by Leeyan Haw, this workout app began as a portfolio project but quickly evolved into a daily companion in my fitness journey. Inspired by the support and motivation from my partner and son!"
+    }
   }
 }
