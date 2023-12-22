@@ -41,6 +41,9 @@
 
       h5 {
         letter-spacing: 0.1rem;
+        @include respond(phone) {
+          font-size: 2rem;
+        }
       }
 
       p {
