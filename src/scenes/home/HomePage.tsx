@@ -9,6 +9,7 @@ import paddling_video from "/src/assets/videos/ndrc-paddling.mp4";
 import "/src/assets/stylesheets/pages/_p_home.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import Footer from "../../components/Footer";
 
 const HomePage = () => {
   const { t } = useTranslation("", { keyPrefix: "pages.home" });
@@ -63,6 +64,7 @@ const HomePage = () => {
           <Register closeRegisterModal={closeRegisterModal} />
         </Modal>
       )}
+      <Footer />
     </>
   );
 };

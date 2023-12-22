@@ -1,31 +1,37 @@
 @import "../abstracts/_variables.scss";
 
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 5.5rem;
-
-  .made-with-love {
-    margin-top: 2rem;
-    p {
-      margin-top: 2rem;
-    }
-  }
-
-  .socials-list {
+.footer {
+  .footer-content {
     display: flex;
-    list-style: none;
-    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5.5rem;
 
-    svg {
-      font-size: 3rem;
-      color: $color-social-icon;
-      &:hover {
-        color: $color-primary;
-        cursor: pointer;
+    .made-with-love {
+      margin-top: 2rem;
+      p {
+        margin-top: 2rem;
+      }
+    }
+
+    .socials-list {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+
+      svg {
+        font-size: 3rem;
+        color: $color-social-icon;
+        &:hover {
+          color: $color-primary;
+          cursor: pointer;
+        }
       }
     }
   }
+}
+
+.footer-translated {
+  transform: translateX(10rem);
 }

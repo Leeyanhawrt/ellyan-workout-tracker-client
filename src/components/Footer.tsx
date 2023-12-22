@@ -3,11 +3,14 @@ import { IoLogoGithub } from "react-icons/io5";
 import { IoLogoLinkedin } from "react-icons/io";
 import { IoLogoInstagram } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
+import classNames from "classnames";
 
 interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const { t } = useTranslation("", { keyPrefix: "layouts.footer" });
+  const location = useLocation();
 
   const socialsList = [
     {
@@ -24,8 +27,12 @@ const Footer: React.FC<FooterProps> = ({}) => {
     },
   ];
 
+  const classes = classNames("footer", {
+    "footer-translated": location.pathname !== "/",
+  });
+
   return (
-    <footer>
+    <footer className={classes}>
       <div className="content-container">
         <div className="footer-content">
           <div className="socials-container">

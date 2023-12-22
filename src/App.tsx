@@ -4,7 +4,6 @@ import { UserMaxesProvider } from "./contexts/UserMaxesContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import HomePage from "./scenes/home/HomePage";
-import Footer from "./components/Footer";
 import Login from "./scenes/home/Login";
 import Unauthorized from "./scenes/globals/Unauthorized";
 import AdminLogin from "./scenes/home/AdminLogin";
@@ -66,7 +65,6 @@ const App = () => {
               }
             />
           </Routes>
-          <Footer />
           <ToastContainer />
         </ModalProvider>
       </UserMaxesProvider>

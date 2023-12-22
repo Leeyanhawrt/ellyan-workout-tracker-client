@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { useUserUpdate, User, useUser } from "../../contexts/UserContext";
 import DashboardNav from "./DashboardNav";
 import useFetchMaxes from "../../hooks/useFetchMaxes";
+import Footer from "../../components/Footer";
 
 interface DashboardPageProps {}
 
@@ -61,11 +62,14 @@ const DashboardPage: React.FC<DashboardPageProps> = ({}) => {
   return (
     <div id="dashboard">
       <DashboardNav />
-      <Routes>
-        <Route path="/preferences" element={<UserProfileForm />} />
-        <Route path="/edit_record" element={<OneRepMax />} />
-        <Route path="/workout_program" element={<WorkoutProgram />} />
-      </Routes>
+      <div className="dashboard-content">
+        <Routes>
+          <Route path="/preferences" element={<UserProfileForm />} />
+          <Route path="/edit_record" element={<OneRepMax />} />
+          <Route path="/workout_program" element={<WorkoutProgram />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 };
