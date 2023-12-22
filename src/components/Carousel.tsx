@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import DailyWorkout from "../scenes/dashboard/DailyWorkout";
 import { IoIosAdd } from "react-icons/io";
 import { postData } from "../utils/api";
+import useSwipe from "../hooks/useSwipe";
 
 interface CarouselProps<T> {
   items: T[];
@@ -24,6 +25,11 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
   handleAdd,
   microcycleId,
 }) => {
+  const swipeHandlers = useSwipe({
+    onSwipedLeft: () => updateIndex(activeIndex + 1),
+    onSwipedRight: () => updateIndex(activeIndex - 1),
+  });
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   useEffect(() => {
@@ -58,6 +64,7 @@ const Carousel: React.FC<CarouselProps<DailyWorkout>> = ({
     <div className="carousel">
       <div
         className="inner"
+        {...swipeHandlers}
         style={{ transform: `translate(-${activeIndex * 100}%)` }}
       >
         {items.map((item) => {
