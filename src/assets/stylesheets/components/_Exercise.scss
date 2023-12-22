@@ -3,7 +3,6 @@
 
 #exercise-list-container {
   margin: 1rem 4rem;
-  touch-action: pan-x;
 
   @include respond(phone) {
     width: 100%;
