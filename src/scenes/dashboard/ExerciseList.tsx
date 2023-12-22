@@ -89,7 +89,9 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
 
   return (
     <div id="exercise-list-container">
-      <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
+      <div className="day-container">
+        <h3>{`Day ${dailyWorkout.dayNumber}`}</h3>
+      </div>
       {Object.entries(groupedExercises).map(([key, exercise]) => {
         return (
           <ExerciseItem
