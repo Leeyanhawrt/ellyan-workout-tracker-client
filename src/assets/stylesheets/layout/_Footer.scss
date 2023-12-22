@@ -1,12 +1,16 @@
 @import "../abstracts/_variables.scss";
+@import "../abstracts/mixins.scss";
 
 .footer {
   .footer-content {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     margin: 5.5rem;
+
+    @include respond(tablet-portrait) {
+      margin: 5.5rem 3rem;
+    }
 
     .made-with-love {
       margin-top: 2rem;
@@ -30,8 +34,4 @@
       }
     }
   }
-}
-
-.footer-translated {
-  transform: translateX(10rem);
 }

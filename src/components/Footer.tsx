@@ -27,13 +27,9 @@ const Footer: React.FC<FooterProps> = ({}) => {
     },
   ];
 
-  const classes = classNames("footer", {
-    "footer-translated": location.pathname !== "/",
-  });
-
   return (
-    <footer className={classes}>
-      <div className="content-container">
+    <div className="content-container">
+      <footer className={"footer"}>
         <div className="footer-content">
           <div className="socials-container">
             <ul className="socials-list">
@@ -53,8 +49,8 @@ const Footer: React.FC<FooterProps> = ({}) => {
             <p>{t("designedBy")}</p>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   );
 };
 

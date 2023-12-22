@@ -4,4 +4,9 @@
 #dashboard {
   display: flex;
   justify-content: center;
+
+  .dashboard-content {
+    width: 100%;
+    @include dashboardComponent;
+  }
 }

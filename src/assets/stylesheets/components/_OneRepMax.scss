@@ -2,8 +2,6 @@
 @import "../abstracts/variables";
 
 #orm-container {
-  @include dashboardComponent;
-
   h2 {
     @include respond(phone) {
       font-size: 3rem;

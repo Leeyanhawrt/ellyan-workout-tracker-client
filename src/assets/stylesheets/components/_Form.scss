@@ -2,8 +2,6 @@
 @import "../abstracts/variables";
 
 .form-container {
-  @include dashboardComponent;
-
   @include respond(small-phone) {
     padding: 1rem;
     transform: translateX(0);
