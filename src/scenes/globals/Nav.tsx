@@ -45,6 +45,7 @@ const Nav: React.FC<NavProps> = ({}) => {
   const classes = className({
     "nav-transparent": scrolled < 200 && location.pathname === "/",
     "nav-overlap": location.pathname === "/",
+    "nav-hidden-mobile": scrolled > 1 && location.pathname !== "/",
   });
 
   return (

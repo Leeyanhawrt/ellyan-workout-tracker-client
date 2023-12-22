@@ -12,7 +12,8 @@
   left: 0;
   padding: 0 12rem;
   background-color: $color-white;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
+  transition: top 0.1s ease;
   box-shadow: rgba(0, 0, 0, 0.08) 0 0.5rem 1rem;
 
   @include respond(tablet-portrait) {
@@ -53,6 +54,12 @@
     border-bottom: none;
     p {
       color: white;
+    }
+  }
+
+  &.nav-hidden-mobile {
+    @include respond(phone) {
+      top: -10rem;
     }
   }
 
