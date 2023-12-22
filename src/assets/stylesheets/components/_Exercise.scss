@@ -45,6 +45,10 @@
 
       p {
         transform: translateY(0.2rem);
+
+        @include respond(phone) {
+          font-size: 2rem;
+        }
       }
 
       .exercise-description {
