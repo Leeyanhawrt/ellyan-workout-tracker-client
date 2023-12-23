@@ -4,4 +4,9 @@
 #admin {
   display: flex;
   justify-content: center;
+
+  .admin-content {
+    width: 100%;
+    @include dashboardComponent;
+  }
 }

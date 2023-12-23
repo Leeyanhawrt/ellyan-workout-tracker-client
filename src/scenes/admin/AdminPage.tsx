@@ -12,15 +12,17 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
   return (
     <div id="admin">
       <AdminNav />
-      <Routes>
-        <Route path="manage_users" element={<UsersList />} />
-        <Route path="manage_users/:userId" element={<UserDetailForm />} />
-        <Route path="workout_programs" element={<WorkoutProgramList />} />
-        <Route
-          path="workout_programs/:programId"
-          element={<WorkoutProgram edittable />}
-        />
-      </Routes>
+      <div className="admin-content">
+        <Routes>
+          <Route path="manage_users" element={<UsersList />} />
+          <Route path="manage_users/:userId" element={<UserDetailForm />} />
+          <Route path="workout_programs" element={<WorkoutProgramList />} />
+          <Route
+            path="workout_programs/:programId"
+            element={<WorkoutProgram edittable />}
+          />
+        </Routes>
+      </div>
     </div>
   );
 };

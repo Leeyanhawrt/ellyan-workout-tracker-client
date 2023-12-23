@@ -2,19 +2,14 @@
 @import "/src/assets/stylesheets/abstracts/variables";
 
 .table {
-  @include dashboardComponent;
-  margin: 5rem;
   font-size: 1.2rem;
   border-collapse: collapse;
   font-family: "proxima-nova" sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 95rem;
-  @include respond(tablet-landscape) {
-    width: 76rem;
-  }
+  width: 100%;
 
   @include respond(phone) {
-    margin: 5rem 1rem;
+    margin: 1rem 0rem;
   }
 
   td::first-letter {
