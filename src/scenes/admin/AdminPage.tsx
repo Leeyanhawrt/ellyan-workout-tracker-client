@@ -18,8 +18,12 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
           <Route path="manage_users/:userId" element={<UserDetailForm />} />
           <Route path="workout_programs" element={<WorkoutProgramList />} />
           <Route
-            path="workout_programs/:programId"
+            path="workout_programs/:id"
             element={<WorkoutProgram edittable />}
+          />
+          <Route
+            path="impersonate_user/:id"
+            element={<WorkoutProgram impersonate />}
           />
         </Routes>
       </div>
