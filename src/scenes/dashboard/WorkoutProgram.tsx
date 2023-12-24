@@ -5,9 +5,11 @@ import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router";
 import { useState } from "react";
 import Microcycle from "./Microcycle";
+import useFetchMaxes from "../../hooks/useFetchMaxes";
 
 interface WorkoutProgramProps {
   edittable?: boolean;
+  impersonate?: boolean;
 }
 
 export type WorkoutProgram = {
@@ -15,14 +17,21 @@ export type WorkoutProgram = {
   name: string;
 };
 
-const WorkoutProgram: React.FC<WorkoutProgramProps> = ({ edittable }) => {
+const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
+  edittable,
+  impersonate,
+}) => {
   const [microcycles, setMicrocycles] = useState<Microcycle[]>([]);
 
-  let { programId } = useParams();
+  let { id } = useParams();
 
   const user = useUser();
 
-  let workoutProgramId = edittable ? programId : user?.workoutProgramId;
+  if (impersonate) {
+    useFetchMaxes(id);
+  }
+
+  let workoutProgramId = edittable || impersonate ? id : user?.workoutProgramId;
 
   const { data, loading, fetchData } = useAxios<Microcycle[]>(
     [],

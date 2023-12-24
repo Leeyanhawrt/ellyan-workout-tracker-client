@@ -62,6 +62,12 @@
     cursor: pointer;
   }
 
+  .user-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
   .add-program-container {
     display: flex;
     align-items: center;
