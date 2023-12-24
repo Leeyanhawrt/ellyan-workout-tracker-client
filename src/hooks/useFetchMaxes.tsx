@@ -6,17 +6,17 @@ import {
 } from "../contexts/UserMaxesContext";
 import { fetchData } from "../utils/api";
 
-const useFetchMaxes = () => {
+const useFetchMaxes = (userId?: string) => {
   const userMaxes = useUserMaxes();
   const setUserMaxes = useUserMaxesUpdate();
 
   const setData = async () => {
     try {
-      const response = await fetchData(
-        `/dashboard/orm-records`,
-        "One Rep Maxes",
-        true
-      );
+      const url = userId
+        ? `/dashboard/orm-records/${userId}`
+        : `/dashboard/orm-records`;
+
+      const response = await fetchData(url, "One Rep Maxes", true);
 
       const data: UserMaxes[] = response?.data;
 
