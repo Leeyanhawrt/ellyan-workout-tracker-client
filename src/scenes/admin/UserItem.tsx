@@ -30,7 +30,6 @@ const UserItem: React.FC<UserItemProps> = ({
   const impersonateUser = (userId: number) => {
     navigate(`/admin/impersonate_user/${userId}`);
   };
-  .
 
   return (
     <>
