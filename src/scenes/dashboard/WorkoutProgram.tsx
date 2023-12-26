@@ -27,8 +27,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
 
   const user = useUser();
 
-  Boxing day
-
   if (impersonate) {
     useFetchMaxes(id);
   }
