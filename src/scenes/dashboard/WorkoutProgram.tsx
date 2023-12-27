@@ -27,8 +27,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
 
   const user = useUser();
 
-  const vacation = "fun";
-
   if (impersonate) {
     useFetchMaxes(id);
   }
