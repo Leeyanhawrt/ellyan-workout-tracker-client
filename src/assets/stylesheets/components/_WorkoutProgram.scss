@@ -14,7 +14,7 @@
     flex-direction: column;
     white-space: nowrap;
     width: 15%;
-    @include respond(tablet-portrait) {
+    @include respond(tablet-landscape) {
       width: 20%;
     }
 
@@ -24,10 +24,18 @@
 
     .microcycle-week {
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding: 1.5rem;
+
+      .microcycle-text {
+        display: flex;
+        flex-direction: column;
+
+        p {
+          color: $color-tertiary-light;
+          font-size: 1.4rem;
+          white-space: normal;
+        }
+      }
 
       .microcycle-icon {
         font-size: 2rem;
@@ -60,7 +68,7 @@
 
   .daily-workout-container {
     width: 85%;
-    @include respond(tablet-portrait) {
+    @include respond(tablet-landscape) {
       width: 80%;
     }
 
