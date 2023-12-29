@@ -1,9 +1,9 @@
 import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
-import { RiArrowRightSLine } from "react-icons/ri";
 import DailyWorkout from "./DailyWorkout";
 import { useState, useEffect } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
+import MicrocycleItem from "./MicrocycleItem";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
@@ -12,11 +12,11 @@ interface MicrocycleProps {
   handleAdd: (newMicrocycle: Microcycle) => void;
 }
 
-interface Microcycle {
+export type Microcycle = {
   id: number;
   microcycleNumber: number;
   phase: string;
-}
+};
 
 const Microcycle: React.FC<MicrocycleProps> = ({
   microcycles,
@@ -60,20 +60,16 @@ const Microcycle: React.FC<MicrocycleProps> = ({
       <div className="microcycles-container">
         {microcycles.map((microcycle) => {
           return (
-            <div
-              onClick={() => updateMicrocycle(microcycle.id)}
+            <MicrocycleItem
+              onClick={updateMicrocycle}
               key={microcycle.id}
+              microcycle={microcycle}
               className={`microcycle-week ${
                 microcycle.id === activeMicrocycle
                   ? "microcycle-week-active"
                   : ""
               }`}
-            >
-              <div className="microcycle-text">
-                <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
-                <p>{microcycle.phase}</p>
-              </div>
-            </div>
+            />
           );
         })}
         {edittable && (
