@@ -13,11 +13,7 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
   className,
 }) => {
   return (
-    <div
-      onClick={() => onClick(microcycle.id)}
-      key={microcycle.id}
-      className={className}
-    >
+    <div onClick={() => onClick(microcycle.id)} className={className}>
       <div className="microcycle-text">
         <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
         <p>{microcycle.phase}</p>
