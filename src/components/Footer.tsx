@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
             <ul className="socials-list">
               {socialsList.map((social) => {
                 return (
-                  <li>
+                  <li key={social.href}>
                     <a href={social.href} target="_blank">
                       {social.logo}
                     </a>
