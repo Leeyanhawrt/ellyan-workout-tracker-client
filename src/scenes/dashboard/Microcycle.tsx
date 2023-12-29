@@ -15,6 +15,7 @@ interface MicrocycleProps {
 interface Microcycle {
   id: number;
   microcycleNumber: number;
+  phase: string;
 }
 
 const Microcycle: React.FC<MicrocycleProps> = ({
@@ -68,8 +69,10 @@ const Microcycle: React.FC<MicrocycleProps> = ({
                   : ""
               }`}
             >
-              <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
-              <RiArrowRightSLine className="microcycle-icon" />
+              <div className="microcycle-text">
+                <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
+                <p>{microcycle.phase}</p>
+              </div>
             </div>
           );
         })}
