@@ -15,10 +15,10 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
   className,
   edittable,
 }) => {
-  const [input, setInput] = useState<string | undefined>("");
+  const [phaseInput, setPhaseInput] = useState<string | undefined>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setPhaseInput(e.target.value);
   };
 
   return (
@@ -32,7 +32,7 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
           <input
             className="microcycle-input"
             type="text"
-            value={input}
+            value={phaseInput}
             placeholder="Phase"
             onChange={handleChange}
           />
