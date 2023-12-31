@@ -64,6 +64,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
               onClick={updateMicrocycle}
               key={microcycle.id}
               microcycle={microcycle}
+              edittable={edittable}
               className={`microcycle-week ${
                 microcycle.id === activeMicrocycle
                   ? "microcycle-week-active"
