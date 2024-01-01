@@ -45,6 +45,16 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
     setMicrocycles((prev) => [...prev, newMicrocycle]);
   };
 
+  const updateMicrocycle = (id: number, newPhase: string) => {
+    const updatedMicrocycles = microcycles.map((microcycle) => {
+      if (microcycle.id === id) {
+        return { ...microcycle, phase: newPhase };
+      }
+      return microcycle;
+    });
+    setMicrocycles(updatedMicrocycles);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -64,6 +74,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
         workoutProgramId={workoutProgramId}
         microcycles={microcycles}
         handleAdd={appendMicrocycle}
+        updateMicrocycle={updateMicrocycle}
       />
     </div>
   );

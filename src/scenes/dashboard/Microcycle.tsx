@@ -10,6 +10,7 @@ interface MicrocycleProps {
   edittable?: boolean;
   workoutProgramId?: number | string;
   handleAdd: (newMicrocycle: Microcycle) => void;
+  updateMicrocycle: (id: number, newPhase: string) => void;
 }
 
 export type Microcycle = {
@@ -23,6 +24,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
   edittable,
   workoutProgramId,
   handleAdd,
+  updateMicrocycle,
 }) => {
   const [activeMicrocycle, setActiveMicrocycle] = useState<number>(0);
   const [resetCarousel, setResetCarousel] = useState<boolean>(false);
@@ -64,6 +66,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
               onClick={updateActiveMicrocycle}
               key={microcycle.id}
               microcycle={microcycle}
+              updateMicrocycle={updateMicrocycle}
               edittable={edittable}
               className={`microcycle-week ${
                 microcycle.id === activeMicrocycle

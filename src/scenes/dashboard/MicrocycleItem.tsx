@@ -8,6 +8,7 @@ interface MicrocycleItemProps {
   onClick: (newMicrocycle: number) => void;
   className: string;
   edittable?: boolean;
+  updateMicrocycle: (id: number, newPhase: string) => void;
 }
 
 const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
@@ -15,6 +16,7 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
   onClick,
   className,
   edittable,
+  updateMicrocycle,
 }) => {
   const [phaseInput, setPhaseInput] = useState<string | undefined>("");
 
@@ -29,7 +31,9 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
       { phaseInput },
       true
     );
-    console.log(response);
+
+    const { id, phase } = response?.data.microcycle;
+    updateMicrocycle(id, phase);
   };
 
   return (
