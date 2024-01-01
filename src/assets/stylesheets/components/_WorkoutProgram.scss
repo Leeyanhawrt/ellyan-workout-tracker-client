@@ -26,9 +26,11 @@
       cursor: pointer;
       padding: 1.5rem;
 
-      .microcycle-input {
-        width: 100%;
-        padding-left: 0.5rem;
+      .microcycle-form {
+        input {
+          width: 100%;
+          padding-left: 0.5rem;
+        }
       }
 
       .microcycle-text {

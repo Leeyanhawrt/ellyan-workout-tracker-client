@@ -28,9 +28,8 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
         <p>{microcycle.phase}</p>
       </div>
       {edittable && (
-        <form>
+        <form className="microcycle-form">
           <input
-            className="microcycle-input"
             type="text"
             value={phaseInput}
             placeholder="Phase"
