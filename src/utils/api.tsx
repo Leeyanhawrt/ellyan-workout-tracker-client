@@ -48,6 +48,33 @@ export const postData = async <T,>(
   }
 };
 
+export const putData = async <T,>(
+  path: string,
+  data: T,
+  authorization: boolean = false
+) => {
+  try {
+    const response = await api.put(`${path}`, data, {
+      headers: authorization ? { token: localStorage.token } : {},
+    });
+
+    if (response.status === 200) {
+      toast.success(response.data.message);
+    }
+
+    return response;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      const error = err.response?.data.error || err.message;
+      console.error(error);
+      toast.error(error);
+    } else {
+      console.error((err as Error)?.message);
+      toast.error((err as Error)?.message);
+    }
+  }
+};
+
 export const deleteData = async (
   path: string,
   authorization: boolean = false

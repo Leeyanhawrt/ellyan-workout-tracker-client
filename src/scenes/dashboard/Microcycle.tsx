@@ -1,27 +1,30 @@
 import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
-import { RiArrowRightSLine } from "react-icons/ri";
 import DailyWorkout from "./DailyWorkout";
 import { useState, useEffect } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
+import MicrocycleItem from "./MicrocycleItem";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
   edittable?: boolean;
   workoutProgramId?: number | string;
   handleAdd: (newMicrocycle: Microcycle) => void;
+  updateMicrocycle: (id: number, newPhase: string) => void;
 }
 
-interface Microcycle {
+export type Microcycle = {
   id: number;
   microcycleNumber: number;
-}
+  phase: string;
+};
 
 const Microcycle: React.FC<MicrocycleProps> = ({
   microcycles,
   edittable,
   workoutProgramId,
   handleAdd,
+  updateMicrocycle,
 }) => {
   const [activeMicrocycle, setActiveMicrocycle] = useState<number>(0);
   const [resetCarousel, setResetCarousel] = useState<boolean>(false);
@@ -40,7 +43,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
     setResetCarousel(false);
   };
 
-  const updateMicrocycle = (newMicrocycle: number) => {
+  const updateActiveMicrocycle = (newMicrocycle: number) => {
     setActiveMicrocycle(newMicrocycle);
     carouselReset();
   };
@@ -59,18 +62,18 @@ const Microcycle: React.FC<MicrocycleProps> = ({
       <div className="microcycles-container">
         {microcycles.map((microcycle) => {
           return (
-            <div
-              onClick={() => updateMicrocycle(microcycle.id)}
+            <MicrocycleItem
+              onClick={updateActiveMicrocycle}
               key={microcycle.id}
+              microcycle={microcycle}
+              updateMicrocycle={updateMicrocycle}
+              edittable={edittable}
               className={`microcycle-week ${
                 microcycle.id === activeMicrocycle
                   ? "microcycle-week-active"
                   : ""
               }`}
-            >
-              <h4>{`WK ${microcycle.microcycleNumber}`}</h4>
-              <RiArrowRightSLine className="microcycle-icon" />
-            </div>
+            />
           );
         })}
         {edittable && (

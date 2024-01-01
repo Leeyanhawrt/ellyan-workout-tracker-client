@@ -5,6 +5,7 @@ import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router";
 import { useState } from "react";
 import Microcycle from "./Microcycle";
+import { Microcycle as MicrocycleT } from "./Microcycle";
 import useFetchMaxes from "../../hooks/useFetchMaxes";
 
 interface WorkoutProgramProps {
@@ -21,7 +22,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
   edittable,
   impersonate,
 }) => {
-  const [microcycles, setMicrocycles] = useState<Microcycle[]>([]);
+  const [microcycles, setMicrocycles] = useState<MicrocycleT[]>([]);
 
   let { id } = useParams();
 
@@ -33,15 +34,25 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
 
   let workoutProgramId = edittable || impersonate ? id : user?.workoutProgramId;
 
-  const { data, loading, fetchData } = useAxios<Microcycle[]>(
+  const { data, loading, fetchData } = useAxios<MicrocycleT[]>(
     [],
     `/workout_program/microcycle/${workoutProgramId}`,
     `Microcycles`,
     true
   );
 
-  const appendMicrocycle = (newMicrocycle: Microcycle) => {
+  const appendMicrocycle = (newMicrocycle: MicrocycleT) => {
     setMicrocycles((prev) => [...prev, newMicrocycle]);
+  };
+
+  const updateMicrocycle = (id: number, newPhase: string) => {
+    const updatedMicrocycles = microcycles.map((microcycle) => {
+      if (microcycle.id === id) {
+        return { ...microcycle, phase: newPhase };
+      }
+      return microcycle;
+    });
+    setMicrocycles(updatedMicrocycles);
   };
 
   useEffect(() => {
@@ -63,6 +74,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
         workoutProgramId={workoutProgramId}
         microcycles={microcycles}
         handleAdd={appendMicrocycle}
+        updateMicrocycle={updateMicrocycle}
       />
     </div>
   );
