@@ -1,8 +1,7 @@
 import "/src/assets/stylesheets/components/_WorkoutProgram.scss";
 import { Microcycle } from "./Microcycle";
-import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { putData } from "../../utils/api";
 
 interface MicrocycleItemProps {
   microcycle: Microcycle;
@@ -25,27 +24,12 @@ const MicrocycleItem: React.FC<MicrocycleItemProps> = ({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_APP_BACKEND}/admin/microcycle/${microcycle.id}`,
-        {
-          phaseInput,
-        },
-        {
-          headers: { token: localStorage.token },
-        }
-      );
-      console.log(response);
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const errorMessage = err.response?.data?.error;
-        console.error(errorMessage);
-        toast.error(errorMessage);
-      } else {
-        console.error((err as Error)?.message);
-        toast.error((err as Error)?.message);
-      }
-    }
+    const response = await putData(
+      `/admin/workout_programs/microcycle/${microcycle.id}`,
+      { phaseInput },
+      true
+    );
+    console.log(response);
   };
 
   return (

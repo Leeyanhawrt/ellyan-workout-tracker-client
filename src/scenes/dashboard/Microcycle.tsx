@@ -41,7 +41,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
     setResetCarousel(false);
   };
 
-  const updateMicrocycle = (newMicrocycle: number) => {
+  const updateActiveMicrocycle = (newMicrocycle: number) => {
     setActiveMicrocycle(newMicrocycle);
     carouselReset();
   };
@@ -61,7 +61,7 @@ const Microcycle: React.FC<MicrocycleProps> = ({
         {microcycles.map((microcycle) => {
           return (
             <MicrocycleItem
-              onClick={updateMicrocycle}
+              onClick={updateActiveMicrocycle}
               key={microcycle.id}
               microcycle={microcycle}
               edittable={edittable}
