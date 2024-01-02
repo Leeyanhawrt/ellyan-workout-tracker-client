@@ -59,6 +59,8 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     "exercise-item-variant": type === "main variation",
   });
 
+  const newFeature = "Allow admin to edit exercise item";
+
   return (
     <>
       <div className={classes}>
