@@ -60,6 +60,11 @@
         align-items: flex-start;
         gap: 1rem;
         margin-bottom: 0.5rem;
+
+        .confirmation-container {
+          display: flex;
+          gap: 0.5rem;
+        }
       }
     }
 

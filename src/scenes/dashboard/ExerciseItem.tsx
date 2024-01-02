@@ -6,6 +6,9 @@ import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
 import { deleteData } from "../../utils/api";
 import { useUser } from "../../contexts/UserContext";
+import { useState } from "react";
+import { FcCheckmark } from "react-icons/fc";
+import { FcCancel } from "react-icons/fc";
 
 interface ExerciseItemProps {
   exerciseList: Exercise[];
@@ -31,8 +34,14 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   removeExercise,
   type,
 }) => {
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+
   const userMaxes = useUserMaxes();
   const user = useUser();
+
+  const toggleConfirmation = () => {
+    setShowConfirmation((prev) => !prev);
+  };
 
   if (!userMaxes) {
     return <div>Loading...</div>;
@@ -84,11 +93,22 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
               {index === 0 && <h5>{name}</h5>}
               <div className="exercise-description">
                 <p>{exerciseScheme}</p>
-                {edittable && (
+                {edittable && !showConfirmation ? (
                   <FaRegTrashCan
-                    onClick={() => handleDelete(exercise.id)}
+                    onClick={toggleConfirmation}
                     className="exercise-item-delete"
                   />
+                ) : (
+                  <div className="confirmation-container">
+                    <FcCheckmark
+                      onClick={() => handleDelete(exercise.id)}
+                      className="exercise-item-delete"
+                    />
+                    <FcCancel
+                      onClick={toggleConfirmation}
+                      className="exercise-item-delete"
+                    />
+                  </div>
                 )}
               </div>
             </div>
