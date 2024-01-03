@@ -9,12 +9,15 @@ import { useUser } from "../../contexts/UserContext";
 import { useState } from "react";
 import { FcCheckmark } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
+import ExerciseForm from "../admin/ExerciseForm";
+import { FaEdit } from "react-icons/fa";
 
 interface ExerciseItemProps {
   exerciseList: Exercise[];
   edittable?: boolean;
   type: string;
   removeExercise: (exerciseIndex: number) => void;
+  handleAdd: (newExercise: Exercise) => void;
 }
 
 interface Exercise {
@@ -31,16 +34,26 @@ interface Exercise {
 const ExerciseItem: React.FC<ExerciseItemProps> = ({
   exerciseList,
   edittable,
+  handleAdd,
   removeExercise,
   type,
 }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [showEdit, setShowEdit] = useState<boolean>(false);
 
   const userMaxes = useUserMaxes();
   const user = useUser();
 
   const toggleConfirmation = () => {
     setShowConfirmation((prev) => !prev);
+  };
+
+  const toggleShowEdit = () => {
+    setShowEdit((prev) => !prev);
+  };
+
+  const closeShowEdit = () => {
+    setShowEdit(false);
   };
 
   if (!userMaxes) {
@@ -90,27 +103,44 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
 
           return (
             <div key={exercise.id}>
-              {index === 0 && <h5>{name}</h5>}
-              <div className="exercise-description">
-                <p>{exerciseScheme}</p>
-                {edittable && !showConfirmation ? (
-                  <FaRegTrashCan
-                    onClick={toggleConfirmation}
-                    className="exercise-item-delete"
-                  />
-                ) : (
-                  <div className="confirmation-container">
-                    <FcCheckmark
-                      onClick={() => handleDelete(exercise.id)}
-                      className="exercise-item-delete"
-                    />
-                    <FcCancel
-                      onClick={toggleConfirmation}
-                      className="exercise-item-delete"
-                    />
+              {showEdit ? (
+                <ExerciseForm
+                  handleClose={closeShowEdit}
+                  handleAdd={handleAdd}
+                  dailyWorkoutId={exercise.id}
+                  exercise={exercise}
+                />
+              ) : (
+                <div>
+                  {index === 0 && <h5>{name}</h5>}
+                  <div className="exercise-description">
+                    <p>{exerciseScheme}</p>
+                    {edittable && !showConfirmation ? (
+                      <div className="icon-container">
+                        <FaRegTrashCan
+                          onClick={toggleConfirmation}
+                          className="exercise-item-icon"
+                        />
+                        <FaEdit
+                          className="exercise-item-icon"
+                          onClick={toggleShowEdit}
+                        />
+                      </div>
+                    ) : (
+                      <div className="icon-container">
+                        <FcCheckmark
+                          onClick={() => handleDelete(exercise.id)}
+                          className="exercise-item-icon"
+                        />
+                        <FcCancel
+                          onClick={toggleConfirmation}
+                          className="exercise-item-icon"
+                        />
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           );
         })}

@@ -1,6 +1,6 @@
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import { MdCancel } from "react-icons/md";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { postData } from "../../utils/api";
 import { MdCheckCircle } from "react-icons/md";
 import { Exercise } from "../dashboard/ExerciseList";
@@ -20,19 +20,21 @@ interface ExerciseFormProps {
   handleClose: () => void;
   dailyWorkoutId: number;
   handleAdd: (newExercise: Exercise) => void;
+  exercise?: Exercise;
 }
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
   handleClose,
   dailyWorkoutId,
   handleAdd,
+  exercise,
 }) => {
   const [inputs, setInputs] = useState<ExerciseForm>({
-    exerciseName: "",
-    sets: "",
-    reps: "",
-    rpe: "",
-    percentage: "",
+    exerciseName: exercise?.name || "",
+    sets: exercise?.numberSets || "",
+    reps: exercise?.numberReps || "",
+    rpe: exercise?.rpe || "",
+    percentage: exercise?.percentage || "",
     dailyWorkoutId: dailyWorkoutId,
   });
 

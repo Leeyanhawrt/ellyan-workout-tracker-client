@@ -100,6 +100,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
             edittable={edittable}
             removeExercise={removeExercise}
             type={exercise[0].type}
+            handleAdd={appendExercise}
           />
         );
       })}

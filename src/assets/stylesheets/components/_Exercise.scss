@@ -61,14 +61,14 @@
         gap: 1rem;
         margin-bottom: 0.5rem;
 
-        .confirmation-container {
+        .icon-container {
           display: flex;
           gap: 0.5rem;
         }
       }
     }
 
-    &-delete {
+    &-icon {
       align-self: flex-end;
       font-size: 2.5rem;
       cursor: pointer;
