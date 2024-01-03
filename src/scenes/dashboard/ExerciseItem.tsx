@@ -132,6 +132,9 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
                         />
                       </div>
                     ) : (
+                      ""
+                    )}
+                    {showConfirmation && (
                       <div className="icon-container">
                         <FcCheckmark
                           onClick={() => handleDelete(exercise.id)}
