@@ -1,6 +1,6 @@
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import { MdCancel } from "react-icons/md";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { putData } from "../../utils/api";
 import { MdCheckCircle } from "react-icons/md";
 import { Exercise } from "../dashboard/ExerciseList";
