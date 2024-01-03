@@ -20,7 +20,8 @@ type ExerciseForm = {
 interface ExerciseFormProps {
   handleClose: () => void;
   dailyWorkoutId: number;
-  handleAdd: (newExercise: Exercise) => void;
+  handleAdd?: (newExercise: Exercise) => void;
+  handleEdit?: (id: number, exercise: Exercise) => void;
   exercise?: Exercise;
 }
 
@@ -28,6 +29,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   handleClose,
   dailyWorkoutId,
   handleAdd,
+  handleEdit,
   exercise,
 }) => {
   const [inputs, setInputs] = useState<ExerciseForm>({
@@ -80,8 +82,14 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
       true
     );
 
+    const { exercise, dailyWorkoutId } = response?.data;
+
     if (response?.status === 201) {
-      handleAdd(response?.data?.dailyWorkout);
+      handleAdd!(exercise);
+    }
+
+    if (response?.status === 200) {
+      handleEdit!(dailyWorkoutId, exercise);
     }
 
     handleClose();

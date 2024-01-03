@@ -17,7 +17,9 @@ interface ExerciseItemProps {
   edittable?: boolean;
   type: string;
   removeExercise: (exerciseIndex: number) => void;
+  handleEdit: (id: number, exercise: Exercise) => void;
   handleAdd: (newExercise: Exercise) => void;
+  dailyWorkoutId: number;
 }
 
 interface Exercise {
@@ -35,7 +37,9 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   exerciseList,
   edittable,
   handleAdd,
+  handleEdit,
   removeExercise,
+  dailyWorkoutId,
   type,
 }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
@@ -107,8 +111,9 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
                 <ExerciseForm
                   handleClose={closeShowEdit}
                   handleAdd={handleAdd}
-                  dailyWorkoutId={exercise.id}
+                  dailyWorkoutId={dailyWorkoutId}
                   exercise={exercise}
+                  handleEdit={handleEdit}
                 />
               ) : (
                 <div>

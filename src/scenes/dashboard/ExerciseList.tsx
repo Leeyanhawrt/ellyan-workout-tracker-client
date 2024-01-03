@@ -76,6 +76,16 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setExerciseList([...exerciseList, newExercise]);
   };
 
+  const editExercise = (id: number, newExercise: Exercise) => {
+    const updatedExercises = exerciseList.map((exercise) => {
+      if (exercise.id === id) {
+        return { ...newExercise };
+      }
+      return exercise;
+    });
+    setExerciseList(updatedExercises);
+  };
+
   const removeExercise = (exerciseIndex: number) => {
     const updatedExercises = exerciseList.filter((exercise) => {
       return exercise.id !== exerciseIndex;
@@ -101,6 +111,8 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
             removeExercise={removeExercise}
             type={exercise[0].type}
             handleAdd={appendExercise}
+            handleEdit={editExercise}
+            dailyWorkoutId={dailyWorkout.id}
           />
         );
       })}
