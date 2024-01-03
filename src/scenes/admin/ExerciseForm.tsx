@@ -7,6 +7,7 @@ import { Exercise } from "../dashboard/ExerciseList";
 import { toast } from "react-toastify";
 
 type ExerciseForm = {
+  id: number | string;
   exerciseName: string;
   sets: number | string;
   reps: number | string;
@@ -30,6 +31,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   exercise,
 }) => {
   const [inputs, setInputs] = useState<ExerciseForm>({
+    id: exercise?.id || "",
     exerciseName: exercise?.name || "",
     sets: exercise?.numberSets || "",
     reps: exercise?.numberReps || "",
