@@ -1,12 +1,13 @@
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import { MdCancel } from "react-icons/md";
 import { ChangeEvent, useState } from "react";
-import { postData } from "../../utils/api";
+import { putData } from "../../utils/api";
 import { MdCheckCircle } from "react-icons/md";
 import { Exercise } from "../dashboard/ExerciseList";
 import { toast } from "react-toastify";
 
 type ExerciseForm = {
+  id: number | string;
   exerciseName: string;
   sets: number | string;
   reps: number | string;
@@ -19,20 +20,25 @@ type ExerciseForm = {
 interface ExerciseFormProps {
   handleClose: () => void;
   dailyWorkoutId: number;
-  handleAdd: (newExercise: Exercise) => void;
+  handleAdd?: (newExercise: Exercise) => void;
+  handleEdit?: (id: number, exercise: Exercise) => void;
+  exercise?: Exercise;
 }
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
   handleClose,
   dailyWorkoutId,
   handleAdd,
+  handleEdit,
+  exercise,
 }) => {
   const [inputs, setInputs] = useState<ExerciseForm>({
-    exerciseName: "",
-    sets: "",
-    reps: "",
-    rpe: "",
-    percentage: "",
+    id: exercise?.id || "",
+    exerciseName: exercise?.name || "",
+    sets: exercise?.numberSets || "",
+    reps: exercise?.numberReps || "",
+    rpe: exercise?.rpe || "",
+    percentage: exercise?.percentage || "",
     dailyWorkoutId: dailyWorkoutId,
   });
 
@@ -70,14 +76,20 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
       return;
     }
 
-    const response = await postData(
+    const response = await putData(
       `/admin/workout_programs/exercise`,
       { ...inputs },
       true
     );
 
+    const { exercise, dailyWorkoutId } = response?.data;
+
     if (response?.status === 201) {
-      handleAdd(response?.data?.dailyWorkout);
+      handleAdd!(exercise);
+    }
+
+    if (response?.status === 200) {
+      handleEdit!(dailyWorkoutId, exercise);
     }
 
     handleClose();
