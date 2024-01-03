@@ -1,7 +1,7 @@
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import { MdCancel } from "react-icons/md";
 import { ChangeEvent, useEffect, useState } from "react";
-import { postData } from "../../utils/api";
+import { putData } from "../../utils/api";
 import { MdCheckCircle } from "react-icons/md";
 import { Exercise } from "../dashboard/ExerciseList";
 import { toast } from "react-toastify";
@@ -72,7 +72,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
       return;
     }
 
-    const response = await postData(
+    const response = await putData(
       `/admin/workout_programs/exercise`,
       { ...inputs },
       true
