@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
 import MicrocycleItem from "./MicrocycleItem";
+import Button from "../../components/Button";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
@@ -48,6 +49,15 @@ const Microcycle: React.FC<MicrocycleProps> = ({
     carouselReset();
   };
 
+  const testCopy = async () => {
+    const response = await postData(
+      `/admin/workout_programs/copy_previous_week`,
+      { previousMicrocycleId: , newMicrocycleId },
+      true
+    );
+    handleAdd(response?.data.microcycle);
+  };
+
   const addMicrocycle = async () => {
     const response = await postData(
       `/admin/workout_programs/microcycle`,
@@ -90,6 +100,9 @@ const Microcycle: React.FC<MicrocycleProps> = ({
           activeMicrocycle={activeMicrocycle}
         />
       </div>
+      <Button size="big" onClick={testCopy}>
+        Test
+      </Button>
     </>
   );
 };
