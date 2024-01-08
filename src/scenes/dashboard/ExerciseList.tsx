@@ -6,6 +6,8 @@ import Skeleton from "../../components/Skeleton";
 import useAxios from "../../hooks/useAxios";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import ExerciseForm from "../admin/ExerciseForm";
+import { postData } from "../../utils/api";
+import Button from "../../components/Button";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -76,6 +78,15 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setExerciseList([...exerciseList, newExercise]);
   };
 
+  const testCopy = async () => {
+    const response = await postData(
+      `/admin/workout_programs/copy_previous_week`,
+      { previousMicrocycleId: 33, newMicrocycleId: 34 },
+      true
+    );
+    setDailyWorkoutList(response?.data.dailyWorkouts);
+  };
+
   const editExercise = (id: number, newExercise: Exercise) => {
     const updatedExercises = exerciseList.map((exercise) => {
       if (exercise.id === id) {
@@ -133,6 +144,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
           handleClose={closeShowEdit}
         />
       )}
+      {edittable && <Button size="small">Copy From Previous Workout</Button>}
     </div>
   );
 };

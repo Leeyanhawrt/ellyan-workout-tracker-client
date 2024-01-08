@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Carousel from "../../components/Carousel";
 import useAxios from "../../hooks/useAxios";
-import { postData } from "../../utils/api";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;
@@ -35,15 +34,6 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
     setDailyWorkoutList([...dailyWorkoutList, newDailyWorkout]);
   };
 
-  const testCopy = async () => {
-    const response = await postData(
-      `/admin/workout_programs/copy_previous_week`,
-      { previousMicrocycleId: 33, newMicrocycleId: 34 },
-      true
-    );
-    setDailyWorkoutList(response?.data.dailyWorkouts);
-  };
-
   useEffect(() => {
     fetchData();
   }, [activeMicrocycle]);
@@ -57,7 +47,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
   }
 
   return (
-    <div>
+    <>
       <Carousel
         revertCarouselReset={revertCarouselReset}
         resetCarousel={resetCarousel}
@@ -67,7 +57,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
         handleAdd={appendDailyWorkout}
         microcycleId={activeMicrocycle}
       />
-    </div>
+    </>
   );
 };
 
