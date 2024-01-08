@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ModalProvider } from "./contexts/ModalContext";
 import { UserMaxesProvider } from "./contexts/UserMaxesContext";
+import { MicrocyclesProvider } from "./contexts/MicrocyclesContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import HomePage from "./scenes/home/HomePage";
@@ -20,54 +21,56 @@ const App = () => {
 
   return (
     <>
-      <UserMaxesProvider>
-        <ModalProvider>
-          <Nav />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/login"
-              element={
-                !isAuthenticated ? (
-                  <Login />
-                ) : (
-                  <Navigate to="/dashboard/workout_program" replace />
-                )
-              }
-            />
-            <Route
-              path="/dashboard/*"
-              element={
-                isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/admin/*"
-              element={
-                isAuthenticated &&
-                user?.roles?.some((role) => role === "member") ? (
-                  <AdminPage />
-                ) : (
-                  <Navigate to="/login/admin" />
-                )
-              }
-            />
-            <Route
-              path="/login/admin"
-              element={
-                !isAuthenticated ? (
-                  <AdminLogin />
-                ) : user?.roles?.some((role) => role === "admin") ? (
-                  <Navigate to="/admin/manage_users" replace />
-                ) : (
-                  <Unauthorized />
-                )
-              }
-            />
-          </Routes>
-          <ToastContainer />
-        </ModalProvider>
-      </UserMaxesProvider>
+      <MicrocyclesProvider>
+        <UserMaxesProvider>
+          <ModalProvider>
+            <Nav />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/login"
+                element={
+                  !isAuthenticated ? (
+                    <Login />
+                  ) : (
+                    <Navigate to="/dashboard/workout_program" replace />
+                  )
+                }
+              />
+              <Route
+                path="/dashboard/*"
+                element={
+                  isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />
+                }
+              />
+              <Route
+                path="/admin/*"
+                element={
+                  isAuthenticated &&
+                  user?.roles?.some((role) => role === "member") ? (
+                    <AdminPage />
+                  ) : (
+                    <Navigate to="/login/admin" />
+                  )
+                }
+              />
+              <Route
+                path="/login/admin"
+                element={
+                  !isAuthenticated ? (
+                    <AdminLogin />
+                  ) : user?.roles?.some((role) => role === "admin") ? (
+                    <Navigate to="/admin/manage_users" replace />
+                  ) : (
+                    <Unauthorized />
+                  )
+                }
+              />
+            </Routes>
+            <ToastContainer />
+          </ModalProvider>
+        </UserMaxesProvider>
+      </MicrocyclesProvider>
     </>
   );
 };

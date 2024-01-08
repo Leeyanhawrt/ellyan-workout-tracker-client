@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
 import MicrocycleItem from "./MicrocycleItem";
+import { useMicrocycles } from "../../contexts/MicrocyclesContext";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
@@ -26,7 +27,8 @@ const Microcycle: React.FC<MicrocycleProps> = ({
   handleAdd,
   updateMicrocycle,
 }) => {
-  const [activeMicrocycle, setActiveMicrocycle] = useState<number>(0);
+  const { activeMicrocycle, setActiveMicrocycle } = useMicrocycles();
+
   const [resetCarousel, setResetCarousel] = useState<boolean>(false);
 
   useEffect(() => {

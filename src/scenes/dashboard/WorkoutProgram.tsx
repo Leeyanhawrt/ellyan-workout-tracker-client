@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useUser } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import { useParams } from "react-router";
-import { useState } from "react";
 import Microcycle from "./Microcycle";
 import { Microcycle as MicrocycleT } from "./Microcycle";
 import useFetchMaxes from "../../hooks/useFetchMaxes";
+import { useMicrocycles } from "../../contexts/MicrocyclesContext";
 
 interface WorkoutProgramProps {
   edittable?: boolean;
@@ -22,7 +22,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
   edittable,
   impersonate,
 }) => {
-  const [microcycles, setMicrocycles] = useState<MicrocycleT[]>([]);
+  const { microcycles, setMicrocycles, appendMicrocycle } = useMicrocycles();
 
   let { id } = useParams();
 
@@ -40,10 +40,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
     `Microcycles`,
     true
   );
-
-  const appendMicrocycle = (newMicrocycle: MicrocycleT) => {
-    setMicrocycles((prev) => [...prev, newMicrocycle]);
-  };
 
   const updateMicrocycle = (id: number, newPhase: string) => {
     const updatedMicrocycles = microcycles.map((microcycle) => {
