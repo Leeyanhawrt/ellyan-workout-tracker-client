@@ -9,11 +9,11 @@ interface DailyWorkoutProps {
   edittable?: boolean;
 }
 
-interface DailyWorkout {
+type DailyWorkout = {
   id: number;
   dayNumber: number;
   microcycleId: number;
-}
+};
 
 const DailyWorkout: React.FC<DailyWorkoutProps> = ({
   activeMicrocycle,
