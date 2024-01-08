@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Carousel from "../../components/Carousel";
 import useAxios from "../../hooks/useAxios";
 import { postData } from "../../utils/api";
-import Button from "../../components/Button";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;
@@ -68,9 +67,6 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
         handleAdd={appendDailyWorkout}
         microcycleId={activeMicrocycle}
       />
-      <Button size="big" onClick={testCopy}>
-        Test
-      </Button>
     </div>
   );
 };

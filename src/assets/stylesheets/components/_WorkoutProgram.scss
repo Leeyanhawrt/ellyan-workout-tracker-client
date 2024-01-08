@@ -74,6 +74,7 @@
   }
 
   .daily-workout-container {
+    background-color: $color-white;
     width: 85%;
     @include respond(tablet-landscape) {
       width: 80%;
