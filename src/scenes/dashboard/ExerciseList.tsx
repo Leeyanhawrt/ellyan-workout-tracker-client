@@ -8,6 +8,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import ExerciseForm from "../admin/ExerciseForm";
 import { postData } from "../../utils/api";
 import Button from "../../components/Button";
+import { IoCopy } from "react-icons/io5";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -144,7 +145,13 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
           handleClose={closeShowEdit}
         />
       )}
-      {edittable && <Button size="small">Copy From Previous Workout</Button>}
+      {edittable && (
+        <Button size="small">
+          <div className="copy-container">
+            Copy From Previous Workout <IoCopy />
+          </div>
+        </Button>
+      )}
     </div>
   );
 };
