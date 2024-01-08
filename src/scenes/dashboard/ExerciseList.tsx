@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
-import DailyWorkout from "./DailyWorkout";
+import { DailyWorkout } from "./DailyWorkout";
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import Skeleton from "../../components/Skeleton";
 import useAxios from "../../hooks/useAxios";
@@ -9,6 +9,7 @@ import ExerciseForm from "../admin/ExerciseForm";
 import { postData } from "../../utils/api";
 import Button from "../../components/Button";
 import { IoCopy } from "react-icons/io5";
+import { useDailyWorkout } from "../../contexts/DailyWorkoutContext";
 
 interface ExerciseListProps {
   dailyWorkout: DailyWorkout;
@@ -36,6 +37,8 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
 }) => {
   const [showEdit, setShowEdit] = useState<boolean>(false);
   const [exerciseList, setExerciseList] = useState<Exercise[]>([]);
+
+  const { setDailyWorkoutList } = useDailyWorkout();
 
   const openShowEdit = () => {
     setShowEdit(true);
@@ -79,7 +82,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setExerciseList([...exerciseList, newExercise]);
   };
 
-  const testCopy = async () => {
+  const copyPreviousWeek = async () => {
     const response = await postData(
       `/admin/workout_programs/copy_previous_week`,
       { previousMicrocycleId: 33, newMicrocycleId: 34 },
@@ -146,7 +149,7 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
         />
       )}
       {edittable && (
-        <Button size="small">
+        <Button size="small" onClick={copyPreviousWeek}>
           <div className="copy-container">
             Copy From Previous Workout <IoCopy />
           </div>

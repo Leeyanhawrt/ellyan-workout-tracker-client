@@ -5,7 +5,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
 import MicrocycleItem from "./MicrocycleItem";
 import { useMicrocycles } from "../../contexts/MicrocyclesContext";
-import { DailyWorkoutProvider } from "../../contexts/DailyWorkoutsContext";
+import { DailyWorkoutProvider } from "../../contexts/DailyWorkoutContext";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];

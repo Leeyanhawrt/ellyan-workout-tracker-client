@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Carousel from "../../components/Carousel";
 import useAxios from "../../hooks/useAxios";
+import { useDailyWorkout } from "../../contexts/DailyWorkoutContext";
 
 interface DailyWorkoutProps {
   activeMicrocycle: number;
@@ -21,7 +22,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
   revertCarouselReset,
   edittable,
 }) => {
-  const [dailyWorkoutList, setDailyWorkoutList] = useState<DailyWorkout[]>([]);
+  const { dailyWorkoutList, setDailyWorkoutList } = useDailyWorkout();
 
   const { data, loading, fetchData } = useAxios<DailyWorkout[]>(
     [],

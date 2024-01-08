@@ -8,12 +8,12 @@ interface DailyWorkoutProviderProps {
 
 type DailyWorkoutContextType = {
   dailyWorkoutList: DailyWorkout[];
-  setDailyWorkout: (value: DailyWorkout[]) => void;
+  setDailyWorkoutList: (value: DailyWorkout[]) => void;
 };
 
 const defaultValue: DailyWorkoutContextType = {
   dailyWorkoutList: [],
-  setDailyWorkout: () => {},
+  setDailyWorkoutList: () => {},
 };
 
 const DailyWorkoutContext = createContext(defaultValue);
@@ -27,13 +27,13 @@ export function DailyWorkoutProvider({ children }: DailyWorkoutProviderProps) {
     []
   );
 
-  const setDailyWorkout = (value: DailyWorkout[]) => {
+  const setDailyWorkoutList = (value: DailyWorkout[]) => {
     setDailyWorkoutListState(value);
   };
 
   const contextValue: DailyWorkoutContextType = {
     dailyWorkoutList,
-    setDailyWorkout,
+    setDailyWorkoutList,
   };
 
   return (
