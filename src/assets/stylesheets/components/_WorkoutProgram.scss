@@ -83,5 +83,20 @@
     @include respond(phone) {
       width: 75%;
     }
+
+    .daily-workout-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .copy-container {
+        margin: 3rem;
+        .copy-text {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+      }
+    }
   }
 }
