@@ -5,6 +5,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { postData } from "../../utils/api";
 import MicrocycleItem from "./MicrocycleItem";
 import { useMicrocycles } from "../../contexts/MicrocyclesContext";
+import { DailyWorkoutProvider } from "../../contexts/DailyWorkoutsContext";
 
 interface MicrocycleProps {
   microcycles: Microcycle[];
@@ -61,37 +62,39 @@ const Microcycle: React.FC<MicrocycleProps> = ({
 
   return (
     <>
-      <div className="microcycles-container">
-        {microcycles.map((microcycle) => {
-          return (
-            <MicrocycleItem
-              onClick={updateActiveMicrocycle}
-              key={microcycle.id}
-              microcycle={microcycle}
-              updateMicrocycle={updateMicrocycle}
-              edittable={edittable}
-              className={`microcycle-week ${
-                microcycle.id === activeMicrocycle
-                  ? "microcycle-week-active"
-                  : ""
-              }`}
-            />
-          );
-        })}
-        {edittable && (
-          <div onClick={addMicrocycle} className="microcycle-add">
-            <IoIosAddCircleOutline />
-          </div>
-        )}
-      </div>
-      <div className="daily-workout-container">
-        <DailyWorkout
-          edittable={edittable}
-          revertCarouselReset={revertReset}
-          resetCarousel={resetCarousel}
-          activeMicrocycle={activeMicrocycle}
-        />
-      </div>
+      <DailyWorkoutProvider>
+        <div className="microcycles-container">
+          {microcycles.map((microcycle) => {
+            return (
+              <MicrocycleItem
+                onClick={updateActiveMicrocycle}
+                key={microcycle.id}
+                microcycle={microcycle}
+                updateMicrocycle={updateMicrocycle}
+                edittable={edittable}
+                className={`microcycle-week ${
+                  microcycle.id === activeMicrocycle
+                    ? "microcycle-week-active"
+                    : ""
+                }`}
+              />
+            );
+          })}
+          {edittable && (
+            <div onClick={addMicrocycle} className="microcycle-add">
+              <IoIosAddCircleOutline />
+            </div>
+          )}
+        </div>
+        <div className="daily-workout-container">
+          <DailyWorkout
+            edittable={edittable}
+            revertCarouselReset={revertReset}
+            resetCarousel={resetCarousel}
+            activeMicrocycle={activeMicrocycle}
+          />
+        </div>
+      </DailyWorkoutProvider>
     </>
   );
 };

@@ -9,7 +9,7 @@ interface DailyWorkoutProps {
   edittable?: boolean;
 }
 
-type DailyWorkout = {
+export type DailyWorkout = {
   id: number;
   dayNumber: number;
   microcycleId: number;
