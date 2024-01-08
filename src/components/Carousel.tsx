@@ -1,7 +1,7 @@
 import "../assets/stylesheets/components/_Carousel.scss";
 import CarouselItem from "./CarouselItem";
 import { useState, useEffect } from "react";
-import DailyWorkout from "../scenes/dashboard/DailyWorkout";
+import { DailyWorkout } from "../scenes/dashboard/DailyWorkout";
 import { IoIosAdd } from "react-icons/io";
 import { postData } from "../utils/api";
 import useSwipe from "../hooks/useSwipe";

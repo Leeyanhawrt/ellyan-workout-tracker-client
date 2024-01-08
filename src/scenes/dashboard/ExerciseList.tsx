@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ExerciseItem from "./ExerciseItem";
-import DailyWorkout from "./DailyWorkout";
+import { DailyWorkout } from "./DailyWorkout";
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import Skeleton from "../../components/Skeleton";
 import useAxios from "../../hooks/useAxios";
