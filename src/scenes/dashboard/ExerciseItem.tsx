@@ -25,8 +25,8 @@ interface ExerciseItemProps {
 interface Exercise {
   id: number;
   name: string;
-  numberSets: number;
-  numberReps: number;
+  sets: number;
+  reps: number;
   rpe: number;
   percentage: number;
   type: string;
@@ -89,8 +89,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     <>
       <div className={classes}>
         {exerciseList.map((exercise, index) => {
-          const { name, percentage, numberReps, numberSets, rpe, variant } =
-            exercise;
+          const { name, percentage, reps, sets, rpe, variant } = exercise;
 
           const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
             ? calculateWeight(variant, percentage, userMaxes, user.roundDown)
@@ -103,7 +102,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
           const percentageText =
             edittable && percentage ? `@ ${percentage}%` : "";
 
-          const exerciseScheme = `${calculatedWeightText}${numberSets} Sets x ${numberReps} Reps ${repsAndRpeText} ${percentageText}`;
+          const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${repsAndRpeText} ${percentageText}`;
 
           return (
             <div key={exercise.id}>
