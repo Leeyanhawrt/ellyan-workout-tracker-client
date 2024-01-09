@@ -42,12 +42,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
     };
 
     document.addEventListener("click", handleDocumentClick);
-    document.addEventListener("touchstart", handleDocumentClick);
     document.addEventListener("touchmove", handleDocumentClick);
 
     return () => {
       document.removeEventListener("click", handleDocumentClick);
-      document.removeEventListener("touchstart", handleDocumentClick);
       document.removeEventListener("touchmove", handleDocumentClick);
     };
   }, [showMobileModal]);
