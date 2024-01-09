@@ -1,6 +1,6 @@
 import "/src/assets/stylesheets/components/_MobileMenu.scss";
 import MobileMenuItem from "./MobileMenuItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth, useAuthUpdate } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
@@ -17,7 +17,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   const user = useUser();
   const authStatus = useAuth();
   const setAuth = useAuthUpdate();
-  const { setMobileModal } = useModal();
+  const { setMobileModal, showMobileModal } = useModal();
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
   const isAdmin = user?.roles?.includes("admin");
 
@@ -27,6 +27,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
     setAuth(false);
     window.location.reload();
   };
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (showMobileModal && e.target) {
+        const targetElement = e.target as Element;
+        if (
+          !targetElement.closest("#mobile-menu") &&
+          !targetElement.classList.contains("menu-button")
+        ) {
+          setMobileModal(false);
+        }
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [showMobileModal]);
 
   let dashboardItems = [
     { to: `/dashboard/workout_program`, resource: `Workout Program` },
