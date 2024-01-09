@@ -29,7 +29,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
   };
 
   useEffect(() => {
-    const handleDocumentClick = (e: MouseEvent) => {
+    const handleDocumentPress = (e: MouseEvent | TouchEvent) => {
       if (showMobileModal && e.target) {
         const targetElement = e.target as Element;
         if (
@@ -41,10 +41,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
       }
     };
 
-    document.addEventListener("click", handleDocumentClick);
+    document.addEventListener("click", handleDocumentPress);
+    document.addEventListener("touchstart", handleDocumentPress);
 
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
+      document.removeEventListener("click", handleDocumentPress);
+      document.removeEventListener("touchstart", handleDocumentPress);
     };
   }, [showMobileModal]);
 
