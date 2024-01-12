@@ -6,29 +6,53 @@ import { FcCancel } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useUser } from "../../contexts/UserContext";
 import { useUserMaxes } from "../../contexts/UserMaxesContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { deleteData } from "../../utils/api";
+import useAxios from "../../hooks/useAxios";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
-  exercise: Exercise;
+  workoutExercise: Exercise;
   index: number;
   edittable?: boolean;
   toggleShowEdit: () => void;
   removeExercise: (exerciseId: number) => void;
 }
 
+type UserWorkout = {
+  sets?: number;
+  reps?: number;
+  rpe?: number;
+  percentage?: number;
+};
+
 const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
-  exercise,
+  workoutExercise,
   index,
   edittable,
   toggleShowEdit,
   removeExercise,
 }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [userWorkout, setUserWorkout] = useState<UserWorkout | null>(null);
 
   const userMaxes = useUserMaxes();
   const user = useUser();
+
+  const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
+    {},
+    `/workout_program/exercise_list/${workoutExercise.id}`,
+    `Exercise List`,
+    true
+  );
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setUserWorkout(data);
+  }, [data]);
 
   const toggleConfirmation = () => {
     setShowConfirmation((prev) => !prev);
@@ -45,6 +69,10 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (!userMaxes) {
     return <div>Loading...</div>;
   }
@@ -53,7 +81,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     return <div>Loading...</div>;
   }
 
-  const { name, percentage, reps, sets, rpe, variant } = exercise;
+  const { name, percentage, reps, sets, rpe, variant } = workoutExercise;
 
   const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
     ? calculateWeight(variant, percentage, userMaxes, user.roundDown)
@@ -86,7 +114,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
         {showConfirmation && (
           <div className="icon-container">
             <FcCheckmark
-              onClick={() => handleDelete(exercise.id)}
+              onClick={() => handleDelete(workoutExercise.id)}
               className="exercise-item-icon"
             />
             <FcCancel

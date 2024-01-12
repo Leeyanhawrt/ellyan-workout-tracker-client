@@ -68,7 +68,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
                 <ExerciseDetail
                   toggleShowEdit={toggleShowEdit}
                   edittable={edittable}
-                  exercise={exercise}
+                  workoutExercise={exercise}
                   index={index}
                   removeExercise={removeExercise}
                 />
