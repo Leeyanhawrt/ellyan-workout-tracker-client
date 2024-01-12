@@ -1,16 +1,8 @@
-import { useUserMaxes } from "../../contexts/UserMaxesContext";
-import { calculateWeight } from "../../utils/calculateLifts";
-import { FaRegTrashCan } from "react-icons/fa6";
-const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 import "/src/assets/stylesheets/components/_Exercise.scss";
 import classNames from "classnames";
-import { deleteData } from "../../utils/api";
-import { useUser } from "../../contexts/UserContext";
 import { useState } from "react";
-import { FcCheckmark } from "react-icons/fc";
-import { FcCancel } from "react-icons/fc";
 import ExerciseForm from "../admin/ExerciseForm";
-import { FaEdit } from "react-icons/fa";
+import ExerciseDetail from "./ExerciseDetail";
 
 interface ExerciseItemProps {
   exerciseList: Exercise[];
@@ -22,7 +14,7 @@ interface ExerciseItemProps {
   dailyWorkoutId: number;
 }
 
-interface Exercise {
+export type Exercise = {
   id: number;
   name: string;
   sets: number;
@@ -31,7 +23,7 @@ interface Exercise {
   percentage: number;
   type: string;
   variant: string;
-}
+};
 
 const ExerciseItem: React.FC<ExerciseItemProps> = ({
   exerciseList,
@@ -42,41 +34,14 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
   dailyWorkoutId,
   type,
 }) => {
-  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [showEdit, setShowEdit] = useState<boolean>(false);
-
-  const userMaxes = useUserMaxes();
-  const user = useUser();
-
-  const toggleConfirmation = () => {
-    setShowConfirmation((prev) => !prev);
-  };
-
-  const toggleShowEdit = () => {
-    setShowEdit((prev) => !prev);
-  };
 
   const closeShowEdit = () => {
     setShowEdit(false);
   };
 
-  if (!userMaxes) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-
-  const handleDelete = async (exerciseId: number) => {
-    const response = await deleteData(
-      `/admin/workout_programs/exercise/${exerciseId}`,
-      true
-    );
-
-    if (response?.status === 200) {
-      removeExercise(exerciseId);
-    }
+  const toggleShowEdit = () => {
+    setShowEdit((prev) => !prev);
   };
 
   const classes = classNames("exercise-item-container", {
@@ -89,21 +54,6 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     <>
       <div className={classes}>
         {exerciseList.map((exercise, index) => {
-          const { name, percentage, reps, sets, rpe, variant } = exercise;
-
-          const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
-            ? calculateWeight(variant, percentage, userMaxes, user.roundDown)
-            : undefined;
-
-          const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
-          const calculatedWeightText = calculatedWeight
-            ? `${calculatedWeight}lbs x `
-            : "";
-          const percentageText =
-            edittable && percentage ? `@ ${percentage}%` : "";
-
-          const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${repsAndRpeText} ${percentageText}`;
-
           return (
             <div key={exercise.id}>
               {showEdit ? (
@@ -115,38 +65,13 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
                   handleEdit={handleEdit}
                 />
               ) : (
-                <div>
-                  {index === 0 && <h5>{name}</h5>}
-                  <div className="exercise-description">
-                    <p>{exerciseScheme}</p>
-                    {edittable && !showConfirmation ? (
-                      <div className="icon-container">
-                        <FaRegTrashCan
-                          onClick={toggleConfirmation}
-                          className="exercise-item-icon"
-                        />
-                        <FaEdit
-                          className="exercise-item-icon"
-                          onClick={toggleShowEdit}
-                        />
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {showConfirmation && (
-                      <div className="icon-container">
-                        <FcCheckmark
-                          onClick={() => handleDelete(exercise.id)}
-                          className="exercise-item-icon"
-                        />
-                        <FcCancel
-                          onClick={toggleConfirmation}
-                          className="exercise-item-icon"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <ExerciseDetail
+                  toggleShowEdit={toggleShowEdit}
+                  edittable={edittable}
+                  exercise={exercise}
+                  index={index}
+                  removeExercise={removeExercise}
+                />
               )}
             </div>
           );
