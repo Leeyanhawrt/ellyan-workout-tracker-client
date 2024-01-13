@@ -35,9 +35,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
   if (impersonate) {
     useFetchMaxes(id);
     useFetchImpersonateUser(id);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
   }
 
   let workoutProgramId;
@@ -68,6 +65,9 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
 
   useEffect(() => {
     fetchData();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
   }, []);
 
   useEffect(() => {
