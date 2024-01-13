@@ -9,6 +9,7 @@ import { useUserMaxes } from "../../contexts/UserMaxesContext";
 import { useState, useEffect } from "react";
 import { deleteData } from "../../utils/api";
 import useAxios from "../../hooks/useAxios";
+import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
@@ -33,12 +34,14 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [userWorkout, setUserWorkout] = useState<UserWorkout | null>(null);
 
+  const impersonateUser = useImpersonateUser();
+
   const userMaxes = useUserMaxes();
   const user = useUser();
 
   const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
     {},
-    `/workout_program/user_workout/${user?.id}/${workoutExercise.id}`,
+    `/workout_program/user_workout/${impersonateUser?.id}/${workoutExercise.id}`,
     `Exercise List`,
     true
   );
