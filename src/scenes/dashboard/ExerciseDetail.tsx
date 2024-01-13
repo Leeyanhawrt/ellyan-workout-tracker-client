@@ -38,7 +38,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
     {},
-    `/workout_program/user_workout/${workoutExercise.id}`,
+    `/workout_program/user_workout/${user?.id}/${workoutExercise.id}`,
     `Exercise List`,
     true
   );
