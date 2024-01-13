@@ -78,8 +78,6 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     return <div>Loading...</div>;
   }
 
-  console.log(userWorkout?.rpe);
-
   const { name, percentage, reps, sets, rpe, variant } = workoutExercise;
 
   const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
