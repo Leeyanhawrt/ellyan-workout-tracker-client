@@ -23,7 +23,7 @@ type UserWorkout = {
   sets?: number;
   reps?: number;
   rpe?: number;
-  percentage?: number;
+  weight?: number;
 };
 
 const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
@@ -41,7 +41,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
     {},
-    `/workout_program/exercise_list/${workoutExercise.id}`,
+    `/workout_program/user_workout/${workoutExercise.id}`,
     `Exercise List`,
     true
   );
