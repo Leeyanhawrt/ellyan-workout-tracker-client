@@ -20,10 +20,7 @@ interface ExerciseDetailProps {
 }
 
 type UserWorkout = {
-  sets?: number;
-  reps?: number;
-  rpe?: number;
-  weight?: number;
+  rpe?: number[];
 };
 
 const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
@@ -81,22 +78,26 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     return <div>Loading...</div>;
   }
 
+  console.log(userWorkout?.rpe);
+
   const { name, percentage, reps, sets, rpe, variant } = workoutExercise;
 
   const calculatedWeight = LIFTS_TO_CALCULATE.includes(variant)
     ? calculateWeight(variant, percentage, userMaxes, user.roundDown)
     : undefined;
 
-  const repsAndRpeText = rpe ? `@ ${rpe} RPE` : "";
+  const rpeText = rpe ? `@ ${rpe} RPE` : "";
   const calculatedWeightText = calculatedWeight
     ? `${calculatedWeight}lbs x `
     : "";
   const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
+  const userRpe =
+    userWorkout?.rpe && userWorkout.rpe.length ? `[${userWorkout.rpe}]` : "";
 
-  const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${repsAndRpeText} ${percentageText}`;
+  const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${rpeText} ${userRpe} ${percentageText}`;
 
   return (
-    <div>
+    <>
       {index === 0 && <h5>{name}</h5>}
       <div className="exercise-description">
         <p>{exerciseScheme}</p>
@@ -124,7 +125,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
