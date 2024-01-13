@@ -7,6 +7,8 @@ import Microcycle from "./Microcycle";
 import { Microcycle as MicrocycleT } from "./Microcycle";
 import useFetchMaxes from "../../hooks/useFetchMaxes";
 import { useMicrocycles } from "../../contexts/MicrocyclesContext";
+import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
+import useFetchImpersonateUser from "../../hooks/useFetchImpersonateUser";
 
 interface WorkoutProgramProps {
   edittable?: boolean;
@@ -27,12 +29,21 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
   let { id } = useParams();
 
   const user = useUser();
+  const impersonateUser = useImpersonateUser();
 
   if (impersonate) {
     useFetchMaxes(id);
+    useFetchImpersonateUser(id);
   }
 
-  let workoutProgramId = edittable || impersonate ? id : user?.workoutProgramId;
+  let workoutProgramId;
+  if (edittable) {
+    workoutProgramId = id;
+  } else if (impersonate) {
+    workoutProgramId = impersonateUser?.workoutProgramId;
+  } else {
+    workoutProgramId = user?.workoutProgramId;
+  }
 
   const { data, loading, fetchData } = useAxios<MicrocycleT[]>(
     [],
