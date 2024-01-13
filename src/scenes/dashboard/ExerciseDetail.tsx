@@ -90,7 +90,9 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     : "";
   const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
   const userRpe =
-    userWorkout?.rpe && userWorkout.rpe.length ? `[${userWorkout.rpe}]` : "";
+    userWorkout?.rpe && userWorkout.rpe.length && !edittable
+      ? `[${userWorkout.rpe}]`
+      : "";
 
   const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${rpeText} ${userRpe} ${percentageText}`;
 
