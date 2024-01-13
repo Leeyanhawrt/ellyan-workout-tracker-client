@@ -39,9 +39,11 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const userMaxes = useUserMaxes();
   const user = useUser();
 
+  const userRpeId = impersonateUser ? impersonateUser.id : user?.id;
+
   const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
     {},
-    `/workout_program/user_workout/${impersonateUser?.id}/${workoutExercise.id}`,
+    `/workout_program/user_workout/${userRpeId}/${workoutExercise.id}`,
     `Exercise List`,
     true
   );
