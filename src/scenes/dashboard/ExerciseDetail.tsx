@@ -106,55 +106,55 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${rpeText} ${userRpe} ${percentageText}`;
 
+  let iconContainer;
+
+  if (edittable && !showConfirmation) {
+    iconContainer = (
+      <>
+        <FaRegTrashCan
+          onClick={toggleConfirmation}
+          className="exercise-item-icon"
+        />
+        <FaEdit className="exercise-item-icon" onClick={toggleShowEdit} />
+      </>
+    );
+  } else if (!edittable && !showUserWorkout) {
+    iconContainer = (
+      <LuTextCursorInput
+        className="exercise-item-icon user-workout"
+        onClick={openUserWorkout}
+      />
+    );
+  } else if (showConfirmation) {
+    iconContainer = (
+      <>
+        <FcCheckmark
+          onClick={() => handleDelete(workoutExercise.id)}
+          className="exercise-item-icon"
+        />
+        <FcCancel onClick={toggleConfirmation} className="exercise-item-icon" />
+      </>
+    );
+  }
+
   return (
     <>
       {index === 0 && <h5>{name}</h5>}
       <div className="exercise-description">
         <p>{exerciseScheme}</p>
-        <div className="icon-container">
-          {edittable && !showConfirmation ? (
-            <>
-              <FaRegTrashCan
-                onClick={toggleConfirmation}
-                className="exercise-item-icon"
-              />
-              <FaEdit className="exercise-item-icon" onClick={toggleShowEdit} />
-            </>
-          ) : (
-            ""
-          )}
-          {!edittable && !showUserWorkout ? (
-            <LuTextCursorInput
-              className="exercise-item-icon user-workout"
-              onClick={openUserWorkout}
-            />
-          ) : (
-            <form>
-              <div className="exercise-scheme">
-                <input
-                  type="text"
-                  name="userRpe"
-                  id="userRpe"
-                  placeholder="RPE (e.g. 7 7 8.5)"
-                />
-              </div>
-              <button type="submit" style={{ display: "none" }}></button>
-            </form>
-          )}
-          {showConfirmation && (
-            <>
-              <FcCheckmark
-                onClick={() => handleDelete(workoutExercise.id)}
-                className="exercise-item-icon"
-              />
-              <FcCancel
-                onClick={toggleConfirmation}
-                className="exercise-item-icon"
-              />
-            </>
-          )}
-        </div>
+        <div className="icon-container">{iconContainer}</div>
       </div>
+      <form>
+        <div className="exercise-scheme">
+          <input
+            type="text"
+            name="userRpe"
+            id="userRpe"
+            placeholder="RPE (e.g. 7 7 8.5)"
+          />
+        </div>
+        <button type="submit" style={{ display: "none" }}></button>
+      </form>
     </>
   );
 };
