@@ -121,7 +121,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   } else if (!edittable && !showUserWorkout) {
     iconContainer = (
       <LuTextCursorInput
-        className="exercise-item-icon user-workout"
+        className="exercise-item-icon user-workout-icon"
         onClick={openUserWorkout}
       />
     );
@@ -144,17 +144,19 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
         <p>{exerciseScheme}</p>
         <div className="icon-container">{iconContainer}</div>
       </div>
-      <form>
-        <div className="exercise-scheme">
-          <input
-            type="text"
-            name="userRpe"
-            id="userRpe"
-            placeholder="RPE (e.g. 7 7 8.5)"
-          />
-        </div>
-        <button type="submit" style={{ display: "none" }}></button>
-      </form>
+      {!edittable && showUserWorkout && (
+        <form>
+          <div className="user-workout-input-container">
+            <input
+              type="text"
+              name="userRpe"
+              id="userRpe"
+              placeholder="RPE (e.g. 7 7 8.5)"
+            />
+          </div>
+          <button type="submit" style={{ display: "none" }}></button>
+        </form>
+      )}
     </>
   );
 };
