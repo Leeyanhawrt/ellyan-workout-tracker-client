@@ -140,23 +140,25 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   return (
     <>
       {index === 0 && <h5>{name}</h5>}
-      <div className="exercise-description">
-        <p>{exerciseScheme}</p>
-        <div className="icon-container">{iconContainer}</div>
+      <div className="exercise-entry">
+        <div className="exercise-description">
+          <p>{exerciseScheme}</p>
+          <div className="icon-container">{iconContainer}</div>
+        </div>
+        {!edittable && showUserWorkout && (
+          <form>
+            <div className="user-workout-input-container">
+              <input
+                type="text"
+                name="userRpe"
+                id="userRpe"
+                placeholder="RPE (e.g. 7 7 8.5)"
+              />
+            </div>
+            <button type="submit" style={{ display: "none" }}></button>
+          </form>
+        )}
       </div>
-      {!edittable && showUserWorkout && (
-        <form>
-          <div className="user-workout-input-container">
-            <input
-              type="text"
-              name="userRpe"
-              id="userRpe"
-              placeholder="RPE (e.g. 7 7 8.5)"
-            />
-          </div>
-          <button type="submit" style={{ display: "none" }}></button>
-        </form>
-      )}
     </>
   );
 };
