@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { deleteData } from "../../utils/api";
 import useAxios from "../../hooks/useAxios";
 import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
+import { TfiPencil } from "react-icons/tfi";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
@@ -105,29 +106,36 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
       {index === 0 && <h5>{name}</h5>}
       <div className="exercise-description">
         <p>{exerciseScheme}</p>
-        {edittable && !showConfirmation ? (
-          <div className="icon-container">
-            <FaRegTrashCan
-              onClick={toggleConfirmation}
-              className="exercise-item-icon"
-            />
-            <FaEdit className="exercise-item-icon" onClick={toggleShowEdit} />
-          </div>
-        ) : (
-          ""
-        )}
-        {showConfirmation && (
-          <div className="icon-container">
-            <FcCheckmark
-              onClick={() => handleDelete(workoutExercise.id)}
-              className="exercise-item-icon"
-            />
-            <FcCancel
-              onClick={toggleConfirmation}
-              className="exercise-item-icon"
-            />
-          </div>
-        )}
+        <div className="icon-container">
+          {edittable && !showConfirmation ? (
+            <>
+              <FaRegTrashCan
+                onClick={toggleConfirmation}
+                className="exercise-item-icon"
+              />
+              <FaEdit className="exercise-item-icon" onClick={toggleShowEdit} />
+            </>
+          ) : (
+            ""
+          )}
+          {!edittable && !showConfirmation ? (
+            <TfiPencil className="exercise-item-icon" />
+          ) : (
+            ""
+          )}
+          {showConfirmation && (
+            <>
+              <FcCheckmark
+                onClick={() => handleDelete(workoutExercise.id)}
+                className="exercise-item-icon"
+              />
+              <FcCancel
+                onClick={toggleConfirmation}
+                className="exercise-item-icon"
+              />
+            </>
+          )}
+        </div>
       </div>
     </>
   );
