@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { deleteData } from "../../utils/api";
 import useAxios from "../../hooks/useAxios";
 import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
-import { TfiPencil } from "react-icons/tfi";
+import { LuTextCursorInput } from "react-icons/lu";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
@@ -33,6 +33,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   removeExercise,
 }) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [showUserWorkout, setShowUserWorkout] = useState<boolean>(false);
   const [userWorkout, setUserWorkout] = useState<UserWorkout | null>(null);
 
   const impersonateUser = useImpersonateUser();
@@ -56,6 +57,10 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   useEffect(() => {
     setUserWorkout(data);
   }, [data]);
+
+  const openUserWorkout = () => {
+    setShowUserWorkout(true);
+  };
 
   const toggleConfirmation = () => {
     setShowConfirmation((prev) => !prev);
@@ -118,10 +123,23 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           ) : (
             ""
           )}
-          {!edittable && !showConfirmation ? (
-            <TfiPencil className="exercise-item-icon" />
+          {!edittable && !showUserWorkout ? (
+            <LuTextCursorInput
+              className="exercise-item-icon user-workout"
+              onClick={openUserWorkout}
+            />
           ) : (
-            ""
+            <form>
+              <div className="exercise-scheme">
+                <input
+                  type="text"
+                  name="userRpe"
+                  id="userRpe"
+                  placeholder="RPE (e.g. 7 7 8.5)"
+                />
+              </div>
+              <button type="submit" style={{ display: "none" }}></button>
+            </form>
           )}
           {showConfirmation && (
             <>
