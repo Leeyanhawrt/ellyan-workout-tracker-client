@@ -90,9 +90,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     : undefined;
 
   const rpeText = rpe ? `@ ${rpe} RPE` : "";
-  const calculatedWeightText = calculatedWeight
-    ? `${calculatedWeight}lbs x `
-    : "";
+  const calculatedWeightText =
+    calculatedWeight && !edittable ? `${calculatedWeight}lbs x ` : "";
   const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
   const userRpe =
     userWorkout?.rpe && userWorkout.rpe.length && !edittable
