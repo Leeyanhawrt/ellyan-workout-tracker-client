@@ -22,7 +22,8 @@ interface ExerciseDetailProps {
 }
 
 type UserWorkout = {
-  rpe?: number[];
+  rpe?: number[] | string;
+  [key: string]: string | number[] | undefined;
 };
 
 const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
@@ -35,6 +36,9 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
   const [showUserWorkout, setShowUserWorkout] = useState<boolean>(false);
   const [userWorkout, setUserWorkout] = useState<UserWorkout | null>(null);
+  const [inputs, setInputs] = useState<UserWorkout>({
+    rpe: userWorkout?.rpe?.toString() || "",
+  });
 
   const impersonateUser = useImpersonateUser();
 
@@ -43,7 +47,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const userRpeId = impersonateUser ? impersonateUser.id : user?.id;
 
-  const { data, loading, fetchData } = useAxios<Partial<UserWorkout>>(
+  const { data, loading, fetchData } = useAxios<UserWorkout>(
     {},
     `/workout_program/user_workout/${userRpeId}/${workoutExercise.id}`,
     `Exercise List`,
@@ -57,6 +61,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   useEffect(() => {
     setUserWorkout(data);
   }, [data]);
+
+  useEffect(() => {}, [userWorkout]);
 
   const openUserWorkout = () => {
     setShowUserWorkout(true);
@@ -152,7 +158,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
                 type="text"
                 name="userRpe"
                 id="userRpe"
-                placeholder="RPE (e.g. 7 7 8.5)"
+                value={inputs.rpe?.toString()}
+                placeholder="RPE (e.g. 7 8 9.5)"
               />
             </div>
             <button type="submit" style={{ display: "none" }}></button>
