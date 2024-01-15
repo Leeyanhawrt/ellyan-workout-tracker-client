@@ -11,6 +11,7 @@ import { deleteData } from "../../utils/api";
 import useAxios from "../../hooks/useAxios";
 import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
 import { LuTextCursorInput } from "react-icons/lu";
+import { putData } from "../../utils/api";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
@@ -74,6 +75,21 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const response = await putData(
+      `/workout_program/user_workout/${workoutExercise.id}`,
+      { ...inputs },
+      true
+    );
+
+    const { userRpe } = response?.data.userWorkout;
+
+    setUserWorkout({ ...userWorkout, userRpe: userRpe });
+  };
+
+  console.log(userWorkout);
 
   const openUserWorkout = () => {
     setShowUserWorkout(true);
@@ -163,7 +179,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           <div className="icon-container">{iconContainer}</div>
         </div>
         {!edittable && showUserWorkout && (
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="user-workout-input-container">
               <input
                 onChange={handleChange}
