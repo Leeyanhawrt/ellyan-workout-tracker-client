@@ -6,7 +6,7 @@ import { FcCancel } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useUser } from "../../contexts/UserContext";
 import { useUserMaxes } from "../../contexts/UserMaxesContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { deleteData } from "../../utils/api";
 import useAxios from "../../hooks/useAxios";
 import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
@@ -22,7 +22,7 @@ interface ExerciseDetailProps {
 }
 
 type UserWorkout = {
-  rpe?: number[] | string;
+  userRpe?: number[] | string;
   [key: string]: string | number[] | undefined;
 };
 
@@ -37,7 +37,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const [showUserWorkout, setShowUserWorkout] = useState<boolean>(false);
   const [userWorkout, setUserWorkout] = useState<UserWorkout | null>(null);
   const [inputs, setInputs] = useState<UserWorkout>({
-    rpe: userWorkout?.rpe?.toString() || "",
+    userRpe: userWorkout?.userRpe?.toString().replace(/,/g, " ") || "",
   });
 
   const impersonateUser = useImpersonateUser();
@@ -62,7 +62,18 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     setUserWorkout(data);
   }, [data]);
 
-  useEffect(() => {}, [userWorkout]);
+  useEffect(() => {
+    for (const key in userWorkout) {
+      setInputs({ ...inputs, [key]: userWorkout[key] });
+    }
+  }, [userWorkout]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const openUserWorkout = () => {
     setShowUserWorkout(true);
@@ -106,8 +117,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     calculatedWeight && !edittable ? `${calculatedWeight}lbs x ` : "";
   const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
   const userRpe =
-    userWorkout?.rpe && userWorkout.rpe.length && !edittable
-      ? `[${userWorkout.rpe}]`
+    userWorkout?.userRpe && userWorkout.userRpe.length && !edittable
+      ? `[${userWorkout.userRpe}]`
       : "";
 
   const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} Reps ${rpeText} ${userRpe} ${percentageText}`;
@@ -155,10 +166,11 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           <form>
             <div className="user-workout-input-container">
               <input
+                onChange={handleChange}
                 type="text"
                 name="userRpe"
                 id="userRpe"
-                value={inputs.rpe?.toString()}
+                value={inputs.userRpe?.toString().replace(/,/g, " ")}
                 placeholder="RPE (e.g. 7 8 9.5)"
               />
             </div>
