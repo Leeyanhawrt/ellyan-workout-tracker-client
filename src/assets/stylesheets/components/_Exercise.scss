@@ -13,6 +13,12 @@
     font-size: 2.5rem;
   }
 
+  .user-workout-input-container {
+    input {
+      width: 15rem;
+    }
+  }
+
   .day-container {
     background-color: $color-white;
     display: flex;
@@ -34,6 +40,7 @@
       box-shadow: 0 0.1rem 0.3rem 0 $color-grey;
       display: flex;
       flex-direction: column;
+      white-space: normal;
 
       h5,
       p {
@@ -57,13 +64,17 @@
 
       .exercise-description {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
         margin-bottom: 0.5rem;
 
         .icon-container {
           display: flex;
           gap: 0.5rem;
+
+          .user-workout-icon {
+            transform: translateY(0.2rem);
+          }
         }
       }
     }
@@ -72,6 +83,9 @@
       align-self: flex-end;
       font-size: 2.5rem;
       cursor: pointer;
+      &:hover {
+        color: cornflowerblue;
+      }
     }
 
     &-add {

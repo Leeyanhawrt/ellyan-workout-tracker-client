@@ -35,8 +35,8 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   const [inputs, setInputs] = useState<ExerciseForm>({
     id: exercise?.id || "",
     exerciseName: exercise?.name || "",
-    sets: exercise?.numberSets || "",
-    reps: exercise?.numberReps || "",
+    sets: exercise?.sets || "",
+    reps: exercise?.reps || "",
     rpe: exercise?.rpe || "",
     percentage: exercise?.percentage || "",
     dailyWorkoutId: dailyWorkoutId,

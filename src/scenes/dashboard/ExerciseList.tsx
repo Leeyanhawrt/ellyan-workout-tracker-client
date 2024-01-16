@@ -15,8 +15,8 @@ interface ExerciseListProps {
 export type Exercise = {
   id: number;
   name: string;
-  numberSets: number;
-  numberReps: number;
+  sets: number;
+  reps: number;
   rpe: number;
   percentage: number;
   type: string;
