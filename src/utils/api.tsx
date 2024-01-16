@@ -58,7 +58,7 @@ export const putData = async <T,>(
       headers: authorization ? { token: localStorage.token } : {},
     });
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       toast.success(response.data.message);
     }
 
