@@ -12,6 +12,7 @@ import useAxios from "../../hooks/useAxios";
 import { useImpersonateUser } from "../../contexts/ImpersonateUserContext";
 import { LuTextCursorInput } from "react-icons/lu";
 import { putData } from "../../utils/api";
+import Skeleton from "../../components/Skeleton";
 const LIFTS_TO_CALCULATE = ["benchpress", "squat", "deadlift"];
 
 interface ExerciseDetailProps {
@@ -110,16 +111,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!userMaxes) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return <div>Loading...</div>;
+  if (loading || !userMaxes || !user) {
+    return <Skeleton times={1} boxHeight="2rem" boxWidth="15rem" />;
   }
 
   const { name, percentage, reps, sets, rpe, variant } = workoutExercise;
