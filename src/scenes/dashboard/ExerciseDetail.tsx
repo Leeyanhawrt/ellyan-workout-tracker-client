@@ -87,6 +87,8 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     const { userRpe } = response?.data.userWorkout;
 
     setUserWorkout({ ...userWorkout, userRpe: userRpe });
+
+    setShowUserWorkout(false);
   };
 
   const openUserWorkout = () => {
