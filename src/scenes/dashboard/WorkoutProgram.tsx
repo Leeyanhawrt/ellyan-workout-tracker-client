@@ -68,7 +68,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
     setTimeout(() => {
       setIsLoading(false);
     }, 100);
-  }, []);
+  }, [workoutProgramId]);
 
   useEffect(() => {
     setMicrocycles(data);
