@@ -44,7 +44,7 @@ Key Features:
    - The app automatically highlights personal records, motivating clients by showcasing their improvements over time.
   
 
-### Built With
+## Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
@@ -53,5 +53,44 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * PostgresSQL
 * Node.JS
 * Typescript
+
+## Local Setup
+
+### Server
+  
+Download the server repo https://github.com/Leeyanhawrt/ellyan-workout-tracker-server and install dependencies
+
+npm install
+Initialize the Postgres database
+
+npm run db:reset
+Create a .env file with the following:
+
+NODE_ENV={development}
+JWT_SECRET_ACCESS_KEY={YOUR SECRET ACCESS KEY}
+DB_HOST={YOUR DB HOST}
+DB_USER={YOUR DB USERNAME}
+DB_PASSWORD={YOUR DB PASSWORD}
+DB_DATABASE={YOUR DB NAME}
+DB_PORT={YOUR DB PORT}
+
+Start the development server
+npm start
+
+### Client
+
+Download the client repo and install dependencies
+
+npm install
+Create a .env file with the following:
+
+VITE_APP_BACKEND = {EXPRESS SERVER URL}
+VITE_APP_ENV = {development}
+VITE_PUBLIC_PATH = {'/public/photos'}
+
+REACT_APP_BACKEND={EXPRESS SERVER URL}
+
+Start the react application
+npm start
 
 
