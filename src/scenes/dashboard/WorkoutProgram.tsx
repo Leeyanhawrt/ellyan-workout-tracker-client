@@ -67,7 +67,7 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
     fetchData();
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 200);
   }, [workoutProgramId]);
 
   useEffect(() => {
