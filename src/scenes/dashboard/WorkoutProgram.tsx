@@ -78,8 +78,6 @@ const WorkoutProgram: React.FC<WorkoutProgramProps> = ({
     return <div>Loading...</div>;
   }
 
-  console.log("Work on google sheets api");
-
   return (
     <div id="workout-program-container">
       <Microcycle
