@@ -9,7 +9,7 @@ interface ExerciseItemProps {
   edittable?: boolean;
   type: string;
   removeExercise: (exerciseIndex: number) => void;
-  handleEdit: (id: number, exercise: Exercise) => void;
+  handleEdit: (exercise: Exercise) => void;
   handleAdd: (newExercise: Exercise) => void;
   dailyWorkoutId: number;
 }

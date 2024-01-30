@@ -21,7 +21,7 @@ interface ExerciseFormProps {
   handleClose: () => void;
   dailyWorkoutId: number;
   handleAdd?: (newExercise: Exercise) => void;
-  handleEdit?: (id: number, exercise: Exercise) => void;
+  handleEdit?: (exercise: Exercise) => void;
   exercise?: Exercise;
 }
 
@@ -82,14 +82,14 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
       true
     );
 
-    const { exercise, dailyWorkoutId } = response?.data;
+    const { exercise } = response?.data;
 
     if (response?.status === 201) {
       handleAdd!(exercise);
     }
 
     if (response?.status === 200) {
-      handleEdit!(dailyWorkoutId, exercise);
+      handleEdit!(exercise);
     }
 
     handleClose();

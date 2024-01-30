@@ -76,9 +76,9 @@ const ExerciseList: React.FC<ExerciseListProps> = ({
     setExerciseList([...exerciseList, newExercise]);
   };
 
-  const editExercise = (id: number, newExercise: Exercise) => {
+  const editExercise = (newExercise: Exercise) => {
     const updatedExercises = exerciseList.map((exercise) => {
-      if (exercise.id === id) {
+      if (exercise.id === newExercise.id) {
         return { ...newExercise };
       }
       return exercise;
