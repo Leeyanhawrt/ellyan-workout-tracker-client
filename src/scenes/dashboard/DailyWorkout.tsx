@@ -79,7 +79,7 @@ const DailyWorkout: React.FC<DailyWorkoutProps> = ({
 
   return (
     <div className="daily-workout-content">
-      {dailyWorkoutList.length === 0 && (
+      {dailyWorkoutList.length === 0 && edittable && (
         <div className="copy-container">
           <Button size="small" onClick={copyPreviousWeek}>
             <div className="copy-text">
