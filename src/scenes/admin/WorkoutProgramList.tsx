@@ -79,6 +79,13 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
 
     setShowAddProgram(false);
   };
+  const handleClick = (e: React.MouseEvent<SVGElement>) => {
+    e.preventDefault();
+    const form = document.getElementById("add-program-form") as HTMLFormElement;
+    if (form) {
+      form.submit();
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -98,7 +105,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
             </th>
           ) : (
             <th className="add-program-container">
-              <form onSubmit={handleSubmit}>
+              <form id="add-program-form" onSubmit={handleSubmit}>
                 <input
                   onChange={handleChange}
                   type="text"
@@ -109,7 +116,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
                 />
                 <IoIosCheckmarkCircleOutline
                   className="add-program"
-                  onClick={handleSubmit}
+                  onClick={handleClick}
                 />
               </form>
             </th>

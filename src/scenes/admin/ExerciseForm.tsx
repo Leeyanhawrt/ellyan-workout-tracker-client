@@ -95,13 +95,23 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     handleClose();
   };
 
+  const handleClick = (e: React.MouseEvent<SVGElement>) => {
+    e.preventDefault();
+    const form = document.getElementById(
+      "exercise-add-form"
+    ) as HTMLFormElement;
+    if (form) {
+      form.submit();
+    }
+  };
+
   return (
     <div className="exercise-item-container exercise-item-form">
       <div className="icon-container">
-        <MdCheckCircle className="form-icon" onClick={handleSubmit} />
+        <MdCheckCircle className="form-icon" onClick={handleClick} />
         <MdCancel onClick={handleClose} className="form-icon" />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form id="exercise-add-form" onSubmit={handleSubmit}>
         <div className="exercise-name">
           <input
             type="text"
