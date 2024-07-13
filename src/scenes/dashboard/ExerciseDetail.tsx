@@ -126,12 +126,13 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     calculatedWeight && !edittable ? `${calculatedWeight}lbs x ` : "";
   const percentageText = edittable && percentage ? `@ ${percentage}%` : "";
   const repsText = type === "cardio" ? "Mins" : "Reps";
+  const setsText = sets === 1 ? "Set" : "Sets";
   const userRpe =
     userWorkout?.userRpe && userWorkout.userRpe.length && !edittable
       ? `[${userWorkout.userRpe}]`
       : "";
 
-  const exerciseScheme = `${calculatedWeightText}${sets} Sets x ${reps} ${repsText} ${rpeText} ${userRpe} ${percentageText}`;
+  const exerciseScheme = `${calculatedWeightText}${sets} ${setsText} x ${reps} ${repsText} ${rpeText} ${userRpe} ${percentageText}`;
 
   let iconContainer;
 
