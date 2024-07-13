@@ -48,6 +48,7 @@ const ExerciseItem: React.FC<ExerciseItemProps> = ({
     "exercise-item-main": type === "main",
     "exercise-item-accessory": type === "accessory",
     "exercise-item-variant": type === "main variation",
+    "exercise-item-cardio": type === "cardio",
   });
 
   return (
