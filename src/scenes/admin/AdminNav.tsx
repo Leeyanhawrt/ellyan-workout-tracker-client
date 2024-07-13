@@ -10,14 +10,14 @@ const AdminNav: React.FC<AdminNavProps> = ({}) => {
   const [activeDashboard, setActiveDashboard] = useState<number | null>(null);
   const navItems = [
     {
-      link: "/admin/manage_users",
-      text: "Manage Users",
-      icon: <FaUsers />,
-    },
-    {
       link: "/admin/workout_programs",
       text: "Workout Programs",
       icon: <FaDumbbell />,
+    },
+    {
+      link: "/admin/manage_users",
+      text: "Manage Users",
+      icon: <FaUsers />,
     },
   ];
 
