@@ -60,8 +60,7 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     setWorkoutPrograms([...workoutPrograms, newProgram]);
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+  const submitProgramForm = async () => {
     if (inputs.programName?.length === 0) {
       toast.error("Please Provide Program Name");
       return;
@@ -76,15 +75,18 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
     if (response?.status === 201) {
       appendProgram(response?.data?.workoutProgram);
     }
+  };
 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    submitProgramForm();
     setShowAddProgram(false);
   };
+
   const handleClick = (e: React.MouseEvent<SVGElement>) => {
     e.preventDefault();
-    const form = document.getElementById("add-program-form") as HTMLFormElement;
-    if (form) {
-      form.submit();
-    }
+    submitProgramForm();
+    setShowAddProgram(false);
   };
 
   if (loading) {
