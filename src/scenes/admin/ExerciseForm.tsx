@@ -65,8 +65,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     return isValid;
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+  const submitExerciseForm = async () => {
     const isValid = validateDecimal();
 
     if (!isValid && !percentage) {
@@ -91,18 +90,18 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     if (response?.status === 200) {
       handleEdit!(exercise);
     }
+  };
 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    submitExerciseForm();
     handleClose();
   };
 
-  const handleClick = (e: React.MouseEvent<SVGElement>) => {
+  const handleClick = async (e: React.MouseEvent<SVGElement>) => {
     e.preventDefault();
-    const form = document.getElementById(
-      "exercise-add-form"
-    ) as HTMLFormElement;
-    if (form) {
-      form.submit();
-    }
+    submitExerciseForm();
+    handleClose();
   };
 
   return (
