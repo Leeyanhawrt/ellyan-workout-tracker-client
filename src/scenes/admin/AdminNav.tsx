@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "/src/assets/stylesheets/components/_AdminNav.scss";
 import { FaDumbbell } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
 
 interface AdminNavProps {}
 
@@ -12,13 +13,18 @@ const AdminNav: React.FC<AdminNavProps> = ({}) => {
     {
       link: "/admin/workout_programs",
       text: "Workout Programs",
-      icon: <FaDumbbell />,
+      icon: <FaClipboardList />,
     },
     {
       link: "/admin/manage_users",
       text: "Manage Users",
       icon: <FaUsers />,
     },
+    // {
+    //   link: "/admin/exercises",
+    //   text: "Exercise List",
+    //   icon: <FaDumbbell />,
+    // },
   ];
 
   const updateDashboard = (newDashboard: number) => {

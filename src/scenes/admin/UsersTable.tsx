@@ -4,9 +4,9 @@ import useAxios from "../../hooks/useAxios";
 import UserItem from "./UserItem";
 import "/src/assets/stylesheets/components/_Table.scss";
 
-interface UsersListProps {}
+interface UsersTableProps {}
 
-const UsersList: React.FC<UsersListProps> = ({}) => {
+const UsersTable: React.FC<UsersTableProps> = ({}) => {
   const {
     data: users,
     loading,
@@ -42,4 +42,4 @@ const UsersList: React.FC<UsersListProps> = ({}) => {
   );
 };
 
-export default UsersList;
+export default UsersTable;

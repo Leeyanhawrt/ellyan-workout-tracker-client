@@ -1,24 +1,26 @@
 import AdminNav from "./AdminNav";
 import { Route, Routes } from "react-router-dom";
-import UsersList from "./UsersList";
-import UserDetailForm from "./UserDetailForm";
+import UsersTable from "./UsersTable";
+import AdminUserProfile from "./AdminUserProfile";
 import "/src/assets/stylesheets/pages/_p_admin.scss";
-import WorkoutProgramList from "./WorkoutProgramList";
+import WorkoutsTable from "./WorkoutsTable";
 import WorkoutProgram from "../dashboard/WorkoutProgram";
+import ExerciseList from "../dashboard/ExerciseList";
 import { ImpersonateUserProvider } from "../../contexts/ImpersonateUserContext";
 
-interface AdminPageProps {}
+interface AdminDashboardProps {}
 
-const AdminPage: React.FC<AdminPageProps> = ({}) => {
+const AdminDashboard: React.FC<AdminDashboardProps> = ({}) => {
   return (
     <ImpersonateUserProvider>
       <div id="admin">
         <AdminNav />
         <div className="admin-content">
           <Routes>
-            <Route path="manage_users" element={<UsersList />} />
-            <Route path="manage_users/:userId" element={<UserDetailForm />} />
-            <Route path="workout_programs" element={<WorkoutProgramList />} />
+            <Route path="manage_users" element={<UsersTable />} />
+            <Route path="manage_users/:userId" element={<AdminUserProfile />} />
+            <Route path="workout_programs" element={<WorkoutsTable />} />
+            {/* <Route path="exercises" element={<ExerciseList />} /> */}
             <Route
               path="workout_programs/:id"
               element={<WorkoutProgram edittable />}
@@ -34,4 +36,4 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
   );
 };
 
-export default AdminPage;
+export default AdminDashboard;

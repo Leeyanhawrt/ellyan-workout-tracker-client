@@ -8,16 +8,16 @@ import { postData } from "../../utils/api";
 import { toast } from "react-toastify";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
-interface WorkoutProgramListProps {}
+interface WorkoutsTableProps {}
 
-type WorkoutProgramDetail = {
+type WorkoutsTableDetail = {
   programName: string | undefined;
 };
 
-const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
+const WorkoutsTable: React.FC<WorkoutsTableProps> = ({}) => {
   const [workoutPrograms, setWorkoutPrograms] = useState<WorkoutProgram[]>([]);
   const [showAddProgram, setShowAddProgram] = useState<boolean>(false);
-  const [inputs, setInputs] = useState<WorkoutProgramDetail>({
+  const [inputs, setInputs] = useState<WorkoutsTableDetail>({
     programName: undefined,
   });
 
@@ -140,4 +140,4 @@ const WorkoutProgramList: React.FC<WorkoutProgramListProps> = ({}) => {
   );
 };
 
-export default WorkoutProgramList;
+export default WorkoutsTable;

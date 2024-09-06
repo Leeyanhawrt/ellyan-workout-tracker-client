@@ -9,7 +9,7 @@ import Login from "./scenes/home/Login";
 import Unauthorized from "./scenes/globals/Unauthorized";
 import AdminLogin from "./scenes/home/AdminLogin";
 import DashboardPage from "./scenes/dashboard/DashboardPage";
-import AdminPage from "./scenes/admin/AdminPage";
+import AdminDashboard from "./scenes/admin/AdminDashboard";
 import Nav from "./scenes/globals/Nav";
 import useAuthentication from "./hooks/useAuthentication";
 import { useUser } from "./contexts/UserContext";
@@ -48,7 +48,7 @@ const App = () => {
                 element={
                   isAuthenticated &&
                   user?.roles?.some((role) => role === "member") ? (
-                    <AdminPage />
+                    <AdminDashboard />
                   ) : (
                     <Navigate to="/login/admin" />
                   )

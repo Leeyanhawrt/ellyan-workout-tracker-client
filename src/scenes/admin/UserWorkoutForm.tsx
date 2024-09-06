@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import { WorkoutProgram } from "../dashboard/WorkoutProgram";
 
-type UserWorkoutProgramFormProps = {
+type UserWorkoutFormProps = {
   workoutProgramId?: number | undefined;
   handleSelectChange: (name: string, value: string) => void;
 };
 
-const UserWorkoutProgramForm: React.FC<UserWorkoutProgramFormProps> = ({
+const UserWorkoutForm: React.FC<UserWorkoutFormProps> = ({
   workoutProgramId,
   handleSelectChange,
 }) => {
@@ -57,4 +57,4 @@ const UserWorkoutProgramForm: React.FC<UserWorkoutProgramFormProps> = ({
     </>
   );
 };
-export default UserWorkoutProgramForm;
+export default UserWorkoutForm;

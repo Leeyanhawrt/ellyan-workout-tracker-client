@@ -3,10 +3,10 @@ import { useEffect, useState, ChangeEvent } from "react";
 import { User } from "../../contexts/UserContext";
 import useAxios from "../../hooks/useAxios";
 import Button from "../../components/Button";
-import UserWorkoutProgramForm from "./UserWorkoutProgramForm";
+import UserWorkoutForm from "./UserWorkoutForm";
 import { postData } from "../../utils/api";
 
-type UserDetailFormProps = {};
+type AdminUserProfileProps = {};
 
 type UserDetail = {
   workoutProgramId: number | undefined;
@@ -14,7 +14,7 @@ type UserDetail = {
   roundDown: boolean | undefined;
 };
 
-const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
+const AdminUserProfile: React.FC<AdminUserProfileProps> = ({}) => {
   const { userId } = useParams();
 
   const {
@@ -149,7 +149,7 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
             </label>
           </div>
         </div>
-        <UserWorkoutProgramForm
+        <UserWorkoutForm
           workoutProgramId={workoutProgramId}
           handleSelectChange={handleSelectChange}
         />
@@ -162,4 +162,4 @@ const UserDetailForm: React.FC<UserDetailFormProps> = ({}) => {
     </div>
   );
 };
-export default UserDetailForm;
+export default AdminUserProfile;
